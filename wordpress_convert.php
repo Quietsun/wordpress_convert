@@ -34,13 +34,25 @@ define("WORDPRESS_CONVERT_PLUGIN_NAME", __("Wordpress Convert Plugin"));
 // メインクラス名
 define("WORDPRESS_CONVERT_MAIN_CLASS", "WordpressConvert");
 
+// メインクラス名
+define("WORDPRESS_CONVERT_SETTING_CLASS", "WordpressConvertSetting");
+
+// テンプレート取得クラス
+define("WORDPRESS_CONVERT_CONTENT_MANAGER", "LocalContentManager");
+
 // テンプレート取得先サーバー
-define("WORDPRESS_CONVERT_SERVER", "192.168.252.140");
+define("WORDPRESS_CONVERT_SERVER", "/tmp");
+
+// 変換後テーマ名
+define("WORDPRESS_CONVERT_THEME_NAME", "ConvertedTheme");
 
 require_once(dirname(__FILE__)."/classes/".WORDPRESS_CONVERT_MAIN_CLASS.".php");
 
 // 初期化処理用のアクションを登録する。
 add_action( 'init', array( WORDPRESS_CONVERT_MAIN_CLASS, "init" ) );
+
+// 初期化処理用のアクションを登録する。
+add_action( 'admin_init', array( WORDPRESS_CONVERT_MAIN_CLASS, "execute" ) );
 
 // インストール時の処理を登録
 register_activation_hook( __FILE__, array( WORDPRESS_CONVERT_MAIN_CLASS, "install" ) );
