@@ -25,29 +25,16 @@ require_once(dirname(__FILE__)."/../ContentConvertCartridge.php");
  * @author Naohisa Minagawa
  * @version 1.0
  */
-class ConvertPathCartridge extends ContentConvertCartridge {
+class ConvertArticleCartridge extends ContentConvertCartridge {
 	public function __construct(){
 		parent::__construct();
 	}
 	
 	public function convert($content){
-		foreach(pq("img") as $image){
-			pq($image)->attr("src", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".pq($image)->attr("src"));
-		}
-		foreach(pq("script") as $script){
-			if(pq($script)->attr("src") != ""){
-				pq($script)->attr("src", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".pq($script)->attr("src"));
-			}
-		}
-		foreach(pq("link") as $link){
-			if(pq($link)->attr("rel") == "stylesheet"){
-				pq($link)->attr("href", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".pq($link)->attr("href"));
-			}
-		}
-		foreach(pq("a") as $anchor){
-			if(pq($anchor)->attr("rel") == "single.html"){
-				pq($anchor)->attr("href", "<?php the_permalink(); ?>");
-			}
+		foreach(pq("div.wp_articles") as $article){
+			pq($article)->find("span.wp_title")->html("<?php the_title(); ?>");
+			pq($article)->prepend("<?php if (have_posts()) : while (have_posts()) : the_post(); ?>");
+			pq($article)->append("<?php endwhile; endif; ?>");
 		}
 		return $content;
 	}

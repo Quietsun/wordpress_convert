@@ -16,10 +16,11 @@
  * limitations under the License.
  */
 
-require(dirname(__FILE__)."/WordpressConvertSetting.php");
-require(dirname(__FILE__)."/".WORDPRESS_CONVERT_CONTENT_MANAGER.".php");
-require(dirname(__FILE__)."/ContentConverter.php");
-require(dirname(__FILE__)."/cartridges/ConvertPathCartridge.php");
+require_once(dirname(__FILE__)."/WordpressConvertSetting.php");
+require_once(dirname(__FILE__)."/".WORDPRESS_CONVERT_CONTENT_MANAGER.".php");
+require_once(dirname(__FILE__)."/ContentConverter.php");
+require_once(dirname(__FILE__)."/cartridges/ConvertPathCartridge.php");
+require_once(dirname(__FILE__)."/cartridges/ConvertArticleCartridge.php");
 
 /**
  * HTMLをWordpressテンプレートに変換するプラグインのメインクラス
@@ -83,6 +84,7 @@ class WordpressConvert {
 					if(preg_match("/\\.html?$/i", $filename) > 0){
 						$converter = new ContentConverter($content);
 						$converter->addCartridge(new ConvertPathCartridge());
+						$converter->addCartridge(new ConvertArticleCartridge());
 						fwrite($fp, $converter->convert()->html());
 					}elseif(preg_match("/\\.css$/i", $filename) > 0){
 						$content = preg_replace("/url\\(([^\\)]+)\\)/", "url(".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/"."\$1)", $content);
