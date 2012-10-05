@@ -18,6 +18,8 @@
 
 require(dirname(__FILE__)."/WordpressConvertSetting.php");
 require(dirname(__FILE__)."/".WORDPRESS_CONVERT_CONTENT_MANAGER.".php");
+require(dirname(__FILE__)."/ContentConverter.php");
+require(dirname(__FILE__)."/cartridges/ConvertPathCartridge.php");
 
 /**
  * HTMLをWordpressテンプレートに変換するプラグインのメインクラス
@@ -77,7 +79,21 @@ class WordpressConvert {
 					mkdir($info["dirname"], 0755, true);
 				}
 				if(($fp = fopen($themeFile, "w+")) !== FALSE){
-					fwrite($fp, $contentManager->getContent($filename));
+					$content = $contentManager->getContent($filename);
+					if(preg_match("/\\.html?$/i", $filename) > 0){
+						$converter = new ContentConverter($content);
+						$converter->addCartridge(new ConvertPathCartridge());
+						fwrite($fp, $converter->convert()->html());
+					}elseif(preg_match("/\\.css$/i", $filename) > 0){
+						$content = preg_replace("/url\\(([^\\)]+)\\)/", "url(".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/"."\$1)", $content);
+						fwrite($fp, $content);
+					}elseif(preg_match("/script\\.js$/i", $filename) > 0){
+						$content = preg_replace("/bindobj\\.siteroot = ''/", "bindobj.siteroot = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
+						$content = preg_replace("/bindobj\\.dir = ''/", "bindobj.dir = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
+						fwrite($fp, $content);
+					}else{
+						fwrite($fp, $content);
+					}
 					fclose($fp);
 				}
 			}

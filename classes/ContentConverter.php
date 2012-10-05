@@ -38,14 +38,29 @@ class ContentConverter {
 		$this->cartridges = array();
 	}
 	
-	abstract public function getContentHome();
+	/**
+	 * カートリッジを追加
+	 */
+	public function addCartridge($cartridge){
+		$this->cartridges[] = $cartridge;
+		return $this;
+	}
 	
-	abstract public function getThemeFile($filename);
+	/**
+	 * 変換を実行
+	 */
+	public function convert(){
+		foreach($this->cartridges as $cartridge){
+			$this->content = $cartridge->convert($this->content);
+		}
+		return $this;
+	}
 	
-	abstract public function getList();
-	
-	abstract public function isUpdated($filename);
-	
-	abstract public function getContent($filename);
+	/**
+	 * HTMLテキストとして出力する。
+	 */
+	public function html(){
+		return $this->content->htmlOuter();	
+	}
 }
 ?>
