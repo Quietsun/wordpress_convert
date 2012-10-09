@@ -46,6 +46,9 @@ define("WORDPRESS_CONVERT_SERVER", "/tmp");
 // 変換後テーマ名
 define("WORDPRESS_CONVERT_THEME_NAME", "ConvertedTheme");
 
+// 使用カートリッジ
+define("WORDPRESS_CONVERT_CARTRIDGES", "ConvertPath,ConvertArticle");
+
 require_once(dirname(__FILE__)."/classes/".WORDPRESS_CONVERT_MAIN_CLASS.".php");
 
 // 初期化処理用のアクションを登録する。

@@ -49,6 +49,8 @@ class WordpressConvert {
 	public static function execute(){
 		$contentManagerClass = WORDPRESS_CONVERT_CONTENT_MANAGER;
 		$contentManager = new $contentManagerClass(get_option("wordpress_convert_ftp_login_id"), get_option("wordpress_convert_ftp_password"), get_option("wordpress_convert_base_dir"));
+		
+		// 共通スタイルの自動生成
 		$filename = $contentManager->getContentHome()."/style.css";
 		$themeFile = $contentManager->getThemeFile($filename);
 		$info = pathinfo($themeFile);
@@ -71,6 +73,23 @@ class WordpressConvert {
 			fclose($fp);
 		}
 		
+		// 共通関数プログラムの自動生成
+		$filename = $contentManager->getContentHome()."/functions.php";
+		$themeFile = $contentManager->getThemeFile($filename);
+		$info = pathinfo($themeFile);
+		if(!is_dir($info["dirname"])){
+			mkdir($info["dirname"], 0755, true);
+		}
+		if(($fp = fopen($themeFile, "w+")) !== FALSE){
+			fwrite($fp, "<?php\r\n");
+			fwrite($fp, "function eyecatch_setup() {\r\n");
+			fwrite($fp, "add_theme_support( 'post-thumbnails' );\r\n");
+			fwrite($fp, "}\r\n");
+			fwrite($fp, "add_action( 'after_setup_theme', 'eyecatch_setup' );\r\n");
+			fwrite($fp, "?>\r\n");
+			fclose($fp);
+		}
+		
 		$files = $contentManager->getList();
 		foreach($files as $filename){
 			if($contentManager->isUpdated($filename)){
@@ -83,8 +102,13 @@ class WordpressConvert {
 					$content = $contentManager->getContent($filename);
 					if(preg_match("/\\.html?$/i", $filename) > 0){
 						$converter = new ContentConverter($content);
-						$converter->addCartridge(new ConvertPathCartridge());
-						$converter->addCartridge(new ConvertArticleCartridge());
+						$cartridgeNames = explode(",", WORDPRESS_CONVERT_CARTRIDGES);
+						foreach($cartridgeNames as $cartridgeName){
+							if(!empty($cartridgeName) && class_exists($cartridgeName."Cartridge")){
+								$className = $cartridgeName."Cartridge";
+								$converter->addCartridge(new $className());
+							}
+						}
 						fwrite($fp, $converter->convert()->html());
 					}elseif(preg_match("/\\.css$/i", $filename) > 0){
 						$content = preg_replace("/url\\(([^\\)]+)\\)/", "url(".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/"."\$1)", $content);
@@ -97,6 +121,10 @@ class WordpressConvert {
 						fwrite($fp, $content);
 					}
 					fclose($fp);
+					if($filename == $contentManager->getContentHome()."bdflashinfo/thumbnail.png" || $filename == $contentManager->getContentHome()."siteinfos/thumbnail.png"){
+						$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
+						copy($themeFile, $screenshotFile);
+					}
 				}
 			}
 		}
