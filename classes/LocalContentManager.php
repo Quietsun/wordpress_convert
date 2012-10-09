@@ -59,17 +59,19 @@ class LocalContentManager extends ContentManager {
 	
 	public function getSubList($base){
 		$result = array();
-		if ($dir = opendir($base)) {
-			while (($file = readdir($dir)) !== false) {
-				if ($file != "." && $file != "..") {
-					if(is_dir($base.$file)){
-						$result = array_merge($result, $this->getSubList($base.$file."/"));
-					}else{
-						$result[] = $base.$file;
+		if(is_dir($base)){
+			if ($dir = opendir($base)) {
+				while (($file = readdir($dir)) !== false) {
+					if ($file != "." && $file != "..") {
+						if(is_dir($base.$file)){
+							$result = array_merge($result, $this->getSubList($base.$file."/"));
+						}else{
+							$result[] = $base.$file;
+						}
 					}
 				}
+				closedir($dir);
 			}
-			closedir($dir);
 		}
 		return $result;
 	}
