@@ -32,7 +32,79 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 	
 	public function convert($content){
 		foreach(pq("div.wp_articles") as $article){
-			pq($article)->find("span.wp_title")->html("<?php the_title(); ?>");
+			// タイトルを変換
+			pq($article)->find("span.wp_title")->replaceWith("<?php the_title(); ?>");
+			// 投稿日時を変換
+			pq($article)->find("span.wp_date")->replaceWith("<?php the_time(get_option('date_format')); ?>");
+			// 画像を変換
+			$images = pq($article)->find("span.wp_image");
+			foreach($images as $image){
+				// classの値を取得
+				$class = pq($image)->attr("class");
+				if(preg_match("/^(.*)wp_image(.*)?$/", $class, $params) > 0){
+					if(!empty($params[1]) || !empty($params[2])){
+						// クラスの値を分解
+						$classes1 = explode(" ", $params[1]);
+						$classes2 = explode(" ", $params[2]);
+						if(empty($classes1[0])){
+							array_shift($classes1);
+						}
+						if(empty($classes2[0])){
+							array_shift($classes2);
+						}
+						
+						// classの値に応じて処理を行う。
+						switch($classes2[0]){
+							case "thumbnail":
+							case "medium":
+							case "large":
+							case "full":
+								$size = array_shift($classes2);
+								break;
+							default:
+								$size = "medium";
+								break;
+						}
+						$classes = array_merge($classes1, $classes2);
+					}
+					$text = "<?php \$imgClass = array(); ?>";
+					$text .= "<?php \$imgClass[\"class\"] = \"".implode(" ", $classes)."\"; ?>";
+					$text .= "<?php the_post_thumbnail(\"".$size."\", \$imgClass); ?>";
+					pq($image)->replaceWith($text);
+				}
+			}
+			// 本文を変換
+			$bodys = pq($article)->find("span.wp_content");
+			foreach($bodys as $body){
+				// classの値を取得
+				$title = pq($body)->attr("title");
+				if(!empty($title)){
+					pq($body)->replaceWith("<?php the_content(\"".$title."\"); ?>");
+				}else{
+					pq($body)->replaceWith("<?php the_content(); ?>");
+				}
+			}
+			
+			// カテゴリの変換
+			$categories = pq($article)->find("span.wp_category");
+			foreach($categories as $category){
+				// classの値を取得
+				$title = pq($category)->attr("title");
+				if(!empty($title)){
+					pq($category)->replaceWith("<?php the_category(\"".$title."\"); ?>");
+				}
+			}
+			
+			// タグの変換
+			$tags = pq($article)->find("span.wp_tag");
+			foreach($tags as $tag){
+				// classの値を取得
+				$title = pq($tag)->attr("title");
+				if(!empty($title)){
+					pq($tag)->replaceWith("<?php <?php if (get_the_tags()) the_tags('', \"".$title."\"); ?>");
+				}
+			}
+			
 			pq($article)->prepend("<?php if (have_posts()) : while (have_posts()) : the_post(); ?>");
 			pq($article)->append("<?php endwhile; endif; ?>");
 		}
