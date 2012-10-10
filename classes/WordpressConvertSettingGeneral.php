@@ -100,7 +100,7 @@ class WordpressConvertSettingGeneral {
 	public static function displaySetting($labels, $options, $hints, $caution){
 		// 設定変更ページを登録する。
 		echo "<div class=\"wrap\">";
-		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." 基本設定</h2>";
+		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("General Setting")."</h2>";
 		echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
 		echo "<table class=\"form-table\"><tbody>";
 		foreach($labels as $key => $label){

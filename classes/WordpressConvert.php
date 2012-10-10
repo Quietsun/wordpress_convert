@@ -16,7 +16,10 @@
  * limitations under the License.
  */
 
-require_once(dirname(__FILE__)."/WordpressConvertSetting.php");
+$settings = explode(",", WORDPRESS_CONVERT_SETTING_CLASSES);
+foreach($settings as $setting){
+	require_once(dirname(__FILE__)."/WordpressConvertSetting".$setting.".php");
+}
 require_once(dirname(__FILE__)."/".WORDPRESS_CONVERT_CONTENT_MANAGER.".php");
 require_once(dirname(__FILE__)."/ContentConverter.php");
 require_once(dirname(__FILE__)."/cartridges/ConvertPathCartridge.php");
@@ -43,6 +46,11 @@ class WordpressConvert {
 		$settings = explode(",", WORDPRESS_CONVERT_SETTING_CLASSES);
 		foreach($settings as $setting){
 			add_action( 'admin_menu', array( "WordpressConvertSetting".$setting, 'init' ) );
+		}
+		
+		// 初期表示のメニューを変更
+		if(empty($_GET["page"])){
+			wp_redirect(get_option('siteurl') . '/wp-admin/admin.php?page=wordpress_convert_menu');
 		}
 	}
 	
