@@ -28,6 +28,12 @@ License: Apache License 2.0
 // メモリ使用制限を調整
 ini_set('memory_limit', '128M');
 
+// このプラグインのルートディレクトリ
+define("WORDPRESS_CONVERT_BASE_DIR", WP_PLUGIN_DIR."/wordpress_convert");
+
+// このプラグインのルートURL
+define("WORDPRESS_CONVERT_BASE_URL", WP_PLUGIN_URL."/wordpress_convert");
+
 // メインクラス名
 define("WORDPRESS_CONVERT_PLUGIN_NAME", __("Wordpress Convert Plugin"));
 
@@ -35,16 +41,10 @@ define("WORDPRESS_CONVERT_PLUGIN_NAME", __("Wordpress Convert Plugin"));
 define("WORDPRESS_CONVERT_MAIN_CLASS", "WordpressConvert");
 
 // メインクラス名
-define("WORDPRESS_CONVERT_SETTING_CLASS", "WordpressConvertSetting");
+define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu,General,Ftp");
 
 // テンプレート取得クラス
 define("WORDPRESS_CONVERT_CONTENT_MANAGER", "LocalContentManager");
-
-// テンプレート取得先サーバー
-define("WORDPRESS_CONVERT_SERVER", "/tmp");
-
-// 変換後テーマ名
-define("WORDPRESS_CONVERT_THEME_NAME", "ConvertedTheme");
 
 // 使用カートリッジ
 define("WORDPRESS_CONVERT_CARTRIDGES", "ConvertPath,ConvertArticle");
@@ -53,6 +53,12 @@ require_once(dirname(__FILE__)."/classes/".WORDPRESS_CONVERT_MAIN_CLASS.".php");
 
 // 初期化処理用のアクションを登録する。
 add_action( 'init', array( WORDPRESS_CONVERT_MAIN_CLASS, "init" ) );
+
+// テンプレート取得先サーバー
+define("WORDPRESS_CONVERT_SERVER", get_option("wordpress_convert_ftp_host"));
+
+// 変換後テーマ名
+define("WORDPRESS_CONVERT_THEME_NAME", get_option("wordpress_convert_theme_code"));
 
 // 初期化処理用のアクションを登録する。
 add_action( 'admin_init', array( WORDPRESS_CONVERT_MAIN_CLASS, "execute" ) );

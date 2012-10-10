@@ -40,7 +40,10 @@ class WordpressConvert {
 			trigger_error( __("PHP 5.3 or later is required for this plugin."), E_USER_ERROR );
 		
 		// 初期化処理
-		add_action( 'admin_menu', array( WORDPRESS_CONVERT_SETTING_CLASS, 'init' ) );
+		$settings = explode(",", WORDPRESS_CONVERT_SETTING_CLASSES);
+		foreach($settings as $setting){
+			add_action( 'admin_menu', array( "WordpressConvertSetting".$setting, 'init' ) );
+		}
 	}
 	
 	/**

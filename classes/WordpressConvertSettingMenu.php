@@ -23,17 +23,21 @@
  * @author Naohisa Minagawa
  * @version 1.0
  */
-class WordpressConvertSetting {
+class WordpressConvertSettingMenu {
 	/**
 	 * 設定を初期化するメソッド
 	 * admin_menuにフックさせる。
 	 * @return void
 	 */
 	public static function init(){
-		add_submenu_page(
-			'options-general.php',
-			__("Setting FTP Account."), __("Setting FTP Account."),
-			'manage_options', __FILE__, array( WORDPRESS_CONVERT_SETTING_CLASS, 'execute' )
+		add_menu_page(
+			__("Wordpress Convert Menus"), 
+			__("Wordpress Convert Menus"), 
+			"administrator", 
+			"wordpress_convert_menu", 
+			array( "WordpressConvertSettingMenu", 'execute' ), 
+			WORDPRESS_CONVERT_BASE_URL."/menu_icon.png", 
+			3 
 		);
 	}
 	
@@ -41,8 +45,20 @@ class WordpressConvertSetting {
 	 * 設定画面の制御を行うメソッドです。
 	 */
 	public static function execute(){
-		$labels = array("ftp_login_id" => __("FTP Login ID"), "ftp_password" => __("FTP Password"), "base_dir" => __("Base Directory"));
-		$hints = array("ftp_login_id" => __("Please input your FTP login ID"), "ftp_password" => __("Please input your FTP password"), "base_dir" => __("Please input template base directory by ftp root directory"));
+		$labels = array(
+			"ftp_host" => __("FTP Host"), 
+			"ftp_login_id" => __("FTP Login ID"), 
+			"ftp_password" => __("FTP Password"), 
+			"base_dir" => __("Base Directory"),
+			"theme_code" => __("Theme Code")
+		);
+		$hints = array(
+			"ftp_host" => __("Please input your FTP Hostname or IP Address"), 
+			"ftp_login_id" => __("Please input your FTP login ID"), 
+			"ftp_password" => __("Please input your FTP password"), 
+			"base_dir" => __("Please input template base directory by ftp root directory"), 
+			"theme_code" => __("Theme code which this plugin convert to.")
+		);
 		
 		$caution = self::saveSetting($labels);
 		
