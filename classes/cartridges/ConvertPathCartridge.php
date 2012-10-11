@@ -45,8 +45,12 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 			}
 		}
 		foreach(pq("a") as $anchor){
-			if(pq($anchor)->attr("rel") == "single.html"){
+			if(pq($anchor)->attr("href") == "single.html"){
 				pq($anchor)->attr("href", "<?php the_permalink(); ?>");
+			}elseif(pq($anchor)->attr("href") == "index.html"){
+				pq($anchor)->attr("href", get_option('siteurl'));
+			}else{
+				pq($anchor)->attr("href", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".str_replace(".html", ".php", pq($anchor)->attr("href")));
 			}
 		}
 		return $content;
