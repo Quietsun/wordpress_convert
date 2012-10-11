@@ -49,9 +49,9 @@ class WordpressConvert {
 		}
 		
 		// 初期表示のメニューを変更
-		if(empty($_GET["page"]) && preg_match("/\\/wp-admin\\//", $_SERVER["REQUEST_URI"]) > 0){
-			wp_redirect(get_option('siteurl') . '/wp-admin/admin.php?page=wordpress_convert_menu');
-		}
+		//if(empty($_GET["page"]) && preg_match("/\\/wp-admin\\//", $_SERVER["REQUEST_URI"]) > 0){
+		//	wp_redirect(get_option('siteurl') . '/wp-admin/admin.php?page=wordpress_convert_menu');
+		//}
 	}
 	
 	/**
