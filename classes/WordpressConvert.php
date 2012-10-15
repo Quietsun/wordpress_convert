@@ -135,8 +135,8 @@ class WordpressConvert {
 						fclose($fp);
 						if($filename == $contentManager->getContentHome()."bdflashinfo/thumbnail.png" || $filename == $contentManager->getContentHome()."siteinfos/thumbnail.png"){
 							$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
-							while(!copy($themeFile, $screenshotFile)){
-								sleep(1);
+							if(!copy($themeFile, $screenshotFile)){
+								echo "Copy failed : ".$themeFile." => ".$screenshotFile."<br>";
 							}
 						}
 					}
