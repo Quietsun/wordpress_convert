@@ -135,7 +135,9 @@ class WordpressConvert {
 						fclose($fp);
 						if($filename == $contentManager->getContentHome()."bdflashinfo/thumbnail.png" || $filename == $contentManager->getContentHome()."siteinfos/thumbnail.png"){
 							$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
-							copy($themeFile, $screenshotFile);
+							while(!copy($themeFile, $screenshotFile)){
+								sleep(1);
+							}
 						}
 					}
 				}
