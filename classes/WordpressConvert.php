@@ -133,15 +133,14 @@ class WordpressConvert {
 							fwrite($fp, $content);
 						}
 						fclose($fp);
-						
-						$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
-						if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"))){
-							copy($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"), $screenshotFile);
-						}elseif(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"))){
-							copy($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"), $screenshotFile);
-						}
 					}
 				}
+			}
+			$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
+			if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"))){
+				copy($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"), $screenshotFile);
+			}elseif(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"))){
+				copy($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"), $screenshotFile);
 			}
 		}
 	}
