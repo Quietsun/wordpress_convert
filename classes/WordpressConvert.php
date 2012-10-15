@@ -133,11 +133,12 @@ class WordpressConvert {
 							fwrite($fp, $content);
 						}
 						fclose($fp);
-						if($filename == $contentManager->getContentHome()."bdflashinfo/thumbnail.png" || $filename == $contentManager->getContentHome()."siteinfos/thumbnail.png"){
-							$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
-							if(!file_exists($screenshotFile) || filemtime($screenshotFile) < filemtime($themeFile)){
-								copy($themeFile, $screenshotFile);
-							}
+						
+						$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
+						if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"))){
+							copy($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"), $screenshotFile);
+						}elseif(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"))){
+							copy($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"), $screenshotFile);
 						}
 					}
 				}
