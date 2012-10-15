@@ -36,6 +36,8 @@ abstract class ContentManager {
 		$this->basedir = $basedir;
 	}
 	
+	abstract public function isAccessible();
+	
 	abstract public function getContentHome();
 	
 	abstract public function getThemeFile($filename);

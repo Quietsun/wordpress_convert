@@ -44,7 +44,7 @@ define("WORDPRESS_CONVERT_MAIN_CLASS", "WordpressConvert");
 define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu,General,Ftp");
 
 // テンプレート取得クラス
-define("WORDPRESS_CONVERT_CONTENT_MANAGER", "LocalContentManager");
+define("WORDPRESS_CONVERT_CONTENT_MANAGER", "SecuredLocalContentManager");
 
 // 使用カートリッジ
 define("WORDPRESS_CONVERT_CARTRIDGES", "ConvertPath,ConvertArticle");
@@ -53,6 +53,12 @@ require_once(dirname(__FILE__)."/classes/".WORDPRESS_CONVERT_MAIN_CLASS.".php");
 
 // 初期化処理用のアクションを登録する。
 add_action( 'init', array( WORDPRESS_CONVERT_MAIN_CLASS, "init" ) );
+
+// 認証用URL
+define("WORDPRESS_CONVERT_AUTH_BASEURL", get_option("wordpress_convert_auth_baseurl"));
+
+// テンプレート取得ベースディレクトリ
+define("WORDPRESS_CONVERT_TEMPLATE_BASEDIR", get_option("wordpress_convert_template_basedir"));
 
 // テンプレート取得先サーバー
 define("WORDPRESS_CONVERT_SERVER", get_option("wordpress_convert_ftp_host"));

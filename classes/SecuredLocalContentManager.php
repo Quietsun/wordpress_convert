@@ -19,19 +19,24 @@
 require(dirname(__FILE__)."/ContentManager.php");
 
 /**
- * ローカルディスクでHTMLを取得するための基底クラス
+ * FTPアカウントの認証を含むローカルディスクでHTMLを取得するための基底クラス
  *
  * @package FtpContentManager
  * @author Naohisa Minagawa
  * @version 1.0
  */
-class LocalContentManager extends ContentManager {
+class SecuredLocalContentManager extends ContentManager {
 	public function __construct($login_id, $password, $basedir){
 		parent::__construct($login_id, $password, $basedir);
 	}
 	
 	public function isAccessible(){
-		return true;
+		$data = file_get_contents(WORDPRESS_CONVERT_AUTH_BASEURL."/jsonp.php?m=ftplogin&callback=ftplogin&login=".$this->login_id."&password=".$this->password."&secret=JK19pDr3cM94LkfEsY0FpQ21");
+		eval($data);
+		if(!empty($ftp_login_id)){
+			return true;
+		}
+		return false;
 	}
 	
 	public function getContentHome(){

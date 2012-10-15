@@ -42,12 +42,16 @@ class WordpressConvertSettingGeneral {
 	 */
 	public static function execute(){
 		$labels = array(
+			"auth_baseurl" => __("Authenticate BaseURL"), 
 			"ftp_host" => __("FTP Host"), 
+			"template_basedir" => __("Template Basedir"), 
 			"theme_code" => __("Theme Code")
 		);
 		$hints = array(
+			"auth_baseurl" => __("Please input Authenticate BaseURL"), 
 			"ftp_host" => __("Please input your FTP Hostname or IP Address"), 
-			"theme_code" => __("Theme code which this plugin convert to.")
+			"template_basedir" => __("Please input template basedir"), 
+			"theme_code" => __("Theme code which this plugin convert to")
 		);
 		
 		$caution = self::saveSetting($labels);
@@ -65,8 +69,9 @@ class WordpressConvertSettingGeneral {
 	 */
 	protected static function is_valid($values){
 		$errors = array();
-		if(empty($values["ftp_host"])){
-			$errors["ftp_host"] = __("Empty FTP Host");
+		if(empty($values["ftp_host"]) && empty($values["template_basedir"])){
+			$errors["ftp_host"] = __("Empty FTP Host and Template Basedir");
+			$errors["template_basedir"] = __("Empty FTP Host and Template Basedir");
 		}
 		if(empty($values["theme_code"])){
 			$errors["theme_code"] = __("Empty Theme Code");
