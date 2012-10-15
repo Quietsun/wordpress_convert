@@ -37,12 +37,12 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 			}
 		}
 		foreach(pq("script") as $script){
-			if(pq($script)->attr("src") != "" && preg_match("/^https?:\\/\\//", pq($image)->attr("src")) == 0){
+			if(pq($script)->attr("src") != "" && preg_match("/^https?:\\/\\//", pq($script)->attr("src")) == 0){
 				pq($script)->attr("src", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".pq($script)->attr("src"));
 			}
 		}
 		foreach(pq("link") as $link){
-			if(pq($link)->attr("rel") == "stylesheet" && preg_match("/^https?:\\/\\//", pq($image)->attr("href")) == 0){
+			if(pq($link)->attr("rel") == "stylesheet" && preg_match("/^https?:\\/\\//", pq($link)->attr("href")) == 0){
 				pq($link)->attr("href", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".pq($link)->attr("href"));
 			}
 		}
@@ -51,7 +51,7 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 				pq($anchor)->attr("href", "<?php the_permalink(); ?>");
 			}elseif(pq($anchor)->attr("href") == "index.html"){
 				pq($anchor)->attr("href", get_option('siteurl'));
-			}elseif(preg_match("/^https?:\\/\\//", pq($image)->attr("href")) == 0){
+			}elseif(preg_match("/^https?:\\/\\//", pq($anchor)->attr("href")) == 0){
 				pq($anchor)->attr("href", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".str_replace(".html", ".php", pq($anchor)->attr("href")));
 			}
 		}
