@@ -21,11 +21,11 @@ require_once(dirname(__FILE__)."/../ContentConvertCartridge.php");
 /**
  * CSSや画像・スクリプトのパスを変換するためのカートリッジクラス
  *
- * @package ConvertPathCartridge
+ * @package ConvertAutoResizeCartridge
  * @author Naohisa Minagawa
  * @version 1.0
  */
-class ConvertPathCartridge extends ContentConvertCartridge {
+class ConvertAutoResizeCartridge extends ContentConvertCartridge {
 	public function __construct(){
 		parent::__construct();
 	}
@@ -43,7 +43,7 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 		$script .= "\$(\"#blank-footer\").css(\"height\", ch + \"px\");";
 		$script .= "}});\r\n";
 		$script .= "</script>\r\n";
-		pq("#blank-footer")->append($script);
+		pq("head")->append($script);
 		return $content;
 	}
 }

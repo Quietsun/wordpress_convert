@@ -24,6 +24,7 @@ require_once(dirname(__FILE__)."/".WORDPRESS_CONVERT_CONTENT_MANAGER.".php");
 require_once(dirname(__FILE__)."/ContentConverter.php");
 require_once(dirname(__FILE__)."/cartridges/ConvertPathCartridge.php");
 require_once(dirname(__FILE__)."/cartridges/ConvertArticleCartridge.php");
+require_once(dirname(__FILE__)."/cartridges/ConvertAutoResizeCartridge.php");
 
 /**
  * HTMLをWordpressテンプレートに変換するプラグインのメインクラス

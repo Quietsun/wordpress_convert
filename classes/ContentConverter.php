@@ -51,6 +51,7 @@ class ContentConverter {
 	 */
 	public function convert(){
 		foreach($this->cartridges as $cartridge){
+			print_r($cartridge);
 			$this->content = $cartridge->convert($this->content);
 		}
 		return $this;
