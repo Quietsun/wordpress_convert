@@ -32,7 +32,7 @@ class ConvertAutoResizeCartridge extends ContentConvertCartridge {
 	
 	public function convert($content){
 		$script = "<script type=\"text/javascript\">\r\n";
-		$script .= "jQuery(function(){var hh = jQuery(\"#area-header\").height() + jQuery(\"#area-billboard\").height()";
+		$script .= "jQuery(function(){var hh = jQuery(\"#area-header\").height() + jQuery(\"#area-billboard\").height();";
 		$script .= "var ah = jQuery(\"#area-side-a\").height();";
 		$script .= "var bh = jQuery(\"#area-side-b\").height();";
 		$script .= "var ch = jQuery(\"#area-main\").height();";
