@@ -43,7 +43,7 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 		$script .= "\$(\"#blank-footer\").css(\"height\", ch + \"px\");";
 		$script .= "}});\r\n";
 		$script .= "</script>\r\n";
-		pq($content)->append($script);
+		pq("#blank-footer")->append($script);
 		return $content;
 	}
 }
