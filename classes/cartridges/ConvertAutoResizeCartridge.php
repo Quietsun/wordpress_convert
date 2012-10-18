@@ -36,13 +36,16 @@ class ConvertAutoResizeCartridge extends ContentConvertCartridge {
 		$script .= "var ah = jQuery(\"#area-side-a\").height();";
 		$script .= "var bh = jQuery(\"#area-side-b\").height();";
 		$script .= "var ch = jQuery(\"#area-main\").height();";
+		$script .= "var fh = jQuery(\"#area-footer\").height();";
 		$script .= "if(ah > bh && ah > ch){";
 		$script .= "jQuery(\"#blank-footer\").css(\"height\", (hh + ah) + \"px\");";
 		$script .= "}else if(bh > ch){";
 		$script .= "jQuery(\"#blank-footer\").css(\"height\", (hh + bh) + \"px\");";
 		$script .= "}else{";
 		$script .= "jQuery(\"#blank-footer\").css(\"height\", (hh + ch) + \"px\");";
-		$script .= "}});\r\n";
+		$script .= "}";
+		$script .= "jQuery(\"#page\").css(\"mergin-bottom\", "-" + fh + \"px\");";
+		$script .= "});\r\n";
 		$script .= "</script>\r\n";
 		pq("head")->append($script);
 		return $content;
