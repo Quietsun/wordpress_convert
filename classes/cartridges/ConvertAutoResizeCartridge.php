@@ -32,15 +32,16 @@ class ConvertAutoResizeCartridge extends ContentConvertCartridge {
 	
 	public function convert($content){
 		$script = "<script type=\"text/javascript\">\r\n";
-		$script .= "jQuery(function(){var ah = \$(\"#area-side-a\").height();";
-		$script .= "var bh = \$(\"#area-side-b\").height();";
-		$script .= "var ch = \$(\"#area-main\").height();";
+		$script .= "jQuery(function(){var hh = jQuery(\"#area-header\").height() + jQuery(\"#area-billboard\").height()";
+		$script .= "var ah = jQuery(\"#area-side-a\").height();";
+		$script .= "var bh = jQuery(\"#area-side-b\").height();";
+		$script .= "var ch = jQuery(\"#area-main\").height();";
 		$script .= "if(ah > bh && ah > ch){";
-		$script .= "\$(\"#blank-footer\").css(\"height\", ah + \"px\");";
+		$script .= "jQuery(\"#blank-footer\").css(\"height\", (hh + ah) + \"px\");";
 		$script .= "}else if(bh > ch){";
-		$script .= "\$(\"#blank-footer\").css(\"height\", bh + \"px\");";
+		$script .= "jQuery(\"#blank-footer\").css(\"height\", (hh + bh) + \"px\");";
 		$script .= "}else{";
-		$script .= "\$(\"#blank-footer\").css(\"height\", ch + \"px\");";
+		$script .= "jQuery(\"#blank-footer\").css(\"height\", (hh + ch) + \"px\");";
 		$script .= "}});\r\n";
 		$script .= "</script>\r\n";
 		pq("head")->append($script);
