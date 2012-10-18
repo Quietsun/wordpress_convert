@@ -108,6 +108,8 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 			pq($article)->prepend("<?php if (have_posts()) : while (have_posts()) : the_post(); ?>");
 			pq($article)->append("<?php endwhile; endif; ?>");
 		}
+		pq("div.wp_widgets")->replaceWith("<?php if(function_exists('dynamic_sidebar')) dynamic_sidebar(); ?>");
+		pq("div.wp_menus")->replaceWith("<?php \$data = array(); \$data[\"container_class\"] = \"menu-header\"; \$data[\"theme_location\"] = \"primary\"; wp_nav_menu(\$data); ?>");
 		return $content;
 	}
 }

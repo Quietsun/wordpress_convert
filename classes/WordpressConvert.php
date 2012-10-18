@@ -94,6 +94,8 @@ class WordpressConvert {
 			}
 			if(($fp = fopen($themeFile, "w+")) !== FALSE){
 				fwrite($fp, "<?php\r\n");
+				fwrite($fp, "register_nav_menus( array( 'primary' => __( 'Primary Navigation' ), ) );\r\n");
+				fwrite($fp, "if(function_exists('register_sidebar')) register_sidebar();\r\n");
 				fwrite($fp, "function eyecatch_setup() {\r\n");
 				fwrite($fp, "add_theme_support( 'post-thumbnails' );\r\n");
 				fwrite($fp, "}\r\n");
@@ -121,7 +123,7 @@ class WordpressConvert {
 									$converter->addCartridge(new $className());
 								}
 							}
-							fwrite($fp, $converter->convert()->html());
+							fwrite($fp, $converter->convert()->php());
 						}elseif(preg_match("/\\.css$/i", $filename) > 0){
 							$content = preg_replace("/url\\(([^\\)]+)\\)/", "url(".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/"."\$1)", $content);
 							fwrite($fp, $content);

@@ -62,5 +62,12 @@ class ContentConverter {
 	public function html(){
 		return $this->content->htmlOuter();	
 	}
+
+	/**
+	 * PHPコードとして出力する。
+	 */
+	public function php(){
+		return $this->content->php();	
+	}
 }
 ?>
