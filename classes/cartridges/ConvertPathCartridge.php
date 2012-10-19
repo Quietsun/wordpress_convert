@@ -49,6 +49,8 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 		foreach(pq("a") as $anchor){
 			if(pq($anchor)->attr("href") == "single.html"){
 				pq($anchor)->attrPHP("href", "the_permalink();");
+			}elseif(pq($anchor)->attr("href") == "category.html"){
+				pq($anchor)->attrPHP("href", "echo get_category_link(\$wp_category['term_id']);");
 			}elseif(pq($anchor)->attr("href") == "index.html"){
 				pq($anchor)->attr("href", get_option('siteurl'));
 			}elseif(preg_match("/^https?:\\/\\//", pq($anchor)->attr("href")) == 0){

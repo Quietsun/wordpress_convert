@@ -22,9 +22,12 @@ foreach($settings as $setting){
 }
 require_once(dirname(__FILE__)."/".WORDPRESS_CONVERT_CONTENT_MANAGER.".php");
 require_once(dirname(__FILE__)."/ContentConverter.php");
-require_once(dirname(__FILE__)."/cartridges/ConvertPathCartridge.php");
-require_once(dirname(__FILE__)."/cartridges/ConvertArticleCartridge.php");
-require_once(dirname(__FILE__)."/cartridges/ConvertAutoResizeCartridge.php");
+$cartridgeNames = explode(",", WORDPRESS_CONVERT_CARTRIDGES);
+foreach($cartridgeNames as $cartridgeName){
+	if(!empty($cartridgeName) && file_exists(dirname(__FILE__)."/cartridges/".$cartridgeName."Cartridge.php")){
+		require_once(dirname(__FILE__)."/cartridges/".$cartridgeName."Cartridge.php");
+	}
+}
 
 /**
  * HTMLをWordpressテンプレートに変換するプラグインのメインクラス
@@ -193,7 +196,7 @@ class WordpressConvert {
 					fwrite($fp, "}\r\n");
 				}
 				$widgets = $converter->getWidgets();
-				if(is_array($widgets) && !empty($widgets)){
+				if(is_array($widgets) && count($widgets) > 0){
 					fwrite($fp, "if(function_exists('register_sidebar')){\r\n");
 					foreach($widgets as $id => $name){
 						fwrite($fp, "register_sidebar(array(");
