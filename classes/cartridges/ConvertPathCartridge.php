@@ -52,7 +52,7 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 			}elseif(pq($anchor)->attr("href") == "index.html"){
 				pq($anchor)->attr("href", get_option('siteurl'));
 			}elseif(preg_match("/^https?:\\/\\//", pq($anchor)->attr("href")) == 0){
-				pq($anchor)->attr("href", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".str_replace(".html", ".php", pq($anchor)->attr("href")));
+				pq($anchor)->attr("href", get_page_link($this->converter->getPageId(str_replace(".html", "", pq($anchor)->attr("href")))));
 			}
 		}
 		return $content;

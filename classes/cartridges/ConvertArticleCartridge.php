@@ -19,9 +19,9 @@
 require_once(dirname(__FILE__)."/../ContentConvertCartridge.php");
 
 /**
- * CSSや画像・スクリプトのパスを変換するためのカートリッジクラス
+ * 記事用のタグを変換するためのカートリッジクラス
  *
- * @package ConvertPathCartridge
+ * @package ConvertArticleCartridge
  * @author Naohisa Minagawa
  * @version 1.0
  */
@@ -59,17 +59,21 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 							case "medium":
 							case "large":
 							case "full":
-								$size = array_shift($classes2);
+								$size = "\"".array_shift($classes2)."\"";
 								break;
 							default:
-								$size = "medium";
+								if(preg_match("/^([0-9]+)x([0-9]+)$/", $classes2[0], $sizes) > 0){
+									$size = "array(".$sizes[1].", ".$sizes[2].")";
+								}else{
+									$size = "\"medium\"";
+								}
 								break;
 						}
 						$classes = array_merge($classes1, $classes2);
 					}
 					$text = "<?php \$imgClass = array(); ?>";
 					$text .= "<?php \$imgClass[\"class\"] = \"".implode(" ", $classes)."\"; ?>";
-					$text .= "<?php the_post_thumbnail(\"".$size."\", \$imgClass); ?>";
+					$text .= "<?php the_post_thumbnail(".$size.", \$imgClass); ?>";
 					pq($image)->replaceWith($text);
 				}
 			}
@@ -108,8 +112,6 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 			pq($article)->prepend("<?php if (have_posts()) : while (have_posts()) : the_post(); ?>");
 			pq($article)->append("<?php endwhile; endif; ?>");
 		}
-		pq("div.wp_widgets")->replaceWith("<?php if(function_exists('dynamic_sidebar')) dynamic_sidebar(); ?>");
-		pq("div.wp_menus")->replaceWith("<?php \$data = array(); \$data[\"container_class\"] = \"menu-header\"; \$data[\"theme_location\"] = \"primary\"; wp_nav_menu(\$data); ?>");
 		return $content;
 	}
 }

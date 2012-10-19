@@ -86,26 +86,23 @@ class WordpressConvert {
 				fclose($fp);
 			}
 			
-			// 共通関数プログラムの自動生成
-			$filename = $contentManager->getContentHome()."/functions.php";
-			$themeFile = $contentManager->getThemeFile($filename);
-			$info = pathinfo($themeFile);
-			if(!is_dir($info["dirname"])){
-				mkdir($info["dirname"], 0755, true);
-			}
-			if(($fp = fopen($themeFile, "w+")) !== FALSE){
-				fwrite($fp, "<?php\r\n");
-				fwrite($fp, "register_nav_menus( array( 'primary' => __( 'Primary Navigation' ), ) );\r\n");
-				fwrite($fp, "if(function_exists('register_sidebar')) register_sidebar();\r\n");
-				fwrite($fp, "function eyecatch_setup() {\r\n");
-				fwrite($fp, "add_theme_support( 'post-thumbnails' );\r\n");
-				fwrite($fp, "}\r\n");
-				fwrite($fp, "add_action( 'after_setup_theme', 'eyecatch_setup' );\r\n");
-				fwrite($fp, "?>\r\n");
-				fclose($fp);
-			}
-			
+			// アップされたテンプレートファイルを変換ルールに基づいて変換する。
 			$files = $contentManager->getList();
+			$converter = new ContentConverter();
+			$cartridgeNames = explode(",", WORDPRESS_CONVERT_CARTRIDGES);
+			foreach($cartridgeNames as $cartridgeName){
+				if(!empty($cartridgeName) && class_exists($cartridgeName."Cartridge")){
+					$className = $cartridgeName."Cartridge";
+					$converter->addCartridge(new $className());
+				}
+			}
+			$pageids = get_all_page_ids();
+			foreach($pageids as $pageid){
+				$code = get_post_meta($pageid, "_wp_page_code", true);
+				if(!empty($code)){
+					$converter->addPage($code, $pageid);
+				}
+			}									
 			foreach($files as $filename){
 				if($contentManager->isUpdated($filename)){
 					$themeFile = $contentManager->getThemeFile($filename);
@@ -116,15 +113,49 @@ class WordpressConvert {
 					if(($fp = fopen($themeFile, "w+")) !== FALSE){
 						$content = $contentManager->getContent($filename);
 						if(preg_match("/\\.html?$/i", $filename) > 0){
-							$converter = new ContentConverter($content);
-							$cartridgeNames = explode(",", WORDPRESS_CONVERT_CARTRIDGES);
-							foreach($cartridgeNames as $cartridgeName){
-								if(!empty($cartridgeName) && class_exists($cartridgeName."Cartridge")){
-									$className = $cartridgeName."Cartridge";
-									$converter->addCartridge(new $className());
-								}
+							$baseFileName = str_replace($contentManager->getContentHome(), "", $filename);
+							switch($baseFileName){
+								// 標準のファイルは固定ページテンプレートとして扱わない
+								case "index.html":
+								case "404.html":
+								case "search.html":
+								case "archive.html":
+								case "taxonomy.html":
+								case "category.html":
+								case "tag.html":
+								case "author.html":
+								case "single.html":
+								case "attachment.html":
+								case "single-post.html":
+								case "page.html":
+								case "home.html":
+								case "comments-popup.html":
+									break;
+								// それ以外のページは固定ページテンプレートとして扱う
+								default:
+									$baseFileCode = preg_replace("/\\.html?$/i", "", $baseFileName);
+									if(substr($baseFileCode, 0, 1) != "_"){
+										fwrite($fp, "<?php\r\n");
+										fwrite($fp, "/*\r\n");
+										fwrite($fp, "Template Name: ".$baseFileCode."\r\n");
+										fwrite($fp, "*/\r\n");
+										fwrite($fp, "?>\r\n");
+										$pageid = $converter->getPageId($baseFileCode);
+										if(empty($pageid)){
+											// ページIDが未登録の場合には、ページを新規登録
+											$pageid = wp_insert_post(array(
+												"post_title" => $baseFileCode,
+												"post_status" => "publish",
+												"post_name" => $baseFileCode,
+												"post_type" => "page",
+											));
+											add_post_meta($pageid, "_wp_page_template", $baseFileCode.".php", true);
+											add_post_meta($pageid, "_wp_page_code", $baseFileCode, true);
+										}
+									}
+									break;
 							}
-							fwrite($fp, $converter->convert()->php());
+							fwrite($fp, $converter->convert($content)->php());
 						}elseif(preg_match("/\\.css$/i", $filename) > 0){
 							$content = preg_replace("/url\\(([^\\)]+)\\)/", "url(".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/"."\$1)", $content);
 							fwrite($fp, $content);
@@ -139,6 +170,52 @@ class WordpressConvert {
 					}
 				}
 			}
+			
+			// 共通関数プログラムの自動生成
+			$filename = $contentManager->getContentHome()."/functions.php";
+			$themeFile = $contentManager->getThemeFile($filename);
+			$info = pathinfo($themeFile);
+			if(!is_dir($info["dirname"])){
+				mkdir($info["dirname"], 0755, true);
+			}
+			if(($fp = fopen($themeFile, "w+")) !== FALSE){
+				fwrite($fp, "<?php\r\n");
+				$menus = $converter->getNavMenus();
+				if(is_array($menus) && !empty($menus)){
+					fwrite($fp, "if(function_exists('register_nav_menus')){\r\n");
+					fwrite($fp, "register_nav_menus(array(\r\n");
+					foreach($menus as $id => $name){
+						if(!empty($id) && !empty($name)){
+							fwrite($fp, "'".$id."' => '".$name."',\r\n");
+						}
+					}
+					fwrite($fp, "));\r\n");
+					fwrite($fp, "}\r\n");
+				}
+				$widgets = $converter->getWidgets();
+				if(is_array($widgets) && !empty($widgets)){
+					fwrite($fp, "if(function_exists('register_sidebar')){\r\n");
+					foreach($widgets as $id => $name){
+						fwrite($fp, "register_sidebar(array(");
+						if(!empty($id)){
+							fwrite($fp, "'id' => '".$id."', ");
+						}
+						if(!empty($name)){
+							fwrite($fp, "'name' => '".$name."'");
+						}
+						fwrite($fp, "));\r\n");
+					}
+					fwrite($fp, "}\r\n");
+				}
+				fwrite($fp, "function eyecatch_setup() {\r\n");
+				fwrite($fp, "add_theme_support( 'post-thumbnails' );\r\n");
+				fwrite($fp, "}\r\n");
+				fwrite($fp, "add_action( 'after_setup_theme', 'eyecatch_setup' );\r\n");
+				fwrite($fp, "?>\r\n");
+				fclose($fp);
+			}
+			
+			// テンプレートのスクリーンショットファイルを
 			$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
 			if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"))){
 				copy($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"), $screenshotFile);

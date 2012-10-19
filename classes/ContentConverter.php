@@ -30,12 +30,24 @@ class ContentConverter {
 	
 	private $cartridges;
 	
-	public function __construct($content){
-		// コンテンツを編集可能に設定
-		$this->content = phpQuery::newDocument($content);
-		
+	private $sidebars;
+	
+	private $navMenus;
+	
+	private $pageIds;
+	
+	public function __construct(){
 		// カートリッジを設定
 		$this->cartridges = array();
+		
+		// ウィジェットを初期化
+		$this->widgets = array();
+		
+		// メニューを初期化
+		$this->navMenus = array();
+		
+		// ページIDを初期化
+		$this->pageIds = array();
 	}
 	
 	/**
@@ -47,10 +59,62 @@ class ContentConverter {
 	}
 	
 	/**
+	 * ウィジェットを追加
+	 */
+	public function addWidget($id, $name){
+		if(!isset($this->widgets[$id]) || !empty($name)){
+			$this->widgets[$id] = $name;
+		}
+	}
+	
+	/**
+	 * ウィジェットを取得
+	 */
+	public function getWidgets(){
+		return $this->widgets;
+	}
+	
+	/**
+	 * メニューを追加
+	 */
+	public function addNavMenu($id, $name){
+		if(!isset($this->navMenus[$id]) || !empty($name)){
+			$this->navMenus[$id] = $name;
+		}
+	}
+	
+	/**
+	 * メニューを取得
+	 */
+	public function getNavMenus(){
+		return $this->navMenus;
+	}
+	
+	/**
+	 * ページを追加
+	 */
+	public function addPage($name, $id){
+		if(!isset($this->pageIds[$name])){
+			$this->pageIds[$name] = $id;
+		}
+	}
+	
+	/**
+	 * ページのIDを取得
+	 */
+	public function getPageId($name){
+		return $this->pageIds[$name];
+	}
+	
+	/**
 	 * 変換を実行
 	 */
-	public function convert(){
+	public function convert($content){
+		// コンテンツを編集可能に設定
+		$this->content = phpQuery::newDocument($content);
+		
 		foreach($this->cartridges as $cartridge){
+			$cartridge->setConverter($this);
 			$this->content = $cartridge->convert($this->content);
 		}
 		return $this;

@@ -24,8 +24,14 @@
  * @version 1.0
  */
 abstract class ContentConvertCartridge {
+	protected $converter;
+	
 	public function __construct(){
 		
+	}
+	
+	public function setConverter($converter){
+		$this->converter = $converter;
 	}
 	
 	abstract public function convert($content);
