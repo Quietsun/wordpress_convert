@@ -105,7 +105,50 @@ class WordpressConvert {
 				if(!empty($code)){
 					$converter->addPage($code, $pageid);
 				}
-			}									
+			}
+			// ページデータは事前に作成する。
+			foreach($files as $filename){
+				if(preg_match("/\\.html?$/i", $filename) > 0){
+					$baseFileName = str_replace($contentManager->getContentHome(), "", $filename);
+					switch($baseFileName){
+						// 標準のファイルは固定ページテンプレートとして扱わない
+						case "index.html":
+						case "404.html":
+						case "search.html":
+						case "archive.html":
+						case "taxonomy.html":
+						case "category.html":
+						case "tag.html":
+						case "author.html":
+						case "single.html":
+						case "attachment.html":
+						case "single-post.html":
+						case "page.html":
+						case "home.html":
+						case "comments-popup.html":
+							break;
+						// それ以外のページは固定ページテンプレートとして扱う
+						default:
+							$baseFileCode = preg_replace("/\\.html?$/i", "", $baseFileName);
+							if(substr($baseFileCode, 0, 1) != "_"){
+								$pageid = $converter->getPageId($baseFileCode);
+								if(empty($pageid)){
+									// ページIDが未登録の場合には、ページを新規登録
+									$pageid = wp_insert_post(array(
+										"post_title" => $baseFileCode,
+										"post_status" => "publish",
+										"post_name" => $baseFileCode,
+										"post_type" => "page",
+									));
+									add_post_meta($pageid, "_wp_page_template", $baseFileCode.".php", true);
+									add_post_meta($pageid, "_wp_page_code", $baseFileCode, true);
+									$converter->addPage($baseFileCode, $pageid);
+								}
+							}
+							break;
+					}
+				}
+			}
 			foreach($files as $filename){
 				if($contentManager->isUpdated($filename)){
 					$themeFile = $contentManager->getThemeFile($filename);
