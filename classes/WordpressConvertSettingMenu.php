@@ -38,8 +38,9 @@ class WordpressConvertSettingMenu {
 			}
 		}
 		add_menu_page(
-			__("Main Menu"), 
-			__("Main Menu"), 
+			WORDPRESS_CONVERT_PLUGIN_NAME, 
+			WORDPRESS_CONVERT_PLUGIN_NAME,
+//			__("Main Menu"), 
 			"administrator", 
 			"wordpress_convert_menu", 
 			array( "WordpressConvertSettingMenu", 'execute' ), 

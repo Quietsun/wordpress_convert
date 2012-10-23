@@ -32,7 +32,7 @@ class WordpressConvertSettingGeneral {
 	public static function init(){
 		add_submenu_page(
 			'wordpress_convert_menu',
-			__("General Setting"), __("General Setting"),
+			__("General Setting", WORDPRESS_CONVERT_PROJECT_CODE), __("General Setting", WORDPRESS_CONVERT_PROJECT_CODE),
 			'administrator', "wordpress_convert_general_setting", array( "WordpressConvertSettingGeneral", 'execute' )
 		);
 	}
@@ -42,16 +42,16 @@ class WordpressConvertSettingGeneral {
 	 */
 	public static function execute(){
 		$labels = array(
-			"auth_baseurl" => __("Authenticate BaseURL"), 
-			"ftp_host" => __("FTP Host"), 
-			"template_basedir" => __("Template Basedir"), 
-			"theme_code" => __("Theme Code")
+			"auth_baseurl" => __("Authenticate BaseURL", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"ftp_host" => __("FTP Host", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"template_basedir" => __("Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"theme_code" => __("Theme Code", WORDPRESS_CONVERT_PROJECT_CODE)
 		);
 		$hints = array(
-			"auth_baseurl" => __("Please input Authenticate BaseURL"), 
-			"ftp_host" => __("Please input your FTP Hostname or IP Address"), 
-			"template_basedir" => __("Please input template basedir"), 
-			"theme_code" => __("Theme code which this plugin convert to")
+			"auth_baseurl" => __("Please input Authenticate BaseURL", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"ftp_host" => __("Please input your FTP Hostname or IP Address", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"template_basedir" => __("Please input template basedir", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"theme_code" => __("Theme code which this plugin convert to", WORDPRESS_CONVERT_PROJECT_CODE)
 		);
 		
 		$caution = self::saveSetting($labels);
@@ -70,11 +70,11 @@ class WordpressConvertSettingGeneral {
 	protected static function is_valid($values){
 		$errors = array();
 		if(empty($values["ftp_host"]) && empty($values["template_basedir"])){
-			$errors["ftp_host"] = __("Empty FTP Host and Template Basedir");
-			$errors["template_basedir"] = __("Empty FTP Host and Template Basedir");
+			$errors["ftp_host"] = __("Empty FTP Host and Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE);
+			$errors["template_basedir"] = __("Empty FTP Host and Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
 		if(empty($values["theme_code"])){
-			$errors["theme_code"] = __("Empty Theme Code");
+			$errors["theme_code"] = __("Empty Theme Code", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
 		
 		if(!empty($errors)){
@@ -94,7 +94,7 @@ class WordpressConvertSettingGeneral {
 			}
 			update_option("wordpress_convert_template_files", json_encode(array()));
 			
-			return __("Saved Changes");
+			return __("Saved Changes", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
 	}
 
@@ -105,7 +105,7 @@ class WordpressConvertSettingGeneral {
 	public static function displaySetting($labels, $options, $hints, $caution){
 		// 設定変更ページを登録する。
 		echo "<div class=\"wrap\">";
-		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("General Setting")."</h2>";
+		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("General Setting", WORDPRESS_CONVERT_PROJECT_CODE)."</h2>";
 		echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
 		echo "<table class=\"form-table\"><tbody>";
 		foreach($labels as $key => $label){
@@ -128,7 +128,7 @@ class WordpressConvertSettingGeneral {
 		if(!empty($caution)){
 			echo "<p class=\"caution\">".$caution."</p>";
 		}
-		echo "<p class=\"submit\"><input type=\"submit\" name=\"submit\" value=\"".__("Save Changes")."\" /></p>";
+		echo "<p class=\"submit\"><input type=\"submit\" name=\"submit\" value=\"".__("Save Changes", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
 		echo "</form></div>";
 	}
 }

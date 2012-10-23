@@ -1,0 +1,148 @@
+# Copyright (C) 2012 Wordpress Converter for HTML Plugin
+# This file is distributed under the same license as the Wordpress Converter for HTML Plugin package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
+"POT-Creation-Date: 2012-10-23 10:54:18+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-10-23 20:00+09\n"
+"Last-Translator: Naohisa Minagawa <minagawa@netlife-web.com>\n"
+"Language-Team: Japanese <LL@li.org>\n"
+
+#: classes/WordpressConvert.php:47
+msgid "PHP 5.3 or later is required for this plugin."
+msgstr "このプラグインはPHP5.3以上で動作します。"
+
+#: classes/WordpressConvertSettingFtp.php:35
+#: classes/WordpressConvertSettingFtp.php:105
+msgid "FTP Account Setting"
+msgstr "FTPアカウント設定"
+
+#: classes/WordpressConvertSettingFtp.php:45
+msgid "FTP Login ID"
+msgstr "FTPログインID"
+
+#: classes/WordpressConvertSettingFtp.php:46
+msgid "FTP Password"
+msgstr "FTPパスワード"
+
+#: classes/WordpressConvertSettingFtp.php:47
+msgid "Base Directory"
+msgstr "ベースディレクトリ"
+
+#: classes/WordpressConvertSettingFtp.php:50
+msgid "Please input your FTP login ID"
+msgstr "FTPログインIDを入力して下さい"
+
+#: classes/WordpressConvertSettingFtp.php:51
+msgid "Please input your FTP password"
+msgstr "FTPパスワードを入力して下さい"
+
+#: classes/WordpressConvertSettingFtp.php:52
+msgid "Please input template base directory by ftp root directory"
+msgstr "テンプレートのベースディレクトリを入力して下さい"
+
+#: classes/WordpressConvertSettingFtp.php:71
+msgid "Empty FTP login ID"
+msgstr "FTPログインIDが未入力です"
+
+#: classes/WordpressConvertSettingFtp.php:74
+msgid "Empty FTP password"
+msgstr "FTPパスワードが未入力です。"
+
+#: classes/WordpressConvertSettingFtp.php:94
+#: classes/WordpressConvertSettingGeneral.php:97
+msgid "Saved Changes"
+msgstr "変更しました"
+
+#: classes/WordpressConvertSettingFtp.php:128
+#: classes/WordpressConvertSettingGeneral.php:131
+msgid "Save Changes"
+msgstr "変更"
+
+#: classes/WordpressConvertSettingGeneral.php:35
+#: classes/WordpressConvertSettingGeneral.php:108
+msgid "General Setting"
+msgstr "一般設定"
+
+#: classes/WordpressConvertSettingGeneral.php:45
+msgid "Authenticate BaseURL"
+msgstr "認証先URL"
+
+#: classes/WordpressConvertSettingGeneral.php:46
+msgid "FTP Host"
+msgstr "FTPサーバー"
+
+#: classes/WordpressConvertSettingGeneral.php:47
+msgid "Template Basedir"
+msgstr "テンプレートベースディレクトリ"
+
+#: classes/WordpressConvertSettingGeneral.php:48
+msgid "Theme Code"
+msgstr "テーマコード"
+
+#: classes/WordpressConvertSettingGeneral.php:51
+msgid "Please input Authenticate BaseURL"
+msgstr "認証用URLを入力して下さい"
+
+#: classes/WordpressConvertSettingGeneral.php:52
+msgid "Please input your FTP Hostname or IP Address"
+msgstr "FTPサーバーを入力して下さい"
+
+#: classes/WordpressConvertSettingGeneral.php:53
+msgid "Please input template basedir"
+msgstr "テンプレート用ベースディレクトリを入力して下さい"
+
+#: classes/WordpressConvertSettingGeneral.php:54
+msgid "Theme code which this plugin convert to"
+msgstr "プラグイン変換先のテーマコード"
+
+#: classes/WordpressConvertSettingGeneral.php:73
+#: classes/WordpressConvertSettingGeneral.php:74
+msgid "Empty FTP Host and Template Basedir"
+msgstr "FTPサーバーとテンプレートベースディレクトリが未入力です。"
+
+#: classes/WordpressConvertSettingGeneral.php:77
+msgid "Empty Theme Code"
+msgstr "テーマコードが未入力です。"
+
+#: classes/WordpressConvertSettingMenu.php:41
+#: classes/WordpressConvertSettingMenu.php:42
+#: classes/WordpressConvertSettingMenu.php:65
+msgid "Main Menu"
+msgstr "BiNDサイト変換"
+
+#: tools/trunk/pomo/sample/app.php:56
+msgid "Welcome %s!"
+msgstr "ようこそ！"
+
+#: tools/trunk/pomo/sample/app.php:60
+msgid "A string with low priority!"
+msgstr ""
+
+#: tools/trunk/pomo/sample/app.php:62
+msgid "Bye\n"
+msgstr ""
+
+#: wordpress_convert.php:38
+msgid "Wordpress Convert Plugin"
+msgstr "Wordpress変換プラグイン"
+
+#. Plugin Name of the plugin/theme
+msgid "Wordpress Converter for HTML Plugin"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "This plugin is convert helper for HTML to Wordpress Template."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Naohisa Minagawa"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.netlife-web.com/"
+msgstr ""

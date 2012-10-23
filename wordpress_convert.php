@@ -23,22 +23,28 @@ Version: 0.0.1
 Author: Naohisa Minagawa
 Author URI: http://www.netlife-web.com/
 License: Apache License 2.0
+Text Domain: wordpress_convert
 */
 
 // メモリ使用制限を調整
 ini_set('memory_limit', '128M');
 
-// このプラグインのルートディレクトリ
-define("WORDPRESS_CONVERT_BASE_DIR", WP_PLUGIN_DIR."/wordpress_convert");
-
-// このプラグインのルートURL
-define("WORDPRESS_CONVERT_BASE_URL", WP_PLUGIN_URL."/wordpress_convert");
-
-// メインクラス名
-define("WORDPRESS_CONVERT_PLUGIN_NAME", __("Wordpress Convert Plugin"));
+// プロジェクトコード
+define("WORDPRESS_CONVERT_PROJECT_CODE", "wordpress_convert");
 
 // メインクラス名
 define("WORDPRESS_CONVERT_MAIN_CLASS", "WordpressConvert");
+
+load_plugin_textdomain(WORDPRESS_CONVERT_PROJECT_CODE, false, WORDPRESS_CONVERT_PROJECT_CODE.'/languages');		
+
+// このプラグインのルートディレクトリ
+define("WORDPRESS_CONVERT_BASE_DIR", WP_PLUGIN_DIR."/".WORDPRESS_CONVERT_PROJECT_CODE);
+
+// このプラグインのルートURL
+define("WORDPRESS_CONVERT_BASE_URL", WP_PLUGIN_URL."/".WORDPRESS_CONVERT_PROJECT_CODE);
+
+// メインクラス名
+define("WORDPRESS_CONVERT_PLUGIN_NAME", __("Wordpress Convert Plugin", WORDPRESS_CONVERT_PROJECT_CODE));
 
 // メインクラス名
 define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu,General,Ftp");
@@ -55,16 +61,16 @@ require_once(dirname(__FILE__)."/classes/".WORDPRESS_CONVERT_MAIN_CLASS.".php");
 add_action( 'init', array( WORDPRESS_CONVERT_MAIN_CLASS, "init" ) );
 
 // 認証用URL
-define("WORDPRESS_CONVERT_AUTH_BASEURL", get_option("wordpress_convert_auth_baseurl"));
+define("WORDPRESS_CONVERT_AUTH_BASEURL", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_auth_baseurl"));
 
 // テンプレート取得ベースディレクトリ
-define("WORDPRESS_CONVERT_TEMPLATE_BASEDIR", get_option("wordpress_convert_template_basedir"));
+define("WORDPRESS_CONVERT_TEMPLATE_BASEDIR", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_template_basedir"));
 
 // テンプレート取得先サーバー
-define("WORDPRESS_CONVERT_SERVER", get_option("wordpress_convert_ftp_host"));
+define("WORDPRESS_CONVERT_SERVER", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_host"));
 
 // 変換後テーマ名
-define("WORDPRESS_CONVERT_THEME_NAME", get_option("wordpress_convert_theme_code"));
+define("WORDPRESS_CONVERT_THEME_NAME", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_theme_code"));
 
 // 初期化処理用のアクションを登録する。
 add_action( 'admin_init', array( WORDPRESS_CONVERT_MAIN_CLASS, "execute" ) );

@@ -44,7 +44,7 @@ class WordpressConvert {
 	public static function init(){
 		// 環境のバージョンチェック
 		if( version_compare( PHP_VERSION, '5.3.0', '<' ) )
-			trigger_error( __("PHP 5.3 or later is required for this plugin."), E_USER_ERROR );
+			trigger_error( __("PHP 5.3 or later is required for this plugin.", WORDPRESS_CONVERT_PROJECT_CODE), E_USER_ERROR );
 		
 		// 初期化処理
 		$settings = explode(",", WORDPRESS_CONVERT_SETTING_CLASSES);
@@ -63,7 +63,7 @@ class WordpressConvert {
 	 */
 	public static function execute(){
 		$contentManagerClass = WORDPRESS_CONVERT_CONTENT_MANAGER;
-		$contentManager = new $contentManagerClass(get_option("wordpress_convert_ftp_login_id"), get_option("wordpress_convert_ftp_password"), get_option("wordpress_convert_base_dir"));
+		$contentManager = new $contentManagerClass(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_login_id"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_password"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_base_dir"));
 		
 		if($contentManager->isAccessible()){
 			// 共通スタイルの自動生成
@@ -76,8 +76,8 @@ class WordpressConvert {
 			if(($fp = fopen($themeFile, "w+")) !== FALSE){
 				fwrite($fp, "/* \r\n");
 				fwrite($fp, "Theme Name: ".WORDPRESS_CONVERT_THEME_NAME."\r\n");
-				fwrite($fp, "Description: Converted Theme by Wordpress Converter\r\n");
-				fwrite($fp, "Author: NetLife Inc.\r\n");
+				fwrite($fp, "Description: ".__("Converted Theme by Wordpress Converter")."\r\n");
+				fwrite($fp, "Author: ".__("NetLife Inc.")."\r\n");
 				fwrite($fp, "Author URI: http://www.netlife-web.com/\r\n");
 				fwrite($fp, "Version: 1.0\r\n");
 				fwrite($fp, "\r\n");

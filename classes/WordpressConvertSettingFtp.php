@@ -32,7 +32,7 @@ class WordpressConvertSettingFtp {
 	public static function init(){
 		add_submenu_page(
 			'wordpress_convert_menu',
-			__("FTP Account Setting"), __("FTP Account Setting"),
+			__("FTP Account Setting", WORDPRESS_CONVERT_PROJECT_CODE), __("FTP Account Setting", WORDPRESS_CONVERT_PROJECT_CODE),
 			'administrator', "wordpress_convert_ftp_account", array( "WordpressConvertSettingFtp", 'execute' )
 		);
 	}
@@ -42,14 +42,14 @@ class WordpressConvertSettingFtp {
 	 */
 	public static function execute(){
 		$labels = array(
-			"ftp_login_id" => __("FTP Login ID"), 
-			"ftp_password" => __("FTP Password"), 
-			"base_dir" => __("Base Directory")
+			"ftp_login_id" => __("FTP Login ID", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"ftp_password" => __("FTP Password", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"base_dir" => __("Base Directory", WORDPRESS_CONVERT_PROJECT_CODE)
 		);
 		$hints = array(
-			"ftp_login_id" => __("Please input your FTP login ID"), 
-			"ftp_password" => __("Please input your FTP password"), 
-			"base_dir" => __("Please input template base directory by ftp root directory")
+			"ftp_login_id" => __("Please input your FTP login ID", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"ftp_password" => __("Please input your FTP password", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"base_dir" => __("Please input template base directory by ftp root directory", WORDPRESS_CONVERT_PROJECT_CODE)
 		);
 		
 		$caution = self::saveSetting($labels);
@@ -68,10 +68,10 @@ class WordpressConvertSettingFtp {
 	protected static function is_valid($values){
 		$errors = array();
 		if(empty($values["ftp_login_id"])){
-			$errors["ftp_login_id"] = __("Empty FTP login ID");
+			$errors["ftp_login_id"] = __("Empty FTP login ID", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
 		if(empty($values["ftp_password"])){
-			$errors["ftp_password"] = __("Empty FTP password");
+			$errors["ftp_password"] = __("Empty FTP password", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
 		
 		if(!empty($errors)){
@@ -102,7 +102,7 @@ class WordpressConvertSettingFtp {
 	public static function displaySetting($labels, $options, $hints, $caution){
 		// 設定変更ページを登録する。
 		echo "<div class=\"wrap\">";
-		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("FTP Account Setting")."</h2>";
+		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("FTP Account Setting", WORDPRESS_CONVERT_PROJECT_CODE)."</h2>";
 		echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
 		echo "<table class=\"form-table\"><tbody>";
 		foreach($labels as $key => $label){
@@ -125,7 +125,7 @@ class WordpressConvertSettingFtp {
 		if(!empty($caution)){
 			echo "<p class=\"caution\">".$caution."</p>";
 		}
-		echo "<p class=\"submit\"><input type=\"submit\" name=\"submit\" value=\"".__("Save Changes")."\" /></p>";
+		echo "<p class=\"submit\"><input type=\"submit\" name=\"submit\" value=\"".__("Save Changes", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
 		echo "</form></div>";
 	}
 }
