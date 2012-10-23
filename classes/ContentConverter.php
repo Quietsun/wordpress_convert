@@ -41,10 +41,16 @@ class ContentConverter {
 		$this->cartridges = array();
 		
 		// ウィジェットを初期化
-		$this->widgets = array();
+		$this->widgets = get_option("wordpress_convert_widgets");
+		if(!is_array($this->widgets)){
+			$this->widgets = array();
+		}
 		
 		// メニューを初期化
-		$this->navMenus = array();
+		$this->navMenus = get_option("wordpress_convert_menus");
+		if(!is_array($this->navMenus)){
+			$this->navMenus = array();
+		}
 		
 		// ページIDを初期化
 		$this->pageIds = array();
@@ -64,6 +70,7 @@ class ContentConverter {
 	public function addWidget($id, $name){
 		if(!isset($this->widgets[$id]) || !empty($name)){
 			$this->widgets[$id] = $name;
+			update_option("wordpress_convert_widgets", $this->widgets);
 		}
 	}
 	
@@ -80,6 +87,7 @@ class ContentConverter {
 	public function addNavMenu($id, $name){
 		if(!isset($this->navMenus[$id]) || !empty($name)){
 			$this->navMenus[$id] = $name;
+			update_option("wordpress_convert_menus", $this->navMenus);
 		}
 	}
 	

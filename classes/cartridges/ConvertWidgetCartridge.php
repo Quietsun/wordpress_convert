@@ -45,7 +45,7 @@ class ConvertWidgetCartridge extends ContentConvertCartridge {
 			}
 		}
 		// メニューを変換
-		$menus = pq("div.wp_menu");
+		$menus = pq("div.wp_menus");
 		foreach($menus as $menu){
 			// classの値を取得
 			$id = pq($menu)->attr("id");

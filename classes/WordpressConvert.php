@@ -231,7 +231,7 @@ class WordpressConvert {
 					fwrite($fp, "if(function_exists('register_nav_menus')){\r\n");
 					fwrite($fp, "register_nav_menus(array(\r\n");
 					foreach($menus as $id => $name){
-						if(!empty($id) && !empty($name)){
+						if(!empty($id)){
 							fwrite($fp, "'".$id."' => '".$name."',\r\n");
 						}
 					}
@@ -239,7 +239,7 @@ class WordpressConvert {
 					fwrite($fp, "}\r\n");
 				}
 				$widgets = $converter->getWidgets();
-				if(is_array($widgets) && count($widgets) > 0){
+				if(is_array($widgets) && !empty($widgets)){
 					fwrite($fp, "if(function_exists('register_sidebar')){\r\n");
 					foreach($widgets as $id => $name){
 						fwrite($fp, "register_sidebar(array(");
