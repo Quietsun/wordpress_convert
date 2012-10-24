@@ -29,6 +29,16 @@ Text Domain: wordpress_convert
 // メモリ使用制限を調整
 ini_set('memory_limit', '128M');
 
+class WordpressConvertPluginInfo{
+	public static function getBaseDir(){
+		return plugin_dir_path( __FILE__ );
+	}
+
+	public static function getBaseUrl(){
+		return plugin_dir_url( __FILE__ );
+	}
+}
+
 // プロジェクトコード
 define("WORDPRESS_CONVERT_PROJECT_CODE", "wordpress_convert");
 

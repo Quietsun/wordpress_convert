@@ -73,6 +73,7 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 					}
 					$text = "<?php \$imgClass = array(); ?>";
 					$text .= "<?php \$imgClass[\"class\"] = \"".implode(" ", $classes)."\"; ?>";
+					
 					$text .= "<?php the_post_thumbnail(".$size.", \$imgClass); ?>";
 					pq($image)->replaceWith($text);
 				}

@@ -30,23 +30,41 @@ class WordpressConvertSettingMenu {
 	 * @return void
 	 */
 	public static function init(){
-		global $menu;
+		global $menu, $submenu;
 		foreach($menu as $index => $item){
 			// ダッシュボードは無効にする。
-			if($item[0] == "ダッシュボード"){
+			if($item[0] ==  __('Dashboard')){
 				unset($menu[$index]);
+			}
+		}
+		if(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_professional") != "1"){
+			foreach($menu as $index => $item){
+				// ダッシュボードは無効にする。
+				if(
+					preg_match("/^".__('Media')."/", $item[0]) > 0
+					|| preg_match("/^".__('Links')."/", $item[0]) > 0
+					|| preg_match("/^".__('Pages')."/", $item[0]) > 0
+					|| preg_match("/^".__('Comments')."/", $item[0]) > 0
+					|| preg_match("/^".__('Appearance')."/", $item[0]) > 0
+					|| preg_match("/^".__('Plugins')."/", $item[0]) > 0
+					|| preg_match("/^".__('Users')."/", $item[0]) > 0
+					|| preg_match("/^".__('Profile')."/", $item[0]) > 0
+					|| preg_match("/^".__('Tools')."/", $item[0]) > 0
+				){
+					unset($menu[$index]);
+				}
 			}
 		}
 		add_menu_page(
 			WORDPRESS_CONVERT_PLUGIN_NAME, 
 			WORDPRESS_CONVERT_PLUGIN_NAME,
-//			__("Main Menu"), 
 			"administrator", 
 			"wordpress_convert_menu", 
 			array( "WordpressConvertSettingMenu", 'execute' ), 
 			WORDPRESS_CONVERT_BASE_URL."/menu_icon.png", 
-			3 
+			2 
 		);
+		$submenu["wordpress_convert_menu"] = $submenu["themes.php"];
 	}
 	
 	/**
