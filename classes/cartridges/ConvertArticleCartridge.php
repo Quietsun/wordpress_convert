@@ -110,8 +110,8 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 				}
 			}
 			
-			pq($article)->prepend("<?php if (have_posts()) : while (have_posts()) : the_post(); ?>");
-			pq($article)->append("<?php endwhile; endif; ?>");
+			pq($article)->before("<?php if (have_posts()) : while (have_posts()) : the_post(); ?>");
+			pq($article)->after("<?php endwhile; endif; ?>");
 		}
 		return $content;
 	}
