@@ -30,7 +30,7 @@ class ConvertWidgetCartridge extends ContentConvertCartridge {
 		parent::__construct();
 	}
 	
-	public function convert($content){
+	public function convert($baseFileName, $content){
 		// ウィジェットを変換
 		$widgets = pq("div.wp_widgets");
 		foreach($widgets as $widget){

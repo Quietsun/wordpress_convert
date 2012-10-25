@@ -30,7 +30,7 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 		parent::__construct();
 	}
 	
-	public function convert($content){
+	public function convert($baseFileName, $content){
 		foreach(pq(".wp_articles") as $article){
 			// タイトルを変換
 			pq($article)->find("span.wp_title")->replaceWith("<?php the_title(); ?>");

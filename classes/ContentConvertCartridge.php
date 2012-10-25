@@ -34,6 +34,6 @@ abstract class ContentConvertCartridge {
 		$this->converter = $converter;
 	}
 	
-	abstract public function convert($content);
+	abstract public function convert($baseFileName, $content);
 }
 ?>

@@ -30,7 +30,7 @@ class ConvertWidgetPartsCartridge extends ContentConvertCartridge {
 		parent::__construct();
 	}
 	
-	public function convert($content){
+	public function convert($baseFileName, $content){
 		// カレンダーを変換
 		pq("div.wp_calendar")->replaceWith("<?php get_calendar(); ?>");
 		

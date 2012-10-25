@@ -30,7 +30,7 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 		parent::__construct();
 	}
 	
-	public function convert($content){
+	public function convert($baseFileName, $content){
 		foreach(pq("img") as $image){
 			if(preg_match("/^https?:\\/\\//", pq($image)->attr("src")) == 0){
 				pq($image)->attr("src", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".str_replace("../", "", pq($image)->attr("src")));
