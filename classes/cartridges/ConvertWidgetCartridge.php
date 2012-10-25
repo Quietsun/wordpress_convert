@@ -39,9 +39,9 @@ class ConvertWidgetCartridge extends ContentConvertCartridge {
 			$title = pq($widget)->attr("title");
 			$this->converter->addWidget($id, $title);
 			if(!empty($id) && !empty($title)){
-				pq($widget)->replaceWith("<?php if(function_exists('dynamic_sidebar')) dynamic_sidebar(\"".$id."\"); ?>");
+				pq($widget)->replaceWith("<div class=\"menuv\"><div class=\"menu-a\"><ul><?php if(function_exists('dynamic_sidebar')) dynamic_sidebar(\"".$id."\"); ?></ul></div></div>");
 			}else{
-				pq($widget)->replaceWith("<?php if(function_exists('dynamic_sidebar')) dynamic_sidebar(); ?>");
+				pq($widget)->replaceWith("<div class=\"menuv\"><div class=\"menu-a\"><ul><?php if(function_exists('dynamic_sidebar')) dynamic_sidebar(); ?></ul></div></div>");
 			}
 		}
 		// メニューを変換
