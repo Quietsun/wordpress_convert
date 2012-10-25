@@ -33,25 +33,24 @@ class WordpressConvertSettingMenu {
 		global $menu, $submenu;
 		foreach($menu as $index => $item){
 			// ダッシュボードは無効にする。
-			if($item[0] ==  __('Dashboard')){
+			if($item[2] ==  "index.php"){
 				unset($menu[$index]);
 			}
 		}
 		if(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_professional") != "1"){
 			foreach($menu as $index => $item){
 				// ダッシュボードは無効にする。
-				if(
-					preg_match("/^".__('Media')."/", $item[0]) > 0
-					|| preg_match("/^".__('Links')."/", $item[0]) > 0
-					|| preg_match("/^".__('Pages')."/", $item[0]) > 0
-					|| preg_match("/^".__('Comments')."/", $item[0]) > 0
-					|| preg_match("/^".__('Appearance')."/", $item[0]) > 0
-					|| preg_match("/^".__('Plugins')."/", $item[0]) > 0
-					|| preg_match("/^".__('Users')."/", $item[0]) > 0
-					|| preg_match("/^".__('Profile')."/", $item[0]) > 0
-					|| preg_match("/^".__('Tools')."/", $item[0]) > 0
-				){
-					unset($menu[$index]);
+				switch($item[2]){
+					case "upload.php":
+					case "link-manager.php":
+					case "edit.php?post_type=page":
+					case "edit-comments.php":
+					case "themes.php":
+					case "plugins.php":
+					case "users.php":
+					case "tools.php":
+						unset($menu[$index]);
+						break;
 				}
 			}
 		}
@@ -64,7 +63,12 @@ class WordpressConvertSettingMenu {
 			WORDPRESS_CONVERT_BASE_URL."/menu_icon.png", 
 			2 
 		);
-		$submenu["wordpress_convert_menu"] = $submenu["themes.php"];
+		$submenu["wordpress_convert_menu"] = array();
+		foreach($submenu["themes.php"] as $index => $sub){
+			if($sub[1] != "edit_themes"){
+				$submenu["wordpress_convert_menu"][$index] = $sub;
+			}
+		}
 	}
 	
 	/**
