@@ -65,7 +65,7 @@ class WordpressConvertSettingMenu {
 		);
 		$submenu["wordpress_convert_menu"] = array();
 		foreach($submenu["themes.php"] as $index => $sub){
-			if($sub[1] != "edit_themes"){
+			if($sub[1] != "edit_themes" && $sub[2] != "theme_options"){
 				$submenu["wordpress_convert_menu"][$index] = $sub;
 			}
 		}
