@@ -31,7 +31,7 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 	}
 	
 	public function convert($content){
-		foreach(pq("div.wp_articles") as $article){
+		foreach(pq(".wp_articles") as $article){
 			// タイトルを変換
 			pq($article)->find("span.wp_title")->replaceWith("<?php the_title(); ?>");
 			// 投稿日時を変換
