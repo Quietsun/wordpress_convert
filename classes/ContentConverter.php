@@ -117,13 +117,13 @@ class ContentConverter {
 	/**
 	 * 変換を実行
 	 */
-	public function convert($content){
+	public function convert($baseFileName, $content){
 		// コンテンツを編集可能に設定
 		$this->content = phpQuery::newDocument($content);
 		
 		foreach($this->cartridges as $cartridge){
 			$cartridge->setConverter($this);
-			$this->content = $cartridge->convert($this->content);
+			$this->content = $cartridge->convert($baseFileName, $this->content);
 		}
 		return $this;
 	}

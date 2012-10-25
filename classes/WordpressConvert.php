@@ -152,6 +152,7 @@ class WordpressConvert {
 			foreach($files as $filename){
 				if($contentManager->isUpdated($filename)){
 					$themeFile = $contentManager->getThemeFile($filename);
+					$baseFileName = str_replace($contentManager->getContentHome(), "", $filename);
 					$info = pathinfo($themeFile);
 					if(!is_dir($info["dirname"])){
 						mkdir($info["dirname"], 0755, true);
@@ -159,7 +160,6 @@ class WordpressConvert {
 					if(($fp = fopen($themeFile, "w+")) !== FALSE){
 						$content = $contentManager->getContent($filename);
 						if(preg_match("/\\.html?$/i", $filename) > 0){
-							$baseFileName = str_replace($contentManager->getContentHome(), "", $filename);
 							switch($baseFileName){
 								// 標準のファイルは固定ページテンプレートとして扱わない
 								case "index.html":
@@ -201,11 +201,17 @@ class WordpressConvert {
 									}
 									break;
 							}
-							fwrite($fp, $converter->convert($content)->php());
+							fwrite($fp, $converter->convert($baseFileName, $content)->php());
 						}elseif(preg_match("/\\.css$/i", $filename) > 0){
-							$content = preg_replace("/url\\(([^\\)]+)\\)/", "url(".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/"."\$1)", $content);
+							if(preg_match_all("/url\\(*([^\\)]+)\\)/", $content, $params) > 0){
+								foreach($params[0] as $index => $source){
+									$target = "url(".preg_replace("/\\/[^\\/]+\\/\\.\\.\\//", "/", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".dirname($baseFileName)."/".$params[1][$index]).")";
+									str_replace($source, $target, $content);
+								}
+							}
 							fwrite($fp, $content);
 						}elseif(preg_match("/script\\.js$/i", $filename) > 0){
+							$content = preg_replace("/eval\\('bindobj\\.level = ' \\+ val\\);/", "eval('bindobj.level = 0');", $content);
 							$content = preg_replace("/bindobj\\.siteroot = ''/", "bindobj.siteroot = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
 							$content = preg_replace("/bindobj\\.dir = ''/", "bindobj.dir = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
 							fwrite($fp, $content);
