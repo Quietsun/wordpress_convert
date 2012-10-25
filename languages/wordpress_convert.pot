@@ -4,120 +4,210 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
-"POT-Creation-Date: 2012-10-23 10:54:18+00:00\n"
+"POT-Creation-Date: 2012-10-25 05:34:05+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2012-10-23 20:00+09\n"
-"Last-Translator: Naohisa Minagawa <minagawa@netlife-web.com>\n"
-"Language-Team: Japanese <LL@li.org>\n"
+"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: classes/WordpressConvert.php:47
 msgid "PHP 5.3 or later is required for this plugin."
-msgstr "このプラグインはPHP5.3以上で動作します。"
+msgstr ""
+
+#: classes/WordpressConvert.php:79
+msgid "Converted Theme by Wordpress Converter"
+msgstr ""
+
+#: classes/WordpressConvert.php:80
+msgid "NetLife Inc."
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:35
+msgid "Convert Setting"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:45
+#: classes/WordpressConvertSettingGeneral.php:45
+msgid "Professional Mode"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:46
+#: classes/WordpressConvertSettingGeneral.php:46
+msgid "Authenticate BaseURL"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:47
+#: classes/WordpressConvertSettingGeneral.php:47
+msgid "FTP Host"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:48
+#: classes/WordpressConvertSettingGeneral.php:48
+msgid "Template Basedir"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:49
+#: classes/WordpressConvertSettingGeneral.php:49
+msgid "Theme Code"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:50
+#: classes/WordpressConvertSettingFtp.php:45
+msgid "FTP Login ID"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:51
+#: classes/WordpressConvertSettingFtp.php:46
+msgid "FTP Password"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:52
+#: classes/WordpressConvertSettingFtp.php:47
+msgid "Base Directory"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:75
+#: classes/WordpressConvertSettingGeneral.php:52
+msgid "Please select Wordpress menus to be professional or not."
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:76
+#: classes/WordpressConvertSettingGeneral.php:53
+msgid "Please input Authenticate BaseURL"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:77
+#: classes/WordpressConvertSettingGeneral.php:54
+msgid "Please input your FTP Hostname or IP Address"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:78
+#: classes/WordpressConvertSettingGeneral.php:55
+msgid "Please input template basedir"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:79
+#: classes/WordpressConvertSettingGeneral.php:56
+msgid "Theme code which this plugin convert to"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:80
+#: classes/WordpressConvertSettingFtp.php:50
+msgid "Please input your FTP login ID"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:81
+#: classes/WordpressConvertSettingFtp.php:51
+msgid "Please input your FTP password"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:82
+#: classes/WordpressConvertSettingFtp.php:52
+msgid "Please input template base directory by ftp root directory"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:101
+#: classes/WordpressConvertSettingConvert.php:102
+#: classes/WordpressConvertSettingGeneral.php:75
+#: classes/WordpressConvertSettingGeneral.php:76
+msgid "Empty FTP Host and Template Basedir"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:105
+#: classes/WordpressConvertSettingGeneral.php:79
+msgid "Empty Theme Code"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:108
+#: classes/WordpressConvertSettingFtp.php:71
+msgid "Empty FTP login ID"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:111
+#: classes/WordpressConvertSettingFtp.php:74
+msgid "Empty FTP password"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:131
+#: classes/WordpressConvertSettingFtp.php:94
+#: classes/WordpressConvertSettingGeneral.php:99
+msgid "Saved Changes"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:144
+#: classes/WordpressConvertSettingGeneral.php:35
+#: classes/WordpressConvertSettingGeneral.php:110
+msgid "General Setting"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:156
+msgid "YES"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:157
+msgid "NO"
+msgstr ""
+
+#: classes/WordpressConvertSettingConvert.php:177
+#: classes/WordpressConvertSettingFtp.php:128
+#: classes/WordpressConvertSettingGeneral.php:133
+msgid "Save Changes"
+msgstr ""
 
 #: classes/WordpressConvertSettingFtp.php:35
 #: classes/WordpressConvertSettingFtp.php:105
 msgid "FTP Account Setting"
-msgstr "FTPアカウント設定"
+msgstr ""
 
-#: classes/WordpressConvertSettingFtp.php:45
-msgid "FTP Login ID"
-msgstr "FTPログインID"
+#: classes/WordpressConvertSettingMenu.php:36
+msgid "Dashboard"
+msgstr ""
 
-#: classes/WordpressConvertSettingFtp.php:46
-msgid "FTP Password"
-msgstr "FTPパスワード"
+#: classes/WordpressConvertSettingMenu.php:44
+msgid "Media"
+msgstr ""
 
-#: classes/WordpressConvertSettingFtp.php:47
-msgid "Base Directory"
-msgstr "ベースディレクトリ"
+#: classes/WordpressConvertSettingMenu.php:45
+msgid "Links"
+msgstr ""
 
-#: classes/WordpressConvertSettingFtp.php:50
-msgid "Please input your FTP login ID"
-msgstr "FTPログインIDを入力して下さい"
+#: classes/WordpressConvertSettingMenu.php:46
+msgid "Pages"
+msgstr ""
 
-#: classes/WordpressConvertSettingFtp.php:51
-msgid "Please input your FTP password"
-msgstr "FTPパスワードを入力して下さい"
+#: classes/WordpressConvertSettingMenu.php:47
+msgid "Comments"
+msgstr ""
 
-#: classes/WordpressConvertSettingFtp.php:52
-msgid "Please input template base directory by ftp root directory"
-msgstr "テンプレートのベースディレクトリを入力して下さい"
+#: classes/WordpressConvertSettingMenu.php:48
+msgid "Appearance"
+msgstr ""
 
-#: classes/WordpressConvertSettingFtp.php:71
-msgid "Empty FTP login ID"
-msgstr "FTPログインIDが未入力です"
+#: classes/WordpressConvertSettingMenu.php:49
+msgid "Plugins"
+msgstr ""
 
-#: classes/WordpressConvertSettingFtp.php:74
-msgid "Empty FTP password"
-msgstr "FTPパスワードが未入力です。"
+#: classes/WordpressConvertSettingMenu.php:50
+msgid "Users"
+msgstr ""
 
-#: classes/WordpressConvertSettingFtp.php:94
-#: classes/WordpressConvertSettingGeneral.php:97
-msgid "Saved Changes"
-msgstr "変更しました"
+#: classes/WordpressConvertSettingMenu.php:51
+msgid "Profile"
+msgstr ""
 
-#: classes/WordpressConvertSettingFtp.php:128
-#: classes/WordpressConvertSettingGeneral.php:131
-msgid "Save Changes"
-msgstr "変更"
+#: classes/WordpressConvertSettingMenu.php:52
+msgid "Tools"
+msgstr ""
 
-#: classes/WordpressConvertSettingGeneral.php:35
-#: classes/WordpressConvertSettingGeneral.php:108
-msgid "General Setting"
-msgstr "一般設定"
-
-#: classes/WordpressConvertSettingGeneral.php:45
-msgid "Authenticate BaseURL"
-msgstr "認証先URL"
-
-#: classes/WordpressConvertSettingGeneral.php:46
-msgid "FTP Host"
-msgstr "FTPサーバー"
-
-#: classes/WordpressConvertSettingGeneral.php:47
-msgid "Template Basedir"
-msgstr "テンプレートベースディレクトリ"
-
-#: classes/WordpressConvertSettingGeneral.php:48
-msgid "Theme Code"
-msgstr "テーマコード"
-
-#: classes/WordpressConvertSettingGeneral.php:51
-msgid "Please input Authenticate BaseURL"
-msgstr "認証用URLを入力して下さい"
-
-#: classes/WordpressConvertSettingGeneral.php:52
-msgid "Please input your FTP Hostname or IP Address"
-msgstr "FTPサーバーを入力して下さい"
-
-#: classes/WordpressConvertSettingGeneral.php:53
-msgid "Please input template basedir"
-msgstr "テンプレート用ベースディレクトリを入力して下さい"
-
-#: classes/WordpressConvertSettingGeneral.php:54
-msgid "Theme code which this plugin convert to"
-msgstr "プラグイン変換先のテーマコード"
-
-#: classes/WordpressConvertSettingGeneral.php:73
-#: classes/WordpressConvertSettingGeneral.php:74
-msgid "Empty FTP Host and Template Basedir"
-msgstr "FTPサーバーとテンプレートベースディレクトリが未入力です。"
-
-#: classes/WordpressConvertSettingGeneral.php:77
-msgid "Empty Theme Code"
-msgstr "テーマコードが未入力です。"
-
-#: classes/WordpressConvertSettingMenu.php:41
-#: classes/WordpressConvertSettingMenu.php:42
-#: classes/WordpressConvertSettingMenu.php:65
+#: classes/WordpressConvertSettingMenu.php:84
 msgid "Main Menu"
-msgstr "BiNDサイト変換"
+msgstr ""
 
 #: tools/trunk/pomo/sample/app.php:56
 msgid "Welcome %s!"
-msgstr "ようこそ！"
+msgstr ""
 
 #: tools/trunk/pomo/sample/app.php:60
 msgid "A string with low priority!"
@@ -127,9 +217,9 @@ msgstr ""
 msgid "Bye\n"
 msgstr ""
 
-#: wordpress_convert.php:38
+#: wordpress_convert.php:57
 msgid "Wordpress Convert Plugin"
-msgstr "Wordpress変換プラグイン"
+msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "Wordpress Converter for HTML Plugin"
