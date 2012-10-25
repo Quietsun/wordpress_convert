@@ -23,7 +23,7 @@
  * @author Naohisa Minagawa
  * @version 1.0
  */
-class WordpressConvertSettingGeneral {
+class WordpressConvertSettingConvert {
 	/**
 	 * 設定を初期化するメソッド
 	 * admin_menuにフックさせる。
@@ -32,8 +32,8 @@ class WordpressConvertSettingGeneral {
 	public static function init(){
 		add_submenu_page(
 			'wordpress_convert_menu',
-			__("General Setting", WORDPRESS_CONVERT_PROJECT_CODE), __("General Setting", WORDPRESS_CONVERT_PROJECT_CODE),
-			'administrator', "wordpress_convert_general_setting", array( "WordpressConvertSettingGeneral", 'execute' )
+			__("Convert Setting", WORDPRESS_CONVERT_PROJECT_CODE), __("Convert Setting", WORDPRESS_CONVERT_PROJECT_CODE),
+			'administrator', "wordpress_convert_convert_setting", array( "WordpressConvertSettingConvert", 'execute' )
 		);
 	}
 	
@@ -46,24 +46,50 @@ class WordpressConvertSettingGeneral {
 			"auth_baseurl" => __("Authenticate BaseURL", WORDPRESS_CONVERT_PROJECT_CODE), 
 			"ftp_host" => __("FTP Host", WORDPRESS_CONVERT_PROJECT_CODE), 
 			"template_basedir" => __("Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE), 
-			"theme_code" => __("Theme Code", WORDPRESS_CONVERT_PROJECT_CODE)
+			"theme_code" => __("Theme Code", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"ftp_login_id" => __("FTP Login ID", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"ftp_password" => __("FTP Password", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"base_dir" => __("Base Directory", WORDPRESS_CONVERT_PROJECT_CODE)
+		);
+		$types = array(
+			"professional" => "yesno", 
+			"auth_baseurl" => "hidden", 
+			"ftp_host" => "hidden", 
+			"template_basedir" => "hidden", 
+			"theme_code" => "hidden", 
+			"ftp_login_id" => "text", 
+			"ftp_password" => "text", 
+			"base_dir" => "text"
+		);
+		$values = array(
+			"professional" => "0", 
+			"auth_baseurl" => "https://mypage.weblife.me", 
+			"ftp_host" => "", 
+			"template_basedir" => "/d/premium", 
+			"theme_code" => "BiND6Theme", 
+			"ftp_login_id" => "", 
+			"ftp_password" => "", 
+			"base_dir" => ""
 		);
 		$hints = array(
 			"professional" => __("Please select Wordpress menus to be professional or not.", WORDPRESS_CONVERT_PROJECT_CODE), 
 			"auth_baseurl" => __("Please input Authenticate BaseURL", WORDPRESS_CONVERT_PROJECT_CODE), 
 			"ftp_host" => __("Please input your FTP Hostname or IP Address", WORDPRESS_CONVERT_PROJECT_CODE), 
 			"template_basedir" => __("Please input template basedir", WORDPRESS_CONVERT_PROJECT_CODE), 
-			"theme_code" => __("Theme code which this plugin convert to", WORDPRESS_CONVERT_PROJECT_CODE)
+			"theme_code" => __("Theme code which this plugin convert to", WORDPRESS_CONVERT_PROJECT_CODE),
+			"ftp_login_id" => __("Please input your FTP login ID", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"ftp_password" => __("Please input your FTP password", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"base_dir" => __("Please input template base directory by ftp root directory", WORDPRESS_CONVERT_PROJECT_CODE)
 		);
 		
-		$caution = self::saveSetting($labels);
+		self::saveSetting($labels);
 		
 		$options = array();
 		foreach($labels as $key => $label){
-			$options[$key] = get_option("wordpress_convert_".$key);
+			$options[$key] = get_option("wordpress_convert_".$key, $values[$key]);
 		}
 		
-		self::displaySetting($labels, $options, $hints, $caution);
+		self::displaySetting($labels, $types, $hints, $options);
 	}
 
 	/**
@@ -77,6 +103,12 @@ class WordpressConvertSettingGeneral {
 		}
 		if(empty($values["theme_code"])){
 			$errors["theme_code"] = __("Empty Theme Code", WORDPRESS_CONVERT_PROJECT_CODE);
+		}
+		if(empty($values["ftp_login_id"])){
+			$errors["ftp_login_id"] = __("Empty FTP login ID", WORDPRESS_CONVERT_PROJECT_CODE);
+		}
+		if(empty($values["ftp_password"])){
+			$errors["ftp_password"] = __("Empty FTP password", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
 		
 		if(!empty($errors)){
@@ -96,7 +128,9 @@ class WordpressConvertSettingGeneral {
 			}
 			update_option("wordpress_convert_template_files", json_encode(array()));
 			
-			return __("Saved Changes", WORDPRESS_CONVERT_PROJECT_CODE);
+			$_SESSION["WORDPRESS_CONVERT_MESSAGE"] = __("Saved Changes", WORDPRESS_CONVERT_PROJECT_CODE);
+			
+			wp_safe_redirect($_SERVER["REQUEST_URI"]);
 		}
 	}
 
@@ -104,31 +138,41 @@ class WordpressConvertSettingGeneral {
 	 * 設定画面の表示を行う。
 	 * @return void
 	 */
-	public static function displaySetting($labels, $options, $hints, $caution){
+	public static function displaySetting($labels, $types, $hints, $options){
 		// 設定変更ページを登録する。
 		echo "<div class=\"wrap\">";
 		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("General Setting", WORDPRESS_CONVERT_PROJECT_CODE)."</h2>";
 		echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
 		echo "<table class=\"form-table\"><tbody>";
 		foreach($labels as $key => $label){
-			echo "<tr><th>".$labels[$key]."</th><td>";
-			if(!empty($errors[$key])){
-				$class = $key." error";
+			if($types[$key] != "hidden"){
+				echo "<tr><th>".$labels[$key]."</th><td>";
+				if(!empty($errors[$key])){
+					$class = $key." error";
+				}else{
+					$class = $key;
+				}
+				if($types[$key] == "yesno"){
+					echo "<input type=\"radio\" class=\"".$class."\" name=\"".$key."\" value=\"1\"".(($options[$key] == "1")?" checked":"")." />".__("YES");
+					echo "&nbsp;<input type=\"radio\" class=\"".$class."\" name=\"".$key."\" value=\"0\"".(($options[$key] != "1")?" checked":"")." />".__("NO");
+				}else{
+					echo "<input type=\"text\" class=\"".$class."\" name=\"".$key."\" value=\"".$options[$key]."\" size=\"44\" />";
+				}
+				if(!empty($errors[$key])){
+					echo "<p class=\"error\">".$errors[$key]."</p>";
+				}
+				if(!empty($hints[$key])){
+					echo "<p class=\"hint\">".$hints[$key]."</p>";
+				}
+				echo "</td></tr>";
 			}else{
-				$class = $key;
+				echo "<input type=\"hidden\" name=\"".$key."\" value=\"".$options[$key]."\" />";
 			}
-			echo "<input type=\"text\" class=\"".$class."\" name=\"".$key."\" value=\"".$options[$key]."\" size=\"44\" />";
-			if(!empty($errors[$key])){
-				echo "<p class=\"error\">".$errors[$key]."</p>";
-			}
-			if(!empty($hints[$key])){
-				echo "<p class=\"hint\">".$hints[$key]."</p>";
-			}
-			echo "</td></tr>";
 		}
 		echo "</tbody></table>";
-		if(!empty($caution)){
-			echo "<p class=\"caution\">".$caution."</p>";
+		if(!empty($_SESSION["WORDPRESS_CONVERT_MESSAGE"])){
+			echo "<p class=\"caution\">".$_SESSION["WORDPRESS_CONVERT_MESSAGE"]."</p>";
+			unset($_SESSION["WORDPRESS_CONVERT_MESSAGE"]);
 		}
 		echo "<p class=\"submit\"><input type=\"submit\" name=\"submit\" value=\"".__("Save Changes", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
 		echo "</form></div>";

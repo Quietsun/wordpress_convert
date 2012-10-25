@@ -57,7 +57,7 @@ define("WORDPRESS_CONVERT_BASE_URL", WP_PLUGIN_URL."/".WORDPRESS_CONVERT_PROJECT
 define("WORDPRESS_CONVERT_PLUGIN_NAME", __("Wordpress Convert Plugin", WORDPRESS_CONVERT_PROJECT_CODE));
 
 // メインクラス名
-define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu,General,Ftp");
+define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu,Convert");
 
 // テンプレート取得クラス
 define("WORDPRESS_CONVERT_CONTENT_MANAGER", "SecuredLocalContentManager");
