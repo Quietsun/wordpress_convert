@@ -33,17 +33,17 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 	public function convert($content){
 		foreach(pq("img") as $image){
 			if(preg_match("/^https?:\\/\\//", pq($image)->attr("src")) == 0){
-				pq($image)->attr("src", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".pq($image)->attr("src"));
+				pq($image)->attr("src", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".str_replace("../", "", pq($image)->attr("src")));
 			}
 		}
 		foreach(pq("script") as $script){
 			if(pq($script)->attr("src") != "" && preg_match("/^https?:\\/\\//", pq($script)->attr("src")) == 0){
-				pq($script)->attr("src", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".pq($script)->attr("src"));
+				pq($script)->attr("src", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".str_replace("../", "", pq($script)->attr("src")));
 			}
 		}
 		foreach(pq("link") as $link){
 			if(pq($link)->attr("rel") == "stylesheet" && preg_match("/^https?:\\/\\//", pq($link)->attr("href")) == 0){
-				pq($link)->attr("href", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".pq($link)->attr("href"));
+				pq($link)->attr("href", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".str_replace("../", "", pq($link)->attr("href")));
 			}
 		}
 		foreach(pq("a") as $anchor){
@@ -54,7 +54,7 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 			}elseif(pq($anchor)->attr("href") == "index.html"){
 				pq($anchor)->attr("href", get_option('siteurl'));
 			}elseif(preg_match("/^https?:\\/\\//", pq($anchor)->attr("href")) == 0){
-				pq($anchor)->attr("href", get_page_link($this->converter->getPageId(str_replace(".html", "", pq($anchor)->attr("href")))));
+				pq($anchor)->attr("href", get_page_link($this->converter->getPageId(str_replace(".html", "", str_replace("../", "", pq($anchor)->attr("href"))))));
 			}
 		}
 		return $content;
