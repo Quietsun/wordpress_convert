@@ -63,7 +63,7 @@ define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu,Convert");
 define("WORDPRESS_CONVERT_CONTENT_MANAGER", "SecuredLocalContentManager");
 
 // 使用カートリッジ
-define("WORDPRESS_CONVERT_CARTRIDGES", "ConvertPath,ConvertArticle,ConvertWidget,ConvertWidgetParts");
+define("WORDPRESS_CONVERT_CARTRIDGES", "ConvertPath,ConvertArticle,ConvertComment,ConvertWidget,ConvertWidgetParts");
 
 require_once(dirname(__FILE__)."/classes/".WORDPRESS_CONVERT_MAIN_CLASS.".php");
 
