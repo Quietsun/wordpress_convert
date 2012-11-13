@@ -38,9 +38,9 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 		// ページのタイトルを変換
 		pq("span.wp_page_title")->replaceWith("<title><?php wp_title(''); ?></title>");
 		// 一覧画面のページャーを変換
-		pq("div.wp_list_pager")->replaceWith("<?php wp_list_paginate(); ?>");
+		pq("div.wp_list_pager")->replaceWith("<div class=\"wp_list_pager\"><?php wp_list_paginate(); ?></div>");
 		// 記事のページャーを変換
-		pq("div.wp_post_pager")->replaceWith("<span class=\"nav-previous\"><?php previous_post_link(); ?></span><span class=\"nav-next\"><?php next_post_link(); ?></span>");
+		pq("div.wp_post_pager")->replaceWith("<div class=\"wp_post_pager\"><span class=\"nav-previous\"><?php previous_post_link(); ?></span><span class=\"nav-next\"><?php next_post_link(); ?></span></div>");
 			
 		foreach(pq(".wp_articles") as $article){
 			// タイトルを変換
