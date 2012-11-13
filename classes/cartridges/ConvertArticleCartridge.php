@@ -31,6 +31,17 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 	}
 	
 	public function convert($baseFileName, $content){
+		// ページのタイトルを変換
+		pq("title")->replaceWith("<title><?php bloginfo( 'name' ); wp_title(); ?></title>");
+		// ページのタイトルを変換
+		pq("span.wp_blog_title")->replaceWith("<title><?php bloginfo( 'name' ); ?></title>");
+		// ページのタイトルを変換
+		pq("span.wp_page_title")->replaceWith("<title><?php wp_title(''); ?></title>");
+		// 一覧画面のページャーを変換
+		pq("div.wp_list_pager")->replaceWith("<?php wp_list_paginate(); ?>");
+		// 記事のページャーを変換
+		pq("div.wp_post_pager")->replaceWith("<span class=\"nav-previous\"><?php previous_post_link(); ?></span><span class=\"nav-next\"><?php next_post_link(); ?></span>");
+			
 		foreach(pq(".wp_articles") as $article){
 			// タイトルを変換
 			pq($article)->find("span.wp_title")->replaceWith("<?php the_title(); ?>");
@@ -106,7 +117,7 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 				// classの値を取得
 				$title = pq($tag)->attr("title");
 				if(!empty($title)){
-					pq($tag)->replaceWith("<?php <?php if (get_the_tags()) the_tags('', \"".$title."\"); ?>");
+					pq($tag)->replaceWith("<?php if (get_the_tags()) the_tags('', \"".$title."\"); ?>");
 				}
 			}
 			

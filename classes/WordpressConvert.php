@@ -263,7 +263,19 @@ class WordpressConvert {
 				fwrite($fp, "add_theme_support( 'post-thumbnails' );\r\n");
 				fwrite($fp, "}\r\n");
 				fwrite($fp, "add_action( 'after_setup_theme', 'eyecatch_setup' );\r\n");
-				fwrite($fp, "?>\r\n");
+				fwrite($fp, "function wp_list_paginate(){\r\n");
+				fwrite($fp, "global \$wp_rewrite, \$wp_query, \$paged;\r\n");
+				fwrite($fp, "\$paginate_base = get_pagenum_link(1);\r\n");
+				fwrite($fp, "if (strpos(\$paginate_base, '?') || ! \$wp_rewrite->using_permalinks()) {\r\n");
+				fwrite($fp, "\$paginate_format = '';\r\n");
+				fwrite($fp, "\$paginate_base = add_query_arg('paged', '%#%');\r\n");
+				fwrite($fp, "} else {\r\n");
+				fwrite($fp, "\$paginate_format = (substr(\$paginate_base, -1 ,1) == '/' ? '' : '/') .user_trailingslashit('page/%#%/', 'paged');\r\n");
+				fwrite($fp, "\$paginate_base .= '%_%';\r\n");
+				fwrite($fp, "}\r\n");
+				fwrite($fp, "\$pagination = array('base' => \$paginate_base, 'format' => \$paginate_format, 'total' => \$wp_query->max_num_pages, 'mid_size' => 5, 'current' => (\$paged ? \$paged : 1), 'prev_text' => '&laquo; '.__('Previous'), 'next_text' => __('Next').' &raquo;');\r\n");
+				fwrite($fp, "echo paginate_links(\$pagination);\r\n");
+				fwrite($fp, "}\r\n");
 				fclose($fp);
 			}
 			

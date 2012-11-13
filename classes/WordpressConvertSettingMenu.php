@@ -64,6 +64,11 @@ class WordpressConvertSettingMenu {
 			2 
 		);
 		$submenu["wordpress_convert_menu"] = array();
+		add_submenu_page(
+			'wordpress_convert_menu',
+			__("Dashboard", WORDPRESS_CONVERT_PROJECT_CODE), __("Dashboard", WORDPRESS_CONVERT_PROJECT_CODE),
+			'administrator', "wordpress_convert_dashboard", array( "WordpressConvertSettingMenu", 'execute' )
+		);
 		foreach($submenu["themes.php"] as $index => $sub){
 			if($sub[1] != "edit_themes" && $sub[2] != "theme_options"){
 				$submenu["wordpress_convert_menu"][$index] = $sub;
@@ -85,7 +90,7 @@ class WordpressConvertSettingMenu {
 	public static function displaySetting(){
 		// 設定変更ページを登録する。
 		echo "<div class=\"wrap\">";
-		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("Main Menu")."</h2>";
+		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME."</h2>";
 		echo "</div>";
 	}
 }
