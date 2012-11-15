@@ -39,7 +39,7 @@ class WordpressConvertSettingMenu {
 		}
 		if(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_professional") != "1"){
 			foreach($menu as $index => $item){
-				// ダッシュボードは無効にする。
+				// プロモードでない場合は他のメニューも無効にする。
 				switch($item[2]){
 					case "upload.php":
 					case "link-manager.php":
@@ -49,6 +49,7 @@ class WordpressConvertSettingMenu {
 					case "plugins.php":
 					case "users.php":
 					case "tools.php":
+					case "options-general.php":
 						unset($menu[$index]);
 						break;
 				}
@@ -74,6 +75,12 @@ class WordpressConvertSettingMenu {
 				$submenu["wordpress_convert_menu"][$index] = $sub;
 			}
 		}
+		
+		// Wordpressダッシュボードはこちらのダッシュボードにリダイレクト
+		if(basename($_SERVER["PHP_SELF"]) == "index.php"){
+			wp_redirect(get_option('siteurl') . '/wp-admin/admin.php?page=wordpress_convert_dashboard');
+			exit;
+		}
 	}
 	
 	/**
@@ -88,9 +95,35 @@ class WordpressConvertSettingMenu {
 	 * @return void
 	 */
 	public static function displaySetting(){
+		// 設定を取得
+		$themeCode = get_option("wordpress_convert_theme_code");
+		$template = get_option("template");
+		$stylesheet = get_option("stylesheet");
+		$contentManagerClass = WORDPRESS_CONVERT_CONTENT_MANAGER;
+		$contentManager = new $contentManagerClass(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_login_id"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_password"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_base_dir"));
+		
+		if(isset($_POST["activate"])){
+			// テンプレートをアクティベート
+			update_option("template", $themeCode);
+			update_option("stylesheet", $themeCode);
+			$template = get_option("template");
+			$stylesheet = get_option("stylesheet");
+		}
+		
 		// 設定変更ページを登録する。
 		echo "<div class=\"wrap\">";
 		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME."</h2>";
+		if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()))){
+			if($themeCode != $template){
+				echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
+				echo "<p class=\"submit\"><input type=\"submit\" name=\"activate\" value=\"".__("Activate BiND6 Theme", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
+				echo "</form>";
+			}else{
+				echo "<p class=\"submit\">".__("BiND Theme is Activated", WORDPRESS_CONVERT_PROJECT_CODE)."</p>";
+			}
+		}else{
+			echo "<p class=\"submit\">".__("There is not BiND Theme", WORDPRESS_CONVERT_PROJECT_CODE)."</p>";
+		}
 		echo "</div>";
 	}
 }
