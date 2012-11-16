@@ -30,6 +30,12 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 	 * @return void
 	 */
 	public static function init(){
+		// プロフェショナルモードの設定のみ反映させる。
+		if( isset( $_POST['wp_convert_submit'] ) && isset( $_POST['professional'] ) ){
+			update_option("wordpress_convert_professional", $_POST['professional']);
+		}
+		
+		// メニュー表示切り替え
 		parent::controlMenus();
 		
 		add_submenu_page(
@@ -123,7 +129,8 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 	 * 設定を保存する。
 	 */
 	protected static function saveSetting($labels){
-		if( isset( $_POST['submit'] ) && ( $errors = self::is_valid( $_POST ) ) === true ){
+		if( isset( $_POST['wp_convert_submit'] ) && ( $errors = self::is_valid( $_POST ) ) === true ){
+			unset($_POST["wp_convert_submit"]);
 			foreach( $labels as $key => $label ){
 				update_option("wordpress_convert_".$key, $_POST[$key]);
 				$options[$key] = $_POST[$key];
@@ -131,8 +138,6 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			update_option("wordpress_convert_template_files", json_encode(array()));
 			
 			$_SESSION["WORDPRESS_CONVERT_MESSAGE"] = __("Saved Changes", WORDPRESS_CONVERT_PROJECT_CODE);
-			
-			parent::controlMenus();
 		
 			wp_safe_redirect($_SERVER["REQUEST_URI"]);
 		}
@@ -159,6 +164,9 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 				if($types[$key] == "yesno"){
 					echo "<input type=\"radio\" class=\"".$class."\" name=\"".$key."\" value=\"1\"".(($options[$key] == "1")?" checked":"")." />".__("YES");
 					echo "&nbsp;<input type=\"radio\" class=\"".$class."\" name=\"".$key."\" value=\"0\"".(($options[$key] != "1")?" checked":"")." />".__("NO");
+				}elseif($types[$key] == "label"){
+					echo nl2br(htmlspecialchars($options[$key]));
+					echo "<input type=\"hidden\" name=\"".$key."\" value=\"".$options[$key]."\" />";
 				}else{
 					echo "<input type=\"text\" class=\"".$class."\" name=\"".$key."\" value=\"".$options[$key]."\" size=\"44\" />";
 				}
@@ -178,7 +186,7 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			echo "<p class=\"caution\">".$_SESSION["WORDPRESS_CONVERT_MESSAGE"]."</p>";
 			unset($_SESSION["WORDPRESS_CONVERT_MESSAGE"]);
 		}
-		echo "<p class=\"submit\"><input type=\"submit\" name=\"submit\" value=\"".__("Save Changes", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
+		echo "<p class=\"submit\"><input type=\"submit\" name=\"wp_convert_submit\" value=\"".__("Save Changes", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
 		echo "</form></div>";
 	}
 }

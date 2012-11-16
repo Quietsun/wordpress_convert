@@ -30,6 +30,7 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 	 * @return void
 	 */
 	public static function init(){
+		// メニュー表示切り替え
 		parent::controlMenus();
 		
 		// Wordpressダッシュボードはこちらのダッシュボードにリダイレクト
