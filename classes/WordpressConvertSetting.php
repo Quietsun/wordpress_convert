@@ -24,16 +24,16 @@
  * @version 1.0
  */
 abstract class WordpressConvertSetting {
+	private static $dashboardMenu = array();
+
 	private static $originalMenu = null;
 
 	private static $originalSubmenu = null;
 	
 	/**
-	 * 設定を初期化するメソッド
-	 * admin_menuにフックさせる。
-	 * @return void
+	 * ダッシュボードメニューを制御するメソッド
 	 */
-	public static function controlMenus(){
+	public static function controlDashboard(){
 		// 元々表示しているメニューを復元する。
 		global $menu, $submenu;
 		if(self::$originalMenu == null){
@@ -61,12 +61,18 @@ abstract class WordpressConvertSetting {
 			WORDPRESS_CONVERT_BASE_URL."/menu_icon.png", 
 			2 
 		);
-		$submenu["wordpress_convert_menu"] = array();
-		add_submenu_page(
-			'wordpress_convert_menu',
-			__("Dashboard", WORDPRESS_CONVERT_PROJECT_CODE), __("Dashboard", WORDPRESS_CONVERT_PROJECT_CODE),
-			'administrator', "wordpress_convert_dashboard", array( "WordpressConvertSettingMenu", 'execute' )
-		);
+		$submenu["wordpress_convert_menu"] = self::$dashboardMenu;
+	}
+	
+	/**
+	 * メニューを制御するメソッド
+	 * @return void
+	 */
+	public static function controlMenus(){
+		// 元々表示しているメニューを復元する。
+		global $menu, $submenu;
+		
+		self::$dashboardMenu = $submenu["wordpress_convert_menu"];
 		
 		// プロフェショナルモード出ない場合は、大半のメニューを無効化
 		if(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_professional") != "1"){
@@ -88,9 +94,27 @@ abstract class WordpressConvertSetting {
 			}
 			// 無効化したメニューのうち、利用するサブメニューをこちらのメニューの配下に移動する。
 			foreach($submenu["themes.php"] as $index => $sub){
-				if($sub[1] != "edit_themes" && $sub[2] != "theme_options"){
+				if($sub[1] == "switch_themes"){
 					unset($submenu["themes.php"][$index]);
-					$submenu["wordpress_convert_menu"][$index] = $sub;
+					$sub[3] = $sub[0] = __("Select Themes", WORDPRESS_CONVERT_PROJECT_CODE);
+					$submenu["wordpress_convert_menu"][] = $sub;
+				}
+				if($sub[1] == "edit_theme_options" && $sub[2] == "widgets.php"){
+					unset($submenu["themes.php"][$index]);
+					$sub[3] = $sub[0] = __("Widget Setting", WORDPRESS_CONVERT_PROJECT_CODE);
+					$submenu["wordpress_convert_menu"][] = $sub;
+				}
+				if($sub[1] == "edit_theme_options" && $sub[2] == "nav-menus.php"){
+					unset($submenu["themes.php"][$index]);
+					$sub[3] = $sub[0] = __("Menu Setting", WORDPRESS_CONVERT_PROJECT_CODE);
+					$submenu["wordpress_convert_menu"][] = $sub;
+				}
+			}
+			foreach($submenu["index.php"] as $index => $sub){
+				if($sub[1] == "update_core"){
+					unset($submenu["index.php"][$index]);
+					$sub[3] = $sub[0] = __("System Update", WORDPRESS_CONVERT_PROJECT_CODE);
+					$submenu["wordpress_convert_menu"][] = $sub;
 				}
 			}
 		}

@@ -30,6 +30,15 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 	 * @return void
 	 */
 	public static function init(){
+		// ダッシュボード表示切り替え
+		parent::controlDashboard();
+		
+		add_submenu_page(
+			'wordpress_convert_menu',
+			__("Dashboard", WORDPRESS_CONVERT_PROJECT_CODE), __("Dashboard", WORDPRESS_CONVERT_PROJECT_CODE),
+			'administrator', "wordpress_convert_dashboard", array( "WordpressConvertSettingMenu", 'execute' )
+		);
+		
 		// メニュー表示切り替え
 		parent::controlMenus();
 		

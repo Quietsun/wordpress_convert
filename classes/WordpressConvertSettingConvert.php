@@ -35,14 +35,17 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			update_option("wordpress_convert_professional", $_POST['professional']);
 		}
 		
-		// メニュー表示切り替え
-		parent::controlMenus();
+		// ダッシュボード表示切り替え
+		parent::controlDashboard();
 		
 		add_submenu_page(
 			'wordpress_convert_menu',
 			__("Convert Setting", WORDPRESS_CONVERT_PROJECT_CODE), __("Convert Setting", WORDPRESS_CONVERT_PROJECT_CODE),
 			'administrator', "wordpress_convert_convert_setting", array( "WordpressConvertSettingConvert", 'execute' )
 		);
+		
+		// メニュー表示切り替え
+		parent::controlMenus();
 	}
 	
 	/**
@@ -61,10 +64,10 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		);
 		$types = array(
 			"professional" => "yesno", 
-			"auth_baseurl" => "hidden", 
-			"ftp_host" => "hidden", 
-			"template_basedir" => "hidden", 
-			"theme_code" => "hidden", 
+			"auth_baseurl" => "label", 
+			"ftp_host" => "label", 
+			"template_basedir" => "label", 
+			"theme_code" => "label", 
 			"ftp_login_id" => "text", 
 			"ftp_password" => "text", 
 			"base_dir" => "text"
