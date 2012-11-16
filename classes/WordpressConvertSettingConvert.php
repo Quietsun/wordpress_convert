@@ -23,13 +23,15 @@
  * @author Naohisa Minagawa
  * @version 1.0
  */
-class WordpressConvertSettingConvert {
+class WordpressConvertSettingConvert extends WordpressConvertSetting {
 	/**
 	 * 設定を初期化するメソッド
 	 * admin_menuにフックさせる。
 	 * @return void
 	 */
 	public static function init(){
+		parent::controlMenus();
+		
 		add_submenu_page(
 			'wordpress_convert_menu',
 			__("Convert Setting", WORDPRESS_CONVERT_PROJECT_CODE), __("Convert Setting", WORDPRESS_CONVERT_PROJECT_CODE),
@@ -130,6 +132,8 @@ class WordpressConvertSettingConvert {
 			
 			$_SESSION["WORDPRESS_CONVERT_MESSAGE"] = __("Saved Changes", WORDPRESS_CONVERT_PROJECT_CODE);
 			
+			parent::controlMenus();
+		
 			wp_safe_redirect($_SERVER["REQUEST_URI"]);
 		}
 	}
@@ -141,7 +145,7 @@ class WordpressConvertSettingConvert {
 	public static function displaySetting($labels, $types, $hints, $options){
 		// 設定変更ページを登録する。
 		echo "<div class=\"wrap\">";
-		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("General Setting", WORDPRESS_CONVERT_PROJECT_CODE)."</h2>";
+		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("Convert Setting", WORDPRESS_CONVERT_PROJECT_CODE)."</h2>";
 		echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
 		echo "<table class=\"form-table\"><tbody>";
 		foreach($labels as $key => $label){

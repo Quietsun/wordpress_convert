@@ -23,58 +23,14 @@
  * @author Naohisa Minagawa
  * @version 1.0
  */
-class WordpressConvertSettingMenu {
+class WordpressConvertSettingMenu extends WordpressConvertSetting {
 	/**
 	 * 設定を初期化するメソッド
 	 * admin_menuにフックさせる。
 	 * @return void
 	 */
 	public static function init(){
-		global $menu, $submenu;
-		foreach($menu as $index => $item){
-			// ダッシュボードは無効にする。
-			if($item[2] ==  "index.php"){
-				unset($menu[$index]);
-			}
-		}
-		if(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_professional") != "1"){
-			foreach($menu as $index => $item){
-				// プロモードでない場合は他のメニューも無効にする。
-				switch($item[2]){
-					case "upload.php":
-					case "link-manager.php":
-					case "edit.php?post_type=page":
-					case "edit-comments.php":
-					case "themes.php":
-					case "plugins.php":
-					case "users.php":
-					case "tools.php":
-					case "options-general.php":
-						unset($menu[$index]);
-						break;
-				}
-			}
-		}
-		add_menu_page(
-			WORDPRESS_CONVERT_PLUGIN_NAME, 
-			WORDPRESS_CONVERT_PLUGIN_NAME,
-			"administrator", 
-			"wordpress_convert_menu", 
-			array( "WordpressConvertSettingMenu", 'execute' ), 
-			WORDPRESS_CONVERT_BASE_URL."/menu_icon.png", 
-			2 
-		);
-		$submenu["wordpress_convert_menu"] = array();
-		add_submenu_page(
-			'wordpress_convert_menu',
-			__("Dashboard", WORDPRESS_CONVERT_PROJECT_CODE), __("Dashboard", WORDPRESS_CONVERT_PROJECT_CODE),
-			'administrator', "wordpress_convert_dashboard", array( "WordpressConvertSettingMenu", 'execute' )
-		);
-		foreach($submenu["themes.php"] as $index => $sub){
-			if($sub[1] != "edit_themes" && $sub[2] != "theme_options"){
-				$submenu["wordpress_convert_menu"][$index] = $sub;
-			}
-		}
+		parent::controlMenus();
 		
 		// Wordpressダッシュボードはこちらのダッシュボードにリダイレクト
 		if(basename($_SERVER["PHP_SELF"]) == "index.php"){

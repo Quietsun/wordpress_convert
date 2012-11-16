@@ -17,6 +17,7 @@
  */
 
 $settings = explode(",", WORDPRESS_CONVERT_SETTING_CLASSES);
+require_once(dirname(__FILE__)."/WordpressConvertSetting.php");
 foreach($settings as $setting){
 	require_once(dirname(__FILE__)."/WordpressConvertSetting".$setting.".php");
 }
