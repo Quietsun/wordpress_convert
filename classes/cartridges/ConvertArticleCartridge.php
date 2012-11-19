@@ -34,13 +34,17 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 		// ページのタイトルを変換
 		pq("title")->replaceWith("<title><?php bloginfo( 'name' ); wp_title(); ?></title>");
 		// ページのタイトルを変換
-		pq("span.wp_blog_title")->replaceWith("<title><?php bloginfo( 'name' ); ?></title>");
+		pq("span.wp_blog_title")->replaceWith("<span id=\"wp_blog_title\"><?php bloginfo( 'name' ); ?></span>");
 		// ページのタイトルを変換
-		pq("span.wp_page_title")->replaceWith("<title><?php wp_title(''); ?></title>");
+		pq("span.wp_page_title")->replaceWith("<span id=\"wp_page_title\"><?php wp_title(''); ?></span>");
 		// 一覧画面のページャーを変換
 		pq("div.wp_list_pager")->replaceWith("<div class=\"wp_list_pager\"><?php wp_list_paginate(); ?></div>");
 		// 記事のページャーを変換
-		pq("div.wp_post_pager")->replaceWith("<div class=\"wp_post_pager\"><span class=\"nav-previous\"><?php previous_post_link(); ?></span><span class=\"nav-next\"><?php next_post_link(); ?></span></div>");
+		pq("div.wp_post_pager")->replaceWith("<div class=\"wp_post_pager\"><span class=\"nav-next\"><?php next_post_link(); ?></span><span class=\"nav-previous\"><?php previous_post_link(); ?></span></div>");
+		// 記事のページャーを変換
+		pq("span.wp_post_pager_prev")->replaceWith("<span class=\"wp_post_pager_prev\"><?php previous_post_link(); ?></span>");
+		// 記事のページャーを変換
+		pq("span.wp_post_pager_next")->replaceWith("<span class=\"wp_post_pager_next\"><?php next_post_link(); ?></span>");
 			
 		foreach(pq(".wp_articles") as $article){
 			// タイトルを変換
