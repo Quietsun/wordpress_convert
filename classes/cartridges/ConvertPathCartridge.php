@@ -49,6 +49,14 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 				pq($link)->attr("href", $path);
 			}
 		}
+		foreach(pq("iframe") as $iframe){
+			echo pq($iframe)->attr("src")."<br>";
+			if(preg_match("/^https?:\\/\\//", pq($iframe)->attr("src")) == 0){
+				$path = preg_replace("/\\/[^\\/]+\\/\\.\\.\\//", "/", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".dirname($baseFileName)."/".preg_replace("/\\.html?$/i", ".php", pq($iframe)->attr("src")));
+				echo $path."<br>";
+				pq($iframe)->attr("src", $path);
+			}
+		}
 		foreach(pq("a") as $anchor){
 			if(preg_match("/^https?:\\/\\//", pq($anchor)->attr("href")) == 0){
 				$basedir = preg_replace("/^\\./", "", dirname($baseFileName));

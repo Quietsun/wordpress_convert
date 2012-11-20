@@ -161,27 +161,27 @@ class WordpressConvert {
 					if(($fp = fopen($themeFile, "w+")) !== FALSE){
 						$content = $contentManager->getContent($filename);
 						if(preg_match("/\\.html?$/i", $filename) > 0){
-							switch($baseFileName){
-								// 標準のファイルは固定ページテンプレートとして扱わない
-								case "index.html":
-								case "404.html":
-								case "search.html":
-								case "archive.html":
-								case "taxonomy.html":
-								case "category.html":
-								case "tag.html":
-								case "author.html":
-								case "single.html":
-								case "attachment.html":
-								case "single-post.html":
-								case "page.html":
-								case "home.html":
-								case "comments-popup.html":
-									break;
-								// それ以外のページは固定ページテンプレートとして扱う
-								default:
-									$baseFileCode = preg_replace("/\\.html?$/i", "", $baseFileName);
-									if(substr($baseFileCode, 0, 1) != "_"){
+							if(substr($baseFileName, 0, 1) != "_"){
+								switch($baseFileName){
+									// 標準のファイルは固定ページテンプレートとして扱わない
+									case "index.html":
+									case "404.html":
+									case "search.html":
+									case "archive.html":
+									case "taxonomy.html":
+									case "category.html":
+									case "tag.html":
+									case "author.html":
+									case "single.html":
+									case "attachment.html":
+									case "single-post.html":
+									case "page.html":
+									case "home.html":
+									case "comments-popup.html":
+										break;
+									// それ以外のページは固定ページテンプレートとして扱う
+									default:
+										$baseFileCode = preg_replace("/\\.html?$/i", "", $baseFileName);
 										fwrite($fp, "<?php\r\n");
 										fwrite($fp, "/*\r\n");
 										fwrite($fp, "Template Name: ".$baseFileCode."\r\n");
@@ -199,10 +199,12 @@ class WordpressConvert {
 											add_post_meta($pageid, "_wp_page_template", $baseFileCode.".php", true);
 											add_post_meta($pageid, "_wp_page_code", $baseFileCode, true);
 										}
-									}
-									break;
+										break;
+								}
+								fwrite($fp, $converter->convert($baseFileName, $content)->php());
+							}else{
+								fwrite($fp, $content);
 							}
-							fwrite($fp, $converter->convert($baseFileName, $content)->php());
 						}elseif(preg_match("/\\.css$/i", $filename) > 0){
 							if(preg_match_all("/url\\(*([^\\)]+)\\)/", $content, $params) > 0){
 								foreach($params[0] as $index => $source){
