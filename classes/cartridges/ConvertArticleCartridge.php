@@ -93,6 +93,7 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 					pq($image)->replaceWith($text);
 				}
 			}
+			
 			// 本文を変換
 			$bodys = pq($article)->find("span.wp_content");
 			foreach($bodys as $body){
@@ -125,7 +126,13 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 				}
 			}
 			
-			pq($article)->before("<?php if (have_posts()) : while (have_posts()) : the_post(); ?>");
+			// 
+			$class = pq($article)->attr("class");
+			if(preg_match("/wp_articles_([0-9]+)/", $class, $params) > 0){
+				pq($article)->before("<?php query_posts(\$query_string.'&posts_per_page=".$params[1]."'); if (have_posts()) : while (have_posts()) : the_post(); ?>");
+			}else{
+				pq($article)->before("<?php if (have_posts()) : while (have_posts()) : the_post(); ?>");
+			}
 			pq($article)->after("<?php endwhile; endif; ?>");
 		}
 		return $content;
