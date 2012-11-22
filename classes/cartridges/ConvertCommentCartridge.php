@@ -46,7 +46,7 @@ class ConvertCommentCartridge extends ContentConvertCartridge {
 			// コメント本文を変換
 			pq($comment)->find("span.wp_comment_body")->replaceWith("<?php echo \$item[\"comment_content\"]; ?>");
 			
-			pq($comment)->before("<?php \$params = array(); \$params[\"post_id\"] = get_the_ID(); \$data = get_comments(\$params); foreach(\$data as \$itemTmp): \$item = (array) \$itemTmp; ?>");
+			pq($comment)->before("<?php \$data = get_approved_comments(get_the_ID()); foreach(\$data as \$itemTmp): \$item = (array) \$itemTmp; ?>");
 			pq($comment)->after("<?php endforeach; ?>");
 		}
 		
