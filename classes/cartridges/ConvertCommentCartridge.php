@@ -36,15 +36,15 @@ class ConvertCommentCartridge extends ContentConvertCartridge {
 		
 		foreach(pq(".wp_comment_list") as $comment){
 			// コメント投稿者を変換
-			pq($comment)->find("span.wp_comment_author")->replaceWith("<?php echo \$item[\"comment_author\"]; ?>");
+			pq($comment)->find("span.wp_comment_name")->replaceWith("<span class=\"wp_comment_name\"><?php echo \$item[\"comment_author\"]; ?></span>");
 			// コメント投稿者メールアドレスを変換
-			pq($comment)->find("span.wp_comment_email")->replaceWith("<?php echo \$item[\"comment_author_email\"]; ?>");
+			pq($comment)->find("span.wp_comment_email")->replaceWith("<span class=\"wp_comment_email\"><?php echo \$item[\"comment_author_email\"]; ?></span>");
 			// コメント投稿IPを変換
-			pq($comment)->find("span.wp_comment_address")->replaceWith("<?php echo \$item[\"comment_author_IP\"]; ?>");
+			pq($comment)->find("span.wp_comment_address")->replaceWith("<span class=\"wp_comment_address\"><?php echo \$item[\"comment_author_IP\"]; ?></span>");
 			// コメント日付を変換
-			pq($comment)->find("span.wp_comment_date")->replaceWith("<?php echo date(get_option('date_format'), strtotime(\$item[\"comment_date\"])); ?>");
+			pq($comment)->find("span.wp_comment_date")->replaceWith("<span class=\"wp_comment_date\"><?php echo date(get_option('date_format'), strtotime(\$item[\"comment_date\"])); ?></span>");
 			// コメント本文を変換
-			pq($comment)->find("span.wp_comment_body")->replaceWith("<?php echo \$item[\"comment_content\"]; ?>");
+			pq($comment)->find("span.wp_comment_body")->replaceWith("<span class=\"wp_comment_body\"><?php echo \$item[\"comment_content\"]; ?></span>");
 			
 			pq($comment)->before("<?php \$data = get_approved_comments(get_the_ID()); foreach(\$data as \$itemTmp): \$item = (array) \$itemTmp; ?>");
 			pq($comment)->after("<?php endforeach; ?>");
