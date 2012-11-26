@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
 "POT-Creation-Date: 2012-11-26 05:10:36+00:00\n"
-"PO-Revision-Date: 2012-11-26 14:12+0900\n"
+"PO-Revision-Date: 2012-11-26 15:29+0900\n"
 "Last-Translator: \n"
 "Language-Team: Netlife Inc. <minagawa@netlife-web.com>\n"
 "Language: Japanese\n"
@@ -33,7 +33,7 @@ msgstr "テーマ選択"
 
 #: classes/WordpressConvertSetting.php:104
 msgid "Widget Setting"
-msgstr "ウィジェットせってい"
+msgstr "ウィジェット設定"
 
 #: classes/WordpressConvertSetting.php:109
 msgid "Menu Setting"
