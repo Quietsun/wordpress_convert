@@ -82,11 +82,14 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()))){
 			if($themeCode != $template){
 				echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
-				echo "<p class=\"submit\"><input type=\"submit\" name=\"activate\" value=\"".__("Activate BiND6 Theme", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
+				echo "<p class=\"submit\"><input type=\"submit\" name=\"activate\" value=\"".__("Activate BiND Theme", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
 				echo "</form>";
 			}else{
 				echo "<p class=\"submit\">".__("BiND Theme is Activated", WORDPRESS_CONVERT_PROJECT_CODE)."</p>";
 			}
+			echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
+			echo "<p class=\"submit\"><input type=\"submit\" name=\"reconstruct\" value=\"".__("Reconstruct BiND Theme", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
+			echo "</form>";
 		}else{
 			echo "<p class=\"submit\">".__("There is not BiND Theme", WORDPRESS_CONVERT_PROJECT_CODE)."</p>";
 		}

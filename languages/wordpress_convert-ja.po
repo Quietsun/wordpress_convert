@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
-"POT-Creation-Date: 2012-11-16 07:02:10+00:00\n"
-"PO-Revision-Date: 2012-11-16 16:05+0900\n"
+"POT-Creation-Date: 2012-11-26 05:10:36+00:00\n"
+"PO-Revision-Date: 2012-11-26 14:12+0900\n"
 "Last-Translator: \n"
 "Language-Team: Netlife Inc. <minagawa@netlife-web.com>\n"
 "Language: Japanese\n"
@@ -150,7 +150,7 @@ msgid "Dashboard"
 msgstr "ダッシュボード"
 
 #: classes/WordpressConvertSettingMenu.php:85
-msgid "Activate BiND6 Theme"
+msgid "Activate BiND Theme"
 msgstr "BiNDのテーマを有効化する"
 
 #: classes/WordpressConvertSettingMenu.php:88
@@ -158,6 +158,10 @@ msgid "BiND Theme is Activated"
 msgstr "BiNDのテーマを利用しています。"
 
 #: classes/WordpressConvertSettingMenu.php:91
+msgid "Reconstruct BiND Theme"
+msgstr "BiNDのテーマを再構築する"
+
+#: classes/WordpressConvertSettingMenu.php:94
 msgid "There is not BiND Theme"
 msgstr "BiNDのテーマがありません。"
 
@@ -188,7 +192,7 @@ msgstr ""
 
 #. Author of the plugin/theme
 msgid "Naohisa Minagawa"
-msgstr "皆川　直久"
+msgstr "Naohisa Minagawa"
 
 #. Author URI of the plugin/theme
 msgid "http://www.netlife-web.com/"
