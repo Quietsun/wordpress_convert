@@ -93,6 +93,27 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		}else{
 			echo "<p class=\"submit\">".__("There is not BiND Theme", WORDPRESS_CONVERT_PROJECT_CODE)."</p>";
 		}
+		
+		// 最新記事を取得
+		$args = array( 'numberposts' => 2, 'order'=> 'DESC', 'orderby' => 'post_date' );
+		$posts = get_posts( $args );
+
+		echo "<h3>最新記事</h3>";
+		$screen = get_current_screen();
+		set_current_screen("post");
+		$wp_list_table = _get_list_table('WP_Posts_List_Table');
+		$wp_list_table->prepare_items();
+		echo "<table class=\"wp-list-table ".implode( ' ', $wp_list_table->get_table_classes() )."\" cellspacing=\"0\">";
+		echo "<thead><tr>".$wp_list_table->print_column_headers()."</tr></thead>";
+		echo "<tbody id=\"the-list\">";
+		$wp_list_table->display_rows($posts);
+		echo "</tbody></table>";
+		set_current_screen($screen);
+		
+		// 更新されたコメント数を取得
+		$comments = wp_count_comments();
+		echo $comments->moderated."件<br>";
+		
 		echo "</div>";
 	}
 }
