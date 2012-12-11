@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
-"POT-Creation-Date: 2012-11-26 05:10:36+00:00\n"
-"PO-Revision-Date: 2012-11-26 15:29+0900\n"
+"POT-Creation-Date: 2012-12-11 08:09:06+00:00\n"
+"PO-Revision-Date: 2012-12-11 17:09+0900\n"
 "Last-Translator: \n"
 "Language-Team: Netlife Inc. <minagawa@netlife-web.com>\n"
 "Language: Japanese\n"
@@ -27,19 +27,19 @@ msgstr "Wordpress変換により変換されたテーマです。"
 msgid "NetLife Inc."
 msgstr "株式会社ネットライフ"
 
-#: classes/WordpressConvertSetting.php:99
+#: classes/WordpressConvertSetting.php:105
 msgid "Select Themes"
 msgstr "テーマ選択"
 
-#: classes/WordpressConvertSetting.php:104
+#: classes/WordpressConvertSetting.php:110
 msgid "Widget Setting"
 msgstr "ウィジェット設定"
 
-#: classes/WordpressConvertSetting.php:109
+#: classes/WordpressConvertSetting.php:115
 msgid "Menu Setting"
 msgstr "メニュー設定"
 
-#: classes/WordpressConvertSetting.php:116
+#: classes/WordpressConvertSetting.php:122
 msgid "System Update"
 msgstr "システムアップデート"
 
@@ -149,21 +149,85 @@ msgstr "設定を変更する"
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: classes/WordpressConvertSettingMenu.php:85
-msgid "Activate BiND Theme"
-msgstr "BiNDのテーマを有効化する"
+#: classes/WordpressConvertSettingMenu.php:93
+msgid "was updated."
+msgstr "が更新されました。"
 
-#: classes/WordpressConvertSettingMenu.php:88
-msgid "BiND Theme is Activated"
-msgstr "BiNDのテーマを利用しています。"
+#: classes/WordpressConvertSettingMenu.php:93
+#: classes/WordpressConvertSettingMenu.php:97
+msgid "Please apply from here."
+msgstr "こちらから適用をしてください。"
 
-#: classes/WordpressConvertSettingMenu.php:91
-msgid "Reconstruct BiND Theme"
-msgstr "BiNDのテーマを再構築する"
+#: classes/WordpressConvertSettingMenu.php:93
+#: classes/WordpressConvertSettingMenu.php:97
+msgid "Apply"
+msgstr "適用"
 
-#: classes/WordpressConvertSettingMenu.php:94
-msgid "There is not BiND Theme"
-msgstr "BiNDのテーマがありません。"
+#: classes/WordpressConvertSettingMenu.php:97
+msgid "New theme was uploaded."
+msgstr "新しいテーマがアップロードされました。"
+
+#: classes/WordpressConvertSettingMenu.php:102
+msgid "Contribute articles"
+msgstr "記事を投稿する"
+
+#: classes/WordpressConvertSettingMenu.php:103
+#: classes/WordpressConvertSettingMenu.php:104
+msgid "Contribute new article"
+msgstr "新しい記事を書く"
+
+#: classes/WordpressConvertSettingMenu.php:124
+msgid "Comment"
+msgstr "コメント"
+
+#: classes/WordpressConvertSettingMenu.php:125
+msgid "Accept comment"
+msgstr "コメントの承認"
+
+#: classes/WordpressConvertSettingMenu.php:126
+msgid "Check comments"
+msgstr "コメントを見る"
+
+#: classes/WordpressConvertSettingMenu.php:133
+msgid "Design"
+msgstr "デザイン"
+
+#: classes/WordpressConvertSettingMenu.php:134
+msgid "Select theme"
+msgstr "テーマを選択"
+
+#: classes/WordpressConvertSettingMenu.php:135
+msgid "Widgets"
+msgstr "ウィジェット設定"
+
+#: classes/WordpressConvertSettingMenu.php:136
+msgid "Side menu"
+msgstr "サイドメニュー設定"
+
+#: classes/WordpressConvertSettingMenu.php:139
+msgid "Setting"
+msgstr "設定"
+
+#: classes/WordpressConvertSettingMenu.php:140
+msgid "Category"
+msgstr "カテゴリ設定"
+
+#: classes/WordpressConvertSettingMenu.php:141
+msgid "Tag"
+msgstr "タグ設定"
+
+#: classes/WordpressConvertSettingMenu.php:145
+msgid "WebLife Server control panel"
+msgstr "WebLiFE*サーバーコントロールパネル"
+
+#: classes/WordpressConvertSettingMenu.php:146
+msgid "Help"
+msgstr "ヘルプページ"
+
+#: classes/WordpressConvertSettingMenu.php:148
+#: classes/WordpressConvertSettingMenu.php:150
+msgid "Change custom mode"
+msgstr "カスタムモードの切替"
 
 #: tools/trunk/pomo/sample/app.php:56
 msgid "Welcome %s!"
@@ -178,12 +242,16 @@ msgid "Bye\n"
 msgstr "お疲れ様でした。\n"
 
 #: wordpress_convert.php:57
+msgid "WP Convert Plugin"
+msgstr "BiND for WP"
+
+#: wordpress_convert.php:60
 msgid "Wordpress Convert Plugin"
-msgstr "WebLifeダッシュボード"
+msgstr "BiND for Wordpress"
 
 #. Plugin Name of the plugin/theme
 msgid "Wordpress Converter for HTML Plugin"
-msgstr "HTML用Wordpress変換プラグイン"
+msgstr "BiND for Wordpress変換プラグイン"
 
 #. Description of the plugin/theme
 msgid "This plugin is convert helper for HTML to Wordpress Template."
@@ -198,6 +266,18 @@ msgstr "Naohisa Minagawa"
 msgid "http://www.netlife-web.com/"
 msgstr "http://www.netlife-web.com/"
 
+#~ msgid "Activate BiND Theme"
+#~ msgstr "BiNDのテーマを有効化する"
+
+#~ msgid "BiND Theme is Activated"
+#~ msgstr "BiNDのテーマを利用しています。"
+
+#~ msgid "Reconstruct BiND Theme"
+#~ msgstr "BiNDのテーマを再構築する"
+
+#~ msgid "There is not BiND Theme"
+#~ msgstr "BiNDのテーマがありません。"
+
 #~ msgid "FTP Account Setting"
 #~ msgstr "FTPアカウント設定"
 
@@ -209,9 +289,6 @@ msgstr "http://www.netlife-web.com/"
 
 #~ msgid "Pages"
 #~ msgstr "ページ"
-
-#~ msgid "Comments"
-#~ msgstr "コメント"
 
 #~ msgid "Appearance"
 #~ msgstr "外観"

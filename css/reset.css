@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+/***** 
+---------------------------------------------------------------------------------------------
+Cook
+Ver 0.1 2012,2,13
+ORIGINAL 2012,2,13
+UTF-8 CR+LF
+---------------------------------------------------------------------------------------------
+*****/
+*{ font-family:Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif; }
+img,
+div { behavior: url(../iepngfix.htc) }
+
+/* basic elements */
+
+html { margin: 0; /* setting border: 0 hoses ie6 win window inner well border */
+    padding: 0; }
+
+body { /* setting border: 0 hoses ie5 win window inner well border */
+    padding: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; }
+
+img { vertical-align: top; }
+
+/* IE7 */
+*:first-child+html body { padding-left: 1px; }
+
+/* IE6 */
+*html body { padding-left: 1px; }
+
+form { margin: 0; padding: 0; }
+
+a img { border: 0; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { font-weight: normal; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+dd,
+dt,
+dl,
+pre,
+blockquote { margin: 0px; padding:0px }
+
+li { list-style:none; }
+
+.t-indent { text-indent:-9999px; }
+.d_block { display:block; }
+.iline { display:inline; }
+.align-l { text-align:left; }
+.align-r { text-align:right; }
+.align-c { text-align:center; }
+.float-r { float:right; }
+.float-l { float:left; }
+
+/*     common block       */
+
+
+/*  clear  */
+
+.clr_box { clear:both; }
+
+.clr_both { clear: both; font-size:2px; line-height:1 }
+
+.clr { clear: both; overflow: hidden; width: 1px; height: 1px; margin: 0 -1px -1px 0; border: 0; padding: 0; font-size: 0; line-height: 0; }
+
+.pkg:after { content: "."; display: block; visibility: hidden; clear: both; height: 0px; }
+
+.pkg { display: inline-block; }
+
+/* no ie mac \*/
+* html .pkg { height: 1%; }
+
+.pkg { display: block; }
+
+/* new clearfix */  
+.clearfix:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+
+* html .clearfix { zoom: 1; } /* IE6 */
+
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */

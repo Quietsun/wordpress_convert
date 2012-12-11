@@ -34,6 +34,12 @@ abstract class WordpressConvertSetting {
 	 * ダッシュボードメニューを制御するメソッド
 	 */
 	public static function controlDashboard(){
+		// POSTにGETを統合
+		foreach($_POST as $key => $value){
+			$_GET[$key] = $value;
+		}
+		$_POST = $_GET;
+		
 		// 元々表示しているメニューを復元する。
 		global $menu, $submenu;
 		if(self::$originalMenu == null){
@@ -54,11 +60,11 @@ abstract class WordpressConvertSetting {
 		// 無効にしたダッシュボードの代わりを登録		
 		add_menu_page(
 			WORDPRESS_CONVERT_PLUGIN_NAME, 
-			WORDPRESS_CONVERT_PLUGIN_NAME,
+			WORDPRESS_CONVERT_PLUGIN_SHORTNAME,
 			"administrator", 
 			"wordpress_convert_menu", 
 			array( "WordpressConvertSettingMenu", 'execute' ), 
-			WORDPRESS_CONVERT_BASE_URL."/menu_icon.png", 
+			WORDPRESS_CONVERT_BASE_URL."/images/naviicon.png", 
 			2 
 		);
 		$submenu["wordpress_convert_menu"] = self::$dashboardMenu;

@@ -1,0 +1,48 @@
+@import url("reset.css");
+ @charset "UTF-8";
+ 
+#adminmenuback {
+	z-index: 0;
+}
+
+/* CSS Document */
+#bwp-wrap { padding: 20px; }
+
+/* global */
+a:link { color: #21759b; text-decoration: underline; }
+a:visited { color: #21759b; text-decoration: underline; }
+a:hover { color: #2fa6dc; text-decoration: underline; }
+a:active { color: #2fa6dc; text-decoration: underline; }
+
+::-moz-selection {color: #02a76a;background: #b5dcb5;}
+::selection { color: #02a76a; background: #b5dcb5; }
+
+body { background-color: #ffffff;}
+
+h1 { border-bottom: 3px solid #b5dcb5; padding-bottom:10px;}
+h2 { border-bottom: 7px solid #eff2f7; padding-bottom: 10px; margin-top: 30px; margin-bottom: 10px; }
+
+.bwp-button{ display: inline; position: relative; }
+.bwp-button span{ background-image: url(../images/badge.png); background-repeat: no-repeat; display: block; height: 39px; width: 39px; font-family: "繝偵Λ繧ｮ繝手ｧ偵ざ Pro W3", "Hiragino Kaku Gothic Pro", "繝｡繧､繝ｪ繧ｪ", Meiryo, Osaka, "�ｭ�ｳ �ｰ繧ｴ繧ｷ繝�け", "MS PGothic", sans-serif; font-size: 16px; color: #FFF; line-height: 37px; text-align: center; font-weight: bold; position: absolute; top: -10px; right:-10px; }
+
+.bwp-button img {padding-bottom: 5px;}
+.bwp-button a:hover{ opacity: 0.7; filter: alpha(opacity=70); -moz-opacity: 0.7; }
+.bwp-button a:active{ top: 1px; position: relative;opacity: 0.6; filter: alpha(opacity=60); -moz-opacity: 0.6;  }
+
+#bwp-footlink { padding-top: 10px; border-top: 3px solid #B5DCB5; margin-top: 40px; font-size: 12px; }
+#bwp-footlink li{ display: inline-block; background-repeat: no-repeat; background-position: left center; padding-left: 23px; padding-top: 5px; padding-bottom: 5px; padding-right: 20px; }
+
+#bwp-weblife { background-image: url(../images/controlpanelicon.png); }
+#bwp-help { background-image: url(../images/helpicon.png); }
+#bwp-custom { background-image: url(../images/custommodeicon.png); }
+
+.bwp-alert{ background-color: #ffffe0; border: 2px solid #e6db55; font-size: 12px; padding: 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; color: #505050; line-height: 24px; margin-top: 15px; background-repeat: no-repeat; background-position: 13px center; }
+.bwp-alert span{ padding-left: 10px; }
+
+.bwp-alert span a:hover{ opacity: 0.7; filter: alpha(opacity=70); -moz-opacity: 0.7; }
+.bwp-alert span a:active{ top: 1px; position: relative;opacity: 0.6; filter: alpha(opacity=60); -moz-opacity: 0.6;  }
+
+.bwp-information{ background-image: url(../images/infoicon.png); padding-left:40px;}
+.bwp-update{ background-image: url(../images/themeup.png); padding-left: 40px; }
+
+#bwp-newtable{ padding-top: 20px; padding-bottom: 20px; }
