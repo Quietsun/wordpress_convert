@@ -88,6 +88,9 @@ define("WORDPRESS_CONVERT_THEME_NAME", get_option(WORDPRESS_CONVERT_PROJECT_CODE
 // 初期化処理用のアクションを登録する。
 add_action( 'admin_init', array( WORDPRESS_CONVERT_MAIN_CLASS, "execute" ) );
 
+// 初期化処理用のアクションを登録する。
+add_action( 'admin_head', array( WORDPRESS_CONVERT_MAIN_CLASS, "header" ) );
+
 // インストール時の処理を登録
 register_activation_hook( __FILE__, array( WORDPRESS_CONVERT_MAIN_CLASS, "install" ) );
 

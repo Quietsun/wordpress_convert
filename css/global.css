@@ -32,10 +32,6 @@ h2 { border-bottom: 7px solid #eff2f7; padding-bottom: 10px; margin-top: 30px; m
 #bwp-footlink { padding-top: 10px; border-top: 3px solid #B5DCB5; margin-top: 40px; font-size: 12px; }
 #bwp-footlink li{ display: inline-block; background-repeat: no-repeat; background-position: left center; padding-left: 23px; padding-top: 5px; padding-bottom: 5px; padding-right: 20px; }
 
-#bwp-weblife { background-image: url(../images/controlpanelicon.png); }
-#bwp-help { background-image: url(../images/helpicon.png); }
-#bwp-custom { background-image: url(../images/custommodeicon.png); }
-
 .bwp-alert{ background-color: #ffffe0; border: 2px solid #e6db55; font-size: 12px; padding: 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; color: #505050; line-height: 24px; margin-top: 15px; background-repeat: no-repeat; background-position: 13px center; }
 .bwp-alert span{ padding-left: 10px; }
 
@@ -46,3 +42,10 @@ h2 { border-bottom: 7px solid #eff2f7; padding-bottom: 10px; margin-top: 30px; m
 .bwp-update{ background-image: url(../images/themeup.png); padding-left: 40px; }
 
 #bwp-newtable{ padding-top: 20px; padding-bottom: 20px; }
+
+#bwp-weblife { background-image: url(../images/controlpanelicon.png);padding-left: 23px; }
+#bwp-help { background-image: url(../images/helpicon.png);padding-left: 23px; }
+#bwp-custom { background-image: url(../images/switch-ON.png); padding-left: 55px !important; }
+#bwp-custom-off { background-image: url(../images/switch-OFF.png); padding-left: 55px !important; }
+
+.bwp-error { background-color: #ffe1e1; border: 2px solid #e5606b; font-size: 12px; padding: 10px; color: #e5606b; line-height: 24px; margin-top: 15px; background-repeat: no-repeat; background-position: 13px center; font-weight:bold; text-align:center;}

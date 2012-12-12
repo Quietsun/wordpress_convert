@@ -152,9 +152,13 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 	 */
 	public static function displaySetting($labels, $types, $hints, $options){
 		// 設定変更ページを登録する。
-		echo "<div class=\"wrap\">";
+		echo "<div id=\"bwp-wrap\">";
 		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("Convert Setting", WORDPRESS_CONVERT_PROJECT_CODE)."</h2>";
 		echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
+			$errorMessage = call_user_func(array(WORDPRESS_CONVERT_MAIN_CLASS, "convertError"));
+		if(!empty($errorMessage)){
+			echo "<p class=\"bwp-error\">".$errorMessage."</p>";
+		}
 		echo "<table class=\"form-table\"><tbody>";
 		foreach($labels as $key => $label){
 			if($types[$key] != "hidden"){

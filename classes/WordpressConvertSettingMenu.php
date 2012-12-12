@@ -84,8 +84,7 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		$stylesheet = get_option("stylesheet");
 		
 		// 設定変更ページを登録する
-		echo "<link href=\"".WORDPRESS_CONVERT_BASE_URL."/css/global.css\" rel=\"stylesheet\" type=\"text/css\">";
-		echo "<div class=\"bwp-wrap\">";
+		echo "<div id=\"bwp-wrap\">";
 		echo "<h1><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/maintitle.png\" width=\"244\" height=\"31\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></h1>";
 
 		// 適用ボタン系
@@ -96,6 +95,11 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 			if($themeCode != $template){
 				echo "<p class=\"bwp-alert bwp-update\">".__("New theme was uploaded.", WORDPRESS_CONVERT_PROJECT_CODE).__("Please apply from here.", WORDPRESS_CONVERT_PROJECT_CODE)."<span><a href=\"admin.php?page=wordpress_convert_dashboard&activate=1\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/apply.png\" alt=\"".__("Apply", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"71\" height=\"24\"></a></span></p>";
 			}
+		}
+		
+		$errorMessage = call_user_func(array(WORDPRESS_CONVERT_MAIN_CLASS, "convertError"));
+		if(!empty($errorMessage)){
+			echo "<p class=\"bwp-error\">".$errorMessage."</p>";
 		}
 		
 		// 記事投稿系
@@ -145,9 +149,9 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		echo "<li id=\"bwp-weblife\"><a href=\"https://mypage.weblife.me/\">".__("WebLife Server control panel", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		echo "<li id=\"bwp-help\"><a href=\"#\">".__("Help", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		if($professional == "1"){
-			echo "<li id=\"bwp-custom\"><a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+			echo "<li id=\"bwp-custom\"><a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\" style=\"text-decoration: none;\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		}else{
-			echo "<li id=\"bwp-custom\"><a href=\"admin.php?page=wordpress_convert_dashboard&professional=1\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+			echo "<li id=\"bwp-custom-off\"><a href=\"admin.php?page=wordpress_convert_dashboard&professional=1\" style=\"text-decoration: none;\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		}
 		echo "</ul></div>";
 	}

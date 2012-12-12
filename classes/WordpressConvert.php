@@ -38,6 +38,12 @@ foreach($cartridgeNames as $cartridgeName){
  * @version 1.0
  */
 class WordpressConvert {
+	public static $convertError;
+	
+	public static function convertError(){
+		return self::$convertError;
+	}
+	
 	/**
 	 * Initial
 	 * @return void
@@ -46,6 +52,8 @@ class WordpressConvert {
 		// 環境のバージョンチェック
 		if( version_compare( PHP_VERSION, '5.3.0', '<' ) )
 			trigger_error( __("PHP 5.3 or later is required for this plugin.", WORDPRESS_CONVERT_PROJECT_CODE), E_USER_ERROR );
+		
+		self::$convertError = "";
 		
 		// 初期化処理
 		$settings = explode(",", WORDPRESS_CONVERT_SETTING_CLASSES);
@@ -108,188 +116,209 @@ class WordpressConvert {
 				}
 			}
 			// ページデータは事前に作成する。
-			foreach($files as $filename){
-				if(preg_match("/\\.html?$/i", $filename) > 0){
-					$baseFileName = str_replace($contentManager->getContentHome(), "", $filename);
-					switch($baseFileName){
-						// 標準のファイルは固定ページテンプレートとして扱わない
-						case "index.html":
-						case "404.html":
-						case "search.html":
-						case "archive.html":
-						case "taxonomy.html":
-						case "category.html":
-						case "tag.html":
-						case "author.html":
-						case "single.html":
-						case "attachment.html":
-						case "single-post.html":
-						case "page.html":
-						case "home.html":
-						case "comments-popup.html":
-							break;
-						// それ以外のページは固定ページテンプレートとして扱う
-						default:
-							$baseFileCode = preg_replace("/\\.html?$/i", "", $baseFileName);
-							if(substr($baseFileCode, 0, 1) != "_"){
-								$pageid = $converter->getPageId($baseFileCode);
-								if(empty($pageid)){
-									// ページIDが未登録の場合には、ページを新規登録
-									$pageid = wp_insert_post(array(
-										"post_title" => $baseFileCode,
-										"post_status" => "publish",
-										"post_name" => $baseFileCode,
-										"post_type" => "page",
-									));
-									add_post_meta($pageid, "_wp_page_template", $baseFileCode.".php", true);
-									add_post_meta($pageid, "_wp_page_code", $baseFileCode, true);
-									$converter->addPage($baseFileCode, $pageid);
+			if(!empty($files)){
+				foreach($files as $filename){
+					if(preg_match("/\\.html?$/i", $filename) > 0){
+						$baseFileName = str_replace($contentManager->getContentHome(), "", $filename);
+						switch($baseFileName){
+							// 標準のファイルは固定ページテンプレートとして扱わない
+							case "index.html":
+							case "404.html":
+							case "search.html":
+							case "archive.html":
+							case "taxonomy.html":
+							case "category.html":
+							case "tag.html":
+							case "author.html":
+							case "single.html":
+							case "attachment.html":
+							case "single-post.html":
+							case "page.html":
+							case "home.html":
+							case "comments-popup.html":
+								break;
+							// それ以外のページは固定ページテンプレートとして扱う
+							default:
+								$baseFileCode = preg_replace("/\\.html?$/i", "", $baseFileName);
+								if(substr($baseFileCode, 0, 1) != "_"){
+									$pageid = $converter->getPageId($baseFileCode);
+									if(empty($pageid)){
+										// ページIDが未登録の場合には、ページを新規登録
+										$pageid = wp_insert_post(array(
+											"post_title" => $baseFileCode,
+											"post_status" => "publish",
+											"post_name" => $baseFileCode,
+											"post_type" => "page",
+										));
+										add_post_meta($pageid, "_wp_page_template", $baseFileCode.".php", true);
+										add_post_meta($pageid, "_wp_page_code", $baseFileCode, true);
+										$converter->addPage($baseFileCode, $pageid);
+									}
 								}
-							}
-							break;
+								break;
+						}
 					}
 				}
-			}
-			foreach($files as $filename){
-				if($contentManager->isUpdated($filename)){
-					$themeFile = $contentManager->getThemeFile($filename);
-					$baseFileName = str_replace($contentManager->getContentHome(), "", $filename);
-					$info = pathinfo($themeFile);
-					if(!is_dir($info["dirname"])){
-						mkdir($info["dirname"], 0755, true);
-					}
-					if(($fp = fopen($themeFile, "w+")) !== FALSE){
-						$content = $contentManager->getContent($filename);
-						if(preg_match("/\\.html?$/i", $filename) > 0){
-							if(substr($baseFileName, 0, 1) != "_"){
-								switch($baseFileName){
-									// 標準のファイルは固定ページテンプレートとして扱わない
-									case "index.html":
-									case "404.html":
-									case "search.html":
-									case "archive.html":
-									case "taxonomy.html":
-									case "category.html":
-									case "tag.html":
-									case "author.html":
-									case "single.html":
-									case "attachment.html":
-									case "single-post.html":
-									case "page.html":
-									case "home.html":
-									case "comments-popup.html":
-										break;
-									// それ以外のページは固定ページテンプレートとして扱う
-									default:
-										$baseFileCode = preg_replace("/\\.html?$/i", "", $baseFileName);
-										fwrite($fp, "<?php\r\n");
-										fwrite($fp, "/*\r\n");
-										fwrite($fp, "Template Name: ".$baseFileCode."\r\n");
-										fwrite($fp, "*/\r\n");
-										fwrite($fp, "?>\r\n");
-										$pageid = $converter->getPageId($baseFileCode);
-										if(empty($pageid)){
-											// ページIDが未登録の場合には、ページを新規登録
-											$pageid = wp_insert_post(array(
-												"post_title" => $baseFileCode,
-												"post_status" => "publish",
-												"post_name" => $baseFileCode,
-												"post_type" => "page",
-											));
-											add_post_meta($pageid, "_wp_page_template", $baseFileCode.".php", true);
-											add_post_meta($pageid, "_wp_page_code", $baseFileCode, true);
-										}
-										break;
+				foreach($files as $filename){
+					if($contentManager->isUpdated($filename)){
+						$themeFile = $contentManager->getThemeFile($filename);
+						$baseFileName = str_replace($contentManager->getContentHome(), "", $filename);
+						$info = pathinfo($themeFile);
+						if(!is_dir($info["dirname"])){
+							mkdir($info["dirname"], 0755, true);
+						}
+						if(($fp = fopen($themeFile, "w+")) !== FALSE){
+							$content = $contentManager->getContent($filename);
+							if(preg_match("/\\.html?$/i", $filename) > 0){
+								if(substr($baseFileName, 0, 1) != "_"){
+									switch($baseFileName){
+										// 標準のファイルは固定ページテンプレートとして扱わない
+										case "index.html":
+										case "404.html":
+										case "search.html":
+										case "archive.html":
+										case "taxonomy.html":
+										case "category.html":
+										case "tag.html":
+										case "author.html":
+										case "single.html":
+										case "attachment.html":
+										case "single-post.html":
+										case "page.html":
+										case "home.html":
+										case "comments-popup.html":
+											break;
+										// それ以外のページは固定ページテンプレートとして扱う
+										default:
+											$baseFileCode = preg_replace("/\\.html?$/i", "", $baseFileName);
+											fwrite($fp, "<?php\r\n");
+											fwrite($fp, "/*\r\n");
+											fwrite($fp, "Template Name: ".$baseFileCode."\r\n");
+											fwrite($fp, "*/\r\n");
+											fwrite($fp, "?>\r\n");
+											$pageid = $converter->getPageId($baseFileCode);
+											if(empty($pageid)){
+												// ページIDが未登録の場合には、ページを新規登録
+												$pageid = wp_insert_post(array(
+													"post_title" => $baseFileCode,
+													"post_status" => "publish",
+													"post_name" => $baseFileCode,
+													"post_type" => "page",
+												));
+												add_post_meta($pageid, "_wp_page_template", $baseFileCode.".php", true);
+												add_post_meta($pageid, "_wp_page_code", $baseFileCode, true);
+											}
+											break;
+									}
+									fwrite($fp, $converter->convert($baseFileName, $content)->php());
+								}else{
+									fwrite($fp, $content);
 								}
-								fwrite($fp, $converter->convert($baseFileName, $content)->php());
+							}elseif(preg_match("/\\.css$/i", $filename) > 0){
+								if(preg_match_all("/url\\(*([^\\)]+)\\)/", $content, $params) > 0){
+									foreach($params[0] as $index => $source){
+										$target = "url(".preg_replace("/\\/[^\\/]+\\/\\.\\.\\//", "/", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".dirname($baseFileName)."/".$params[1][$index]).")";
+										str_replace($source, $target, $content);
+									}
+								}
+								fwrite($fp, $content);
+							}elseif(preg_match("/script\\.js$/i", $filename) > 0){
+								$content = preg_replace("/eval\\('bindobj\\.level = ' \\+ val\\);/", "eval('bindobj.level = 0');", $content);
+								$content = preg_replace("/bindobj\\.siteroot = ''/", "bindobj.siteroot = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
+								$content = preg_replace("/bindobj\\.dir = ''/", "bindobj.dir = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
+								fwrite($fp, $content);
 							}else{
 								fwrite($fp, $content);
 							}
-						}elseif(preg_match("/\\.css$/i", $filename) > 0){
-							if(preg_match_all("/url\\(*([^\\)]+)\\)/", $content, $params) > 0){
-								foreach($params[0] as $index => $source){
-									$target = "url(".preg_replace("/\\/[^\\/]+\\/\\.\\.\\//", "/", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".dirname($baseFileName)."/".$params[1][$index]).")";
-									str_replace($source, $target, $content);
-								}
+							fclose($fp);
+						}
+					}
+				}
+				
+				// 共通関数プログラムの自動生成
+				$filename = $contentManager->getContentHome()."/functions.php";
+				$themeFile = $contentManager->getThemeFile($filename);
+				$info = pathinfo($themeFile);
+				if(!is_dir($info["dirname"])){
+					mkdir($info["dirname"], 0755, true);
+				}
+				if(($fp = fopen($themeFile, "w+")) !== FALSE){
+					fwrite($fp, "<?php\r\n");
+					$menus = $converter->getNavMenus();
+					if(is_array($menus) && !empty($menus)){
+						fwrite($fp, "if(function_exists('register_nav_menus')){\r\n");
+						fwrite($fp, "register_nav_menus(array(\r\n");
+						foreach($menus as $id => $name){
+							if(!empty($id)){
+								fwrite($fp, "'".$id."' => '".$name."',\r\n");
 							}
-							fwrite($fp, $content);
-						}elseif(preg_match("/script\\.js$/i", $filename) > 0){
-							$content = preg_replace("/eval\\('bindobj\\.level = ' \\+ val\\);/", "eval('bindobj.level = 0');", $content);
-							$content = preg_replace("/bindobj\\.siteroot = ''/", "bindobj.siteroot = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
-							$content = preg_replace("/bindobj\\.dir = ''/", "bindobj.dir = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
-							fwrite($fp, $content);
-						}else{
-							fwrite($fp, $content);
-						}
-						fclose($fp);
-					}
-				}
-			}
-			
-			// 共通関数プログラムの自動生成
-			$filename = $contentManager->getContentHome()."/functions.php";
-			$themeFile = $contentManager->getThemeFile($filename);
-			$info = pathinfo($themeFile);
-			if(!is_dir($info["dirname"])){
-				mkdir($info["dirname"], 0755, true);
-			}
-			if(($fp = fopen($themeFile, "w+")) !== FALSE){
-				fwrite($fp, "<?php\r\n");
-				$menus = $converter->getNavMenus();
-				if(is_array($menus) && !empty($menus)){
-					fwrite($fp, "if(function_exists('register_nav_menus')){\r\n");
-					fwrite($fp, "register_nav_menus(array(\r\n");
-					foreach($menus as $id => $name){
-						if(!empty($id)){
-							fwrite($fp, "'".$id."' => '".$name."',\r\n");
-						}
-					}
-					fwrite($fp, "));\r\n");
-					fwrite($fp, "}\r\n");
-				}
-				$widgets = $converter->getWidgets();
-				if(is_array($widgets) && !empty($widgets)){
-					fwrite($fp, "if(function_exists('register_sidebar')){\r\n");
-					foreach($widgets as $id => $name){
-						fwrite($fp, "register_sidebar(array(");
-						if(!empty($id)){
-							fwrite($fp, "'id' => '".$id."', ");
-						}
-						if(!empty($name)){
-							fwrite($fp, "'name' => '".$name."'");
 						}
 						fwrite($fp, "));\r\n");
+						fwrite($fp, "}\r\n");
 					}
+					$widgets = $converter->getWidgets();
+					if(is_array($widgets) && !empty($widgets)){
+						fwrite($fp, "if(function_exists('register_sidebar')){\r\n");
+						foreach($widgets as $id => $name){
+							fwrite($fp, "register_sidebar(array(");
+							if(!empty($id)){
+								fwrite($fp, "'id' => '".$id."', ");
+							}
+							if(!empty($name)){
+								fwrite($fp, "'name' => '".$name."'");
+							}
+							fwrite($fp, "));\r\n");
+						}
+						fwrite($fp, "}\r\n");
+					}
+					fwrite($fp, "function eyecatch_setup() {\r\n");
+					fwrite($fp, "add_theme_support( 'post-thumbnails' );\r\n");
 					fwrite($fp, "}\r\n");
+					fwrite($fp, "add_action( 'after_setup_theme', 'eyecatch_setup' );\r\n");
+					fwrite($fp, "function wp_list_paginate(){\r\n");
+					fwrite($fp, "global \$wp_rewrite, \$wp_query, \$paged;\r\n");
+					fwrite($fp, "\$paginate_base = get_pagenum_link(1);\r\n");
+					fwrite($fp, "if (strpos(\$paginate_base, '?') || ! \$wp_rewrite->using_permalinks()) {\r\n");
+					fwrite($fp, "\$paginate_format = '';\r\n");
+					fwrite($fp, "\$paginate_base = add_query_arg('paged', '%#%');\r\n");
+					fwrite($fp, "} else {\r\n");
+					fwrite($fp, "\$paginate_format = (substr(\$paginate_base, -1 ,1) == '/' ? '' : '/') .user_trailingslashit('page/%#%/', 'paged');\r\n");
+					fwrite($fp, "\$paginate_base .= '%_%';\r\n");
+					fwrite($fp, "}\r\n");
+					fwrite($fp, "\$pagination = array('base' => \$paginate_base, 'format' => \$paginate_format, 'total' => \$wp_query->max_num_pages, 'mid_size' => 5, 'current' => (\$paged ? \$paged : 1), 'prev_text' => '&laquo; '.__('Previous'), 'next_text' => __('Next').' &raquo;');\r\n");
+					fwrite($fp, "echo paginate_links(\$pagination);\r\n");
+					fwrite($fp, "}\r\n");
+					fclose($fp);
 				}
-				fwrite($fp, "function eyecatch_setup() {\r\n");
-				fwrite($fp, "add_theme_support( 'post-thumbnails' );\r\n");
-				fwrite($fp, "}\r\n");
-				fwrite($fp, "add_action( 'after_setup_theme', 'eyecatch_setup' );\r\n");
-				fwrite($fp, "function wp_list_paginate(){\r\n");
-				fwrite($fp, "global \$wp_rewrite, \$wp_query, \$paged;\r\n");
-				fwrite($fp, "\$paginate_base = get_pagenum_link(1);\r\n");
-				fwrite($fp, "if (strpos(\$paginate_base, '?') || ! \$wp_rewrite->using_permalinks()) {\r\n");
-				fwrite($fp, "\$paginate_format = '';\r\n");
-				fwrite($fp, "\$paginate_base = add_query_arg('paged', '%#%');\r\n");
-				fwrite($fp, "} else {\r\n");
-				fwrite($fp, "\$paginate_format = (substr(\$paginate_base, -1 ,1) == '/' ? '' : '/') .user_trailingslashit('page/%#%/', 'paged');\r\n");
-				fwrite($fp, "\$paginate_base .= '%_%';\r\n");
-				fwrite($fp, "}\r\n");
-				fwrite($fp, "\$pagination = array('base' => \$paginate_base, 'format' => \$paginate_format, 'total' => \$wp_query->max_num_pages, 'mid_size' => 5, 'current' => (\$paged ? \$paged : 1), 'prev_text' => '&laquo; '.__('Previous'), 'next_text' => __('Next').' &raquo;');\r\n");
-				fwrite($fp, "echo paginate_links(\$pagination);\r\n");
-				fwrite($fp, "}\r\n");
-				fclose($fp);
+				
+				// テンプレートのスクリーンショットファイルを
+				$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
+				if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"))){
+					copy($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"), $screenshotFile);
+				}elseif(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"))){
+					copy($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"), $screenshotFile);
+				}
+			}else{
+				self::$convertError = __("Target HTML was not found.", WORDPRESS_CONVERT_PROJECT_CODE);
 			}
-			
-			// テンプレートのスクリーンショットファイルを
-			$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
-			if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"))){
-				copy($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"), $screenshotFile);
-			}elseif(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"))){
-				copy($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"), $screenshotFile);
-			}
+		}else{
+			self::$convertError = __("Account Authentication Failed.", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
+	}
+	
+	public static function header(){
+		$professional = get_option("wordpress_convert_professional");
+		if($professional == "1"){
+			echo "<link href=\"".WORDPRESS_CONVERT_BASE_URL."/css/custom.css\" rel=\"stylesheet\" type=\"text/css\">";
+			echo "<script type=\"text/javascript\">\r\n";
+			echo "addLoadEvent(function(){\r\n";
+			echo "if(typeof jQuery!=\"undefined\"){\r\n";
+			echo "jQuery(\"body\").prepend(\"<div id=\\\"bwp-custommode\\\">カスタムモードで使用中　<a href=\\\"admin.php?page=wordpress_convert_dashboard&professional=0\\\">かんたんモードに戻る</a></div>\")\r\n";
+			echo "}\r\n";
+			echo "});\r\n";
+			echo "</script>\r\n";
+		}
+		echo "<link href=\"".WORDPRESS_CONVERT_BASE_URL."/css/global.css\" rel=\"stylesheet\" type=\"text/css\">";
 	}
 
 	function install(){
