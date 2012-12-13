@@ -39,9 +39,9 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 			'administrator', "wordpress_convert_dashboard", array( "WordpressConvertSettingMenu", 'execute' )
 		);
 		
-		if(isset($_POST["professional"])){
+		if(isset($_GET["professional"])){
 			// モードを変更
-			update_option("wordpress_convert_professional", $_POST["professional"]);
+			update_option("wordpress_convert_professional", $_GET["professional"]);
 		}
 		
 		// メニュー表示切り替え
@@ -75,7 +75,7 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		
 		$professional = get_option("wordpress_convert_professional");
 		
-		if(isset($_POST["activate"])){
+		if(isset($_GET["activate"])){
 			// テンプレートをアクティベート
 			update_option("template", $themeCode);
 			update_option("stylesheet", $themeCode);

@@ -34,12 +34,6 @@ abstract class WordpressConvertSetting {
 	 * ダッシュボードメニューを制御するメソッド
 	 */
 	public static function controlDashboard(){
-		// POSTにGETを統合
-		foreach($_POST as $key => $value){
-			$_GET[$key] = $value;
-		}
-		$_POST = $_GET;
-		
 		// 元々表示しているメニューを復元する。
 		global $menu, $submenu;
 		if(self::$originalMenu == null){
@@ -122,6 +116,30 @@ abstract class WordpressConvertSetting {
 					$sub[3] = $sub[0] = __("System Update", WORDPRESS_CONVERT_PROJECT_CODE);
 					$submenu["wordpress_convert_menu"][] = $sub;
 				}
+			}
+			add_action( 'admin_notices', array( "WordpressConvertSetting", 'recoverMenus' ) );
+		}
+	}
+	
+	/**
+	 * メニューを制御するメソッド
+	 * @return void
+	 */
+	public static function recoverMenus(){
+		// 無効化したメニューのうち、利用するサブメニューをこちらのメニューの配下に移動する。
+		global $submenu;
+		foreach($submenu["wordpress_convert_menu"] as $index => $sub){
+			if($sub[1] == "switch_themes"){
+				$sub[3] = $sub[0] = __("Select Themes", WORDPRESS_CONVERT_PROJECT_CODE);
+				$submenu["themes.php"][] = $sub;
+			}
+			if($sub[1] == "edit_theme_options" && $sub[2] == "widgets.php"){
+				$sub[3] = $sub[0] = __("Widget Setting", WORDPRESS_CONVERT_PROJECT_CODE);
+				$submenu["themes.php"][] = $sub;
+			}
+			if($sub[1] == "edit_theme_options" && $sub[2] == "nav-menus.php"){
+				$sub[3] = $sub[0] = __("Menu Setting", WORDPRESS_CONVERT_PROJECT_CODE);
+				$submenu["themes.php"][] = $sub;
 			}
 		}
 	}
