@@ -17,7 +17,7 @@
  */
 
 /**
- * HTMLをWordpressテンプレートに変換するプラグインの設定用クラス
+ * HTMLをWordPressテンプレートに変換するプラグインの設定用クラス
  *
  * @package WordpressConvertSetting
  * @author Naohisa Minagawa

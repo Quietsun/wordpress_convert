@@ -31,7 +31,7 @@ foreach($cartridgeNames as $cartridgeName){
 }
 
 /**
- * HTMLをWordpressテンプレートに変換するプラグインのメインクラス
+ * HTMLをWordPressテンプレートに変換するプラグインのメインクラス
  *
  * @package WordpressConvert
  * @author Naohisa Minagawa

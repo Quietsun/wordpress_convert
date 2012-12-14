@@ -17,7 +17,7 @@
  */
 
 /**
- * HTMLをWordpressテンプレートに変換するプラグインの設定用クラス
+ * HTMLをWordPressテンプレートに変換するプラグインの設定用クラス
  *
  * @package WordpressConvertSetting
  * @author Naohisa Minagawa
@@ -47,7 +47,7 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		// メニュー表示切り替え
 		parent::controlMenus();
 		
-		// Wordpressダッシュボードはこちらのダッシュボードにリダイレクト
+		// WordPressダッシュボードはこちらのダッシュボードにリダイレクト
 		if(basename($_SERVER["PHP_SELF"]) == "index.php"){
 			wp_redirect(get_option('siteurl') . '/wp-admin/admin.php?page=wordpress_convert_dashboard');
 			exit;

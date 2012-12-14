@@ -17,8 +17,8 @@
  */
 
 /*
-Plugin Name: Wordpress Converter for HTML Plugin
-Description: This plugin is convert helper for HTML to Wordpress Template.
+Plugin Name: WordPress Converter for HTML Plugin
+Description: This plugin is convert helper for HTML to WordPress Template.
 Version: 0.0.1
 Author: Naohisa Minagawa
 Author URI: http://www.netlife-web.com/
