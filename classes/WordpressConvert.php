@@ -291,13 +291,17 @@ class WordpressConvert {
 					fclose($fp);
 				}
 				
-				// テンプレートのスクリーンショットファイルを
+				// テンプレートのスクリーンショットファイルをコピー
 				$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
 				if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"))){
 					copy($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"), $screenshotFile);
 				}elseif(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"))){
 					copy($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"), $screenshotFile);
 				}
+				
+				// ライセンスファイルをコピー
+				$licenseFile = $contentManager->getThemeFile($contentManager->getContentHome()."license.txt");
+				copy(WORDPRESS_CONVERT_BASE_DIR."/license.txt", $licenseFile);
 			}else{
 				self::$convertError = __("Target HTML was not found.", WORDPRESS_CONVERT_PROJECT_CODE);
 			}
