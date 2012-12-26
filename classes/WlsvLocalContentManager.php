@@ -44,7 +44,7 @@ class WlsvLocalContentManager extends ContentManager {
 	
 	public function getContentHome(){
 		$wproot = realpath(get_theme_root()."/../../");
-		return str_replace("/wlwp", "/pre_wp", $wproot)."/";
+		return str_replace("/premium/", "/premium_org/", str_replace("/wlwp", "/pre_wp", $wproot))	."/";
 	}
 	
 	public function getThemeFile($filename){
