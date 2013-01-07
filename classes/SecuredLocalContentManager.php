@@ -39,12 +39,10 @@ class SecuredLocalContentManager extends LocalContentManager {
 	}
 	
 	public function isAccessible(){
-		if(is_dir($this->getContentHome())){
-			$data = @file_get_contents(WORDPRESS_CONVERT_AUTH_BASEURL."/jsonp.php?m=ftplogin&callback=ftplogin&login=".$this->login_id."&password=".$this->password."&secret=JK19pDr3cM94LkfEsY0FpQ21");
-			eval($data);
-			if(!empty($ftplogin)){
-				return true;
-			}
+		$data = @file_get_contents(WORDPRESS_CONVERT_AUTH_BASEURL."/jsonp.php?m=ftplogin&callback=ftplogin&login=".$this->login_id."&password=".$this->password."&secret=JK19pDr3cM94LkfEsY0FpQ21");
+		eval($data);
+		if(!empty($ftplogin)){
+			return true;
 		}
 		return false;
 	}

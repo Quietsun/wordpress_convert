@@ -124,7 +124,7 @@ class WordpressConvert {
 				}
 			}
 			// ページデータは事前に作成する。
-			if(!empty($files)){
+			if(is_dir($this->getContentHome()) && !empty($files)){
 				foreach($files as $filename){
 					if(preg_match("/\\.html?$/i", $filename) > 0){
 						$baseFileName = str_replace($contentManager->getContentHome(), "", $filename);

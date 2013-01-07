@@ -39,10 +39,7 @@ class WlsvLocalContentManager extends ContentManager {
 	}
 	
 	public function isAccessible(){
-		if(is_dir($this->getContentHome())){
-			return true;
-		}
-		return false;
+		return true;
 	}
 	
 	public function getContentHome(){
