@@ -79,7 +79,7 @@ define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu,Convert");
 
 // テンプレート取得クラス
 // define("WORDPRESS_CONVERT_CONTENT_MANAGER", "SecuredLocalContentManager");
-define("WORDPRESS_CONVERT_CONTENT_MANAGER", "WlsvLocalContentManager");
+define("WORDPRESS_CONVERT_CONTENT_MANAGER", "LocalContentManager");
 
 // 使用カートリッジ
 define("WORDPRESS_CONVERT_CARTRIDGES", "ConvertIgnore,ConvertPath,ConvertArticle,ConvertComment,ConvertWidget,ConvertWidgetParts");
