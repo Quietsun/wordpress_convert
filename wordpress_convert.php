@@ -59,10 +59,10 @@ define("WORDPRESS_CONVERT_MAIN_CLASS", "WordpressConvert");
 define("WORDPRESS_CONVERT_DEFAULT_NAME", "BiND6Theme");
 
 // このプラグインのルートディレクトリ
-define("WORDPRESS_CONVERT_BASE_DIR", realpath(dirname(__FILE__)));
+define("WORDPRESS_CONVERT_BASE_DIR", WP_PLUGIN_DIR."/".WORDPRESS_CONVERT_PROJECT_CODE);
 
 // このプラグインのルートURL
-define("WORDPRESS_CONVERT_BASE_URL", str_replace(WP_PLUGIN_DIR, WP_PLUGIN_URL, WORDPRESS_CONVERT_BASE_DIR));
+define("WORDPRESS_CONVERT_BASE_URL", WP_PLUGIN_URL."/".WORDPRESS_CONVERT_PROJECT_CODE);
 
 // 言語設定を読み込み
 load_plugin_textdomain(WORDPRESS_CONVERT_PROJECT_CODE, false, str_replace(WP_PLUGIN_DIR."/", "", WORDPRESS_CONVERT_BASE_DIR).'/languages');		
