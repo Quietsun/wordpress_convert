@@ -85,7 +85,7 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			"auth_baseurl" => "https://mypage.weblife.me", 
 			"ftp_host" => "", 
 			"template_basedir" => "/d/premium", 
-			"theme_code" => "BiND6Theme", 
+			"theme_code" => WORDPRESS_CONVERT_DEFAULT_NAME, 
 			"ftp_login_id" => "", 
 			"ftp_password" => "", 
 			"base_dir" => ""

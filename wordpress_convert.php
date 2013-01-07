@@ -53,13 +53,17 @@ define("WORDPRESS_CONVERT_PROJECT_CODE", "wordpress_convert");
 // メインクラス名
 define("WORDPRESS_CONVERT_MAIN_CLASS", "WordpressConvert");
 
-load_plugin_textdomain(WORDPRESS_CONVERT_PROJECT_CODE, false, WORDPRESS_CONVERT_PROJECT_CODE.'/languages');		
+// デフォルト変換テーマ名
+define("WORDPRESS_CONVERT_DEFAULT_NAME", "BiND6Theme");
 
 // このプラグインのルートディレクトリ
-define("WORDPRESS_CONVERT_BASE_DIR", WP_PLUGIN_DIR."/".WORDPRESS_CONVERT_PROJECT_CODE);
+define("WORDPRESS_CONVERT_BASE_DIR", realpath(dirname(__FILE__)));
 
 // このプラグインのルートURL
-define("WORDPRESS_CONVERT_BASE_URL", WP_PLUGIN_URL."/".WORDPRESS_CONVERT_PROJECT_CODE);
+define("WORDPRESS_CONVERT_BASE_URL", str_replace(WP_PLUGIN_DIR, WP_PLUGIN_URL, WORDPRESS_CONVERT_BASE_DIR));
+
+// 言語設定を読み込み
+load_plugin_textdomain(WORDPRESS_CONVERT_PROJECT_CODE, false, str_replace(WP_PLUGIN_DIR."/", "", WORDPRESS_CONVERT_BASE_DIR).'/languages');		
 
 // メインクラス名
 define("WORDPRESS_CONVERT_PLUGIN_SHORTNAME", __("WP Convert Plugin", WORDPRESS_CONVERT_PROJECT_CODE));
@@ -93,7 +97,7 @@ define("WORDPRESS_CONVERT_TEMPLATE_BASEDIR", get_option(WORDPRESS_CONVERT_PROJEC
 define("WORDPRESS_CONVERT_SERVER", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_host"));
 
 // 変換後テーマ名
-define("WORDPRESS_CONVERT_THEME_NAME", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_theme_code"));
+define("WORDPRESS_CONVERT_THEME_NAME", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_theme_code", WORDPRESS_CONVERT_DEFAULT_NAME));
 
 // 初期化処理用のアクションを登録する。
 add_action( 'admin_init', array( WORDPRESS_CONVERT_MAIN_CLASS, "execute" ) );
