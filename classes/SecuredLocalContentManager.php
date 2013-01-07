@@ -24,7 +24,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require(dirname(__FILE__)."/ContentManager.php");
+require(dirname(__FILE__)."/LocalContentManager.php");
 
 /**
  * FTPアカウントの認証を含むローカルディスクでHTMLを取得するための基底クラス
@@ -33,7 +33,7 @@ require(dirname(__FILE__)."/ContentManager.php");
  * @author Naohisa Minagawa
  * @version 1.0
  */
-class SecuredLocalContentManager extends ContentManager {
+class SecuredLocalContentManager extends LocalContentManager {
 	public function __construct($login_id, $password, $basedir){
 		parent::__construct($login_id, $password, $basedir);
 	}
@@ -45,68 +45,6 @@ class SecuredLocalContentManager extends ContentManager {
 			return true;
 		}
 		return false;
-	}
-	
-	public function getContentHome(){
-		$dirs = array_reverse(explode(".", $this->login_id));
-		$base = WORDPRESS_CONVERT_TEMPLATE_BASEDIR;
-		foreach($dirs as $d){
-			$base .= "/".$d;
-		}
-		if(substr($this->basedir, -1) != "/"){
-			$this->basedir .= "/";
-		}
-		$base .= $this->basedir;
-		return $base;
-	}
-	
-	public function getThemeFile($filename){
-		$themeBase = get_theme_root()."/".WORDPRESS_CONVERT_THEME_NAME."/";
-		$theme = str_replace($this->getContentHome(), $themeBase, $filename);
-		$theme = preg_replace("/\\.html?$/i", ".php", $theme);
-		return $theme;
-	}
-	
-	public function getList(){
-		// ベースのディレクトリを構築する。
-		$result = $this->getSubList($this->getContentHome());
-
-		return $result;
-	}
-	
-	public function getSubList($base){
-		$result = array();
-		if(is_dir($base)){
-			if ($dir = opendir($base)) {
-				while (($file = readdir($dir)) !== false) {
-					if ($file != "." && $file != "..") {
-						if(is_dir($base.$file)){
-							$result = array_merge($result, $this->getSubList($base.$file."/"));
-						}else{
-							$result[] = $base.$file;
-						}
-					}
-				}
-				closedir($dir);
-			}
-		}
-		return $result;
-	}
-	
-	public function isUpdated($filename){
-		if(isset($_POST["reconstruct"])){
-			return true;
-		}
-		// 日付を比較する。
-		$theme = $this->getThemeFile($filename);
-		if(!file_exists($theme) || filemtime($theme) < filemtime($filename)){
-			return true;
-		}
-		return false;
-	}
-	
-	public function getContent($filename){
-		return file_get_contents($filename);
 	}
 }
 ?>

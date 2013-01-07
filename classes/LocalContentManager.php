@@ -43,16 +43,23 @@ class LocalContentManager extends ContentManager {
 	}
 	
 	public function getContentHome(){
-		$dirs = array_reverse(explode(".", $this->login_id));
-		$base = WORDPRESS_CONVERT_TEMPLATE_BASEDIR;
-		foreach($dirs as $d){
-			$base .= "/".$d;
+		if(subdir($this->basedir, 0, 1) != "/"){
+			// １文字目がスラッシュで無い場合は相対パスとして認識
+			$dir = str_replace("//", "/", realpath(dirname(__FILE__))."/".$this->basedir);
+			if(file_exists($dir) && is_dir($dir)){
+				return $dir;
+			}
+			$dir = str_replace("//", "/", realpath($_SERVER["DOCUMENT_ROOT"])."/".$this->basedir);
+			if(file_exists($dir) && is_dir($dir)){
+				return $dir;
+			}
+		}else{
+			// １文字目がスラッシュの場合は絶対パスとして認識
+			$dir = $this->basedir;
+			if(file_exists($dir) && is_dir($dir)){
+				return $dir;
+			}
 		}
-		if(substr($this->basedir, -1) != "/"){
-			$this->basedir .= "/";
-		}
-		$base .= $this->basedir;
-		return $base;
 	}
 	
 	public function getThemeFile($filename){
