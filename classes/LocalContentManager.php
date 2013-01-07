@@ -45,17 +45,17 @@ class LocalContentManager extends ContentManager {
 	public function getContentHome(){
 		if(substr($this->basedir, 0, 1) != "/"){
 			// １文字目がスラッシュで無い場合は相対パスとして認識
-			$dir = str_replace("//", "/", realpath(dirname(__FILE__))."/".$this->basedir);
+			$dir = str_replace("//", "/", realpath(dirname(__FILE__))."/".$this->basedir."/");
 			if(file_exists($dir) && is_dir($dir)){
 				return $dir;
 			}
-			$dir = str_replace("//", "/", realpath($_SERVER["DOCUMENT_ROOT"])."/".$this->basedir);
+			$dir = str_replace("//", "/", realpath($_SERVER["DOCUMENT_ROOT"])."/".$this->basedir."/");
 			if(file_exists($dir) && is_dir($dir)){
 				return $dir;
 			}
 		}else{
 			// １文字目がスラッシュの場合は絶対パスとして認識
-			$dir = $this->basedir;
+			$dir = str_replace("//", "/", $this->basedir."/");
 			if(file_exists($dir) && is_dir($dir)){
 				return $dir;
 			}
