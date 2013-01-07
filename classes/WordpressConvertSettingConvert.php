@@ -83,13 +83,13 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			"base_dir" => __("Base Directory", WORDPRESS_CONVERT_PROJECT_CODE)
 		);
 		$types = array(
-			"professional" => "yesno", 
-			"auth_baseurl" => "label", 
-			"ftp_host" => "label", 
-			"template_basedir" => "label", 
-			"theme_code" => "label", 
-			"ftp_login_id" => "text", 
-			"ftp_password" => "text", 
+			"professional" => "hidden", 
+			"auth_baseurl" => "hidden", 
+			"ftp_host" => "hidden", 
+			"template_basedir" => "hidden", 
+			"theme_code" => "hidden", 
+			"ftp_login_id" => "hidden", 
+			"ftp_password" => "hidden", 
 			"base_dir" => "text"
 		);
 		$values = array(
