@@ -64,7 +64,7 @@ class LocalContentManager extends ContentManager {
 	
 	public function getThemeFile($filename){
 		$themeBase = get_theme_root()."/".WORDPRESS_CONVERT_THEME_NAME."/";
-		$theme = str_replace($this->getContentHome(), $themeBase, $filename);
+		$theme = str_replace("//", "/", str_replace($this->getContentHome(), $themeBase, $filename));
 		$theme = preg_replace("/\\.html?$/i", ".php", $theme);
 		return $theme;
 	}

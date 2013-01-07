@@ -2,12 +2,12 @@
 /**
  * WordPress Converter for HTML Plugin
  * 
- * Copyright (c) 2012 NetLife Inc. All Rights Reserved.
+ * @copyright (c) 2012 NetLife Inc. All Rights Reserved.
  * http://www.netlife-web.com/
  * 
  * This work complements FLARToolkit, developed by Saqoosha as part of the Libspark project.
  *     http://www.libspark.org/wiki/saqoosha/FLARToolKit
- * FLARToolKit is Copyright (C)2008 Saqoosha,
+ * FLARToolKit is @copyright (C)2008 Saqoosha,
  * and is ported from NyARToolKit, which is ported from ARToolKit.
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
- * You should have received a copy of the GNU General Public License
+ * You should have received a @copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
@@ -88,9 +88,9 @@ class WordpressConvert {
 			$themeFile = $contentManager->getThemeFile($filename);
 			$info = pathinfo($themeFile);
 			if(!is_dir($info["dirname"])){
-				mkdir($info["dirname"], 0755, true);
+				@mkdir($info["dirname"], 0755, true);
 			}
-			if(($fp = fopen($themeFile, "w+")) !== FALSE){
+			if(($fp = @fopen($themeFile, "w+")) !== FALSE){
 				fwrite($fp, "/* \r\n");
 				fwrite($fp, "Theme Name: ".WORDPRESS_CONVERT_THEME_NAME."\r\n");
 				fwrite($fp, "Description: ".__("Converted Theme by Wordpress Converter")."\r\n");
@@ -173,9 +173,9 @@ class WordpressConvert {
 						$baseFileName = str_replace($contentManager->getContentHome(), "", $filename);
 						$info = pathinfo($themeFile);
 						if(!is_dir($info["dirname"])){
-							mkdir($info["dirname"], 0755, true);
+							@mkdir($info["dirname"], 0755, true);
 						}
-						if(($fp = fopen($themeFile, "w+")) !== FALSE){
+						if(($fp = @fopen($themeFile, "w+")) !== FALSE){
 							$content = $contentManager->getContent($filename);
 							if(preg_match("/\\.html?$/i", $filename) > 0){
 								if(substr($baseFileName, 0, 1) != "_"){
@@ -248,9 +248,9 @@ class WordpressConvert {
 				$themeFile = $contentManager->getThemeFile($filename);
 				$info = pathinfo($themeFile);
 				if(!is_dir($info["dirname"])){
-					mkdir($info["dirname"], 0755, true);
+					@mkdir($info["dirname"], 0755, true);
 				}
-				if(($fp = fopen($themeFile, "w+")) !== FALSE){
+				if(($fp = @fopen($themeFile, "w+")) !== FALSE){
 					fwrite($fp, "<?php\r\n");
 					$menus = $converter->getNavMenus();
 					if(is_array($menus) && !empty($menus)){
@@ -302,14 +302,14 @@ class WordpressConvert {
 				// テンプレートのスクリーンショットファイルをコピー
 				$screenshotFile = $contentManager->getThemeFile($contentManager->getContentHome()."screenshot.png");
 				if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"))){
-					copy($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"), $screenshotFile);
+					@copy($contentManager->getThemeFile($contentManager->getContentHome()."bdflashinfo/thumbnail.png"), $screenshotFile);
 				}elseif(file_exists($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"))){
-					copy($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"), $screenshotFile);
+					@copy($contentManager->getThemeFile($contentManager->getContentHome()."siteinfos/thumbnail.png"), $screenshotFile);
 				}
 				
 				// ライセンスファイルをコピー
 				$licenseFile = $contentManager->getThemeFile($contentManager->getContentHome()."license.txt");
-				copy(WORDPRESS_CONVERT_BASE_DIR."/license.txt", $licenseFile);
+				@copy(WORDPRESS_CONVERT_BASE_DIR."/license.txt", $licenseFile);
 			}else{
 				self::$convertError = __("Target HTML was not found.", WORDPRESS_CONVERT_PROJECT_CODE);
 			}
