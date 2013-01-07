@@ -39,7 +39,10 @@ class LocalContentManager extends ContentManager {
 	}
 	
 	public function isAccessible(){
-		return true;
+		if(is_dir($this->getContentHome())){
+			return true;
+		}
+		return false;
 	}
 	
 	public function getContentHome(){
