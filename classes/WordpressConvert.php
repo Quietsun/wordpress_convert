@@ -87,7 +87,7 @@ class WordpressConvert {
 		ob_start();
 		
 		$contentManagerClass = WORDPRESS_CONVERT_CONTENT_MANAGER;
-		$contentManager = new $contentManagerClass(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_login_id"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_password"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_base_dir"));
+		$contentManager = new $contentManagerClass(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_login_id"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_password"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_base_dir", "sitedata"));
 		
 		// if($contentManager->isGlobalUpdate() || isset($_GET["reconstruct"])){
 		if($contentManager->isGlobalUpdate() && isset($_GET["reconstruct"])){
