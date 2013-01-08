@@ -100,7 +100,7 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			"theme_code" => WORDPRESS_CONVERT_DEFAULT_NAME, 
 			"ftp_login_id" => "", 
 			"ftp_password" => "", 
-			"base_dir" => ""
+			"base_dir" => "sitedata"
 		);
 		$hints = array(
 			"professional" => __("Please select Wordpress menus to be professional or not.", WORDPRESS_CONVERT_PROJECT_CODE), 
@@ -126,6 +126,7 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 	 */
 	protected static function is_valid($values){
 		$errors = array();
+		/*
 		if(empty($values["ftp_host"]) && empty($values["template_basedir"])){
 			$errors["ftp_host"] = __("Empty FTP Host and Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE);
 			$errors["template_basedir"] = __("Empty FTP Host and Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE);
@@ -139,7 +140,7 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		if(empty($values["ftp_password"])){
 			$errors["ftp_password"] = __("Empty FTP password", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
-		
+		*/
 		if(!empty($errors)){
 			return $errors;
 		}

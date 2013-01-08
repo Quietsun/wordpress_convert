@@ -93,7 +93,7 @@ add_action( 'init', array( WORDPRESS_CONVERT_MAIN_CLASS, "init" ) );
 define("WORDPRESS_CONVERT_AUTH_BASEURL", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_auth_baseurl"));
 
 // テンプレート取得ベースディレクトリ
-define("WORDPRESS_CONVERT_TEMPLATE_BASEDIR", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_template_basedir"));
+define("WORDPRESS_CONVERT_TEMPLATE_BASEDIR", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_template_basedir", "sitedata"));
 
 // テンプレート取得先サーバー
 define("WORDPRESS_CONVERT_SERVER", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_host"));
