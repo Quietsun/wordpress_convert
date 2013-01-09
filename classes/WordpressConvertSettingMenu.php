@@ -51,6 +51,10 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 			// モードを変更
 			update_option("wordpress_convert_professional", $_GET["professional"]);
 		}
+		if(isset($_GET["site_closed"])){
+			// モードを変更
+			update_option("wordpress_convert_site_closed", $_GET["site_closed"]);
+		}
 		
 		// メニュー表示切り替え
 		parent::controlMenus();
@@ -82,6 +86,7 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		$contentManager = new $contentManagerClass(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_login_id"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_password"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_base_dir"));
 		
 		$professional = get_option("wordpress_convert_professional");
+		$site_closed = get_option("wordpress_convert_site_closed");
 		
 		if(isset($_GET["activate"])){
 			// テンプレートをアクティベート
@@ -157,9 +162,14 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		echo "<li id=\"bwp-weblife\"><a href=\"https://mypage.weblife.me/\">".__("WebLife Server control panel", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		echo "<li id=\"bwp-help\"><a href=\"#\">".__("Help", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		if($professional == "1"){
-			echo "<li id=\"bwp-custom\"><a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\" style=\"text-decoration: none;\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+			echo "<li class=\"bwp-custom\"><a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\" style=\"text-decoration: none;\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		}else{
-			echo "<li id=\"bwp-custom-off\"><a href=\"admin.php?page=wordpress_convert_dashboard&professional=1\" style=\"text-decoration: none;\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+			echo "<li class=\"bwp-custom-off\"><a href=\"admin.php?page=wordpress_convert_dashboard&professional=1\" style=\"text-decoration: none;\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+		}
+		if($site_closed == "1"){
+			echo "<li class=\"bwp-custom\"><a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=0\" style=\"text-decoration: none;\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+		}else{
+			echo "<li class=\"bwp-custom-off\"><a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=1\" style=\"text-decoration: none;\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		}
 		echo "</ul></div>";
 	}
