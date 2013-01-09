@@ -141,6 +141,10 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			$errors["ftp_password"] = __("Empty FTP password", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
 		*/
+		if(empty($values["ftp_host"]) && empty($values["template_basedir"])){
+			$errors["ftp_host"] = __("Empty FTP Host and Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE);
+			$errors["template_basedir"] = __("Empty FTP Host and Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE);
+		}
 		if(!empty($errors)){
 			return $errors;
 		}
