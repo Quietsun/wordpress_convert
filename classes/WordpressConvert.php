@@ -175,70 +175,78 @@ class WordpressConvert {
 						if(!is_dir($info["dirname"])){
 							@mkdir($info["dirname"], 0755, true);
 						}
-						if(($fp = @fopen($themeFile, "w+")) !== FALSE){
-							$content = $contentManager->getContent($filename);
-							if(preg_match("/\\.html?$/i", $filename) > 0){
-								if(substr($baseFileName, 0, 1) != "_"){
-									switch($baseFileName){
-										// 標準のファイルは固定ページテンプレートとして扱わない
-										case "index.html":
-										case "404.html":
-										case "search.html":
-										case "archive.html":
-										case "taxonomy.html":
-										case "category.html":
-										case "tag.html":
-										case "author.html":
-										case "single.html":
-										case "attachment.html":
-										case "single-post.html":
-										case "page.html":
-										case "home.html":
-										case "comments-popup.html":
-											break;
-										// それ以外のページは固定ページテンプレートとして扱う
-										default:
-											$baseFileCode = preg_replace("/\\.html?$/i", "", $baseFileName);
-											fwrite($fp, "<?php\r\n");
-											fwrite($fp, "/*\r\n");
-											fwrite($fp, "Template Name: ".$baseFileCode."\r\n");
-											fwrite($fp, "*/\r\n");
-											fwrite($fp, "?>\r\n");
-											$pageid = $converter->getPageId($baseFileCode);
-											if(empty($pageid)){
-												// ページIDが未登録の場合には、ページを新規登録
-												$pageid = wp_insert_post(array(
-													"post_title" => $baseFileCode,
-													"post_status" => "publish",
-													"post_name" => $baseFileCode,
-													"post_type" => "page",
-												));
-												add_post_meta($pageid, "_wp_page_template", $baseFileCode.".php", true);
-												add_post_meta($pageid, "_wp_page_code", $baseFileCode, true);
+						if(preg_match("/\\.(html?|css|js)$/i", $filename, $p) > 0){
+							if(($fp = @fopen($themeFile, "w+")) !== FALSE){
+								$content = $contentManager->getContent($filename);
+								switch($p[1]){
+									case "htm":
+									case "html":
+										if(substr($baseFileName, 0, 1) != "_"){
+											switch($baseFileName){
+												// 標準のファイルは固定ページテンプレートとして扱わない
+												case "index.html":
+												case "404.html":
+												case "search.html":
+												case "archive.html":
+												case "taxonomy.html":
+												case "category.html":
+												case "tag.html":
+												case "author.html":
+												case "single.html":
+												case "attachment.html":
+												case "single-post.html":
+												case "page.html":
+												case "home.html":
+												case "comments-popup.html":
+													break;
+												// それ以外のページは固定ページテンプレートとして扱う
+												default:
+													$baseFileCode = preg_replace("/\\.html?$/i", "", $baseFileName);
+													fwrite($fp, "<?php\r\n");
+													fwrite($fp, "/*\r\n");
+													fwrite($fp, "Template Name: ".$baseFileCode."\r\n");
+													fwrite($fp, "*/\r\n");
+													fwrite($fp, "?>\r\n");
+													$pageid = $converter->getPageId($baseFileCode);
+													if(empty($pageid)){
+														// ページIDが未登録の場合には、ページを新規登録
+														$pageid = wp_insert_post(array(
+															"post_title" => $baseFileCode,
+															"post_status" => "publish",
+															"post_name" => $baseFileCode,
+															"post_type" => "page",
+														));
+														add_post_meta($pageid, "_wp_page_template", $baseFileCode.".php", true);
+														add_post_meta($pageid, "_wp_page_code", $baseFileCode, true);
+													}
+													break;
 											}
-											break;
-									}
-									fwrite($fp, $converter->convert($baseFileName, $content)->php());
-								}else{
-									fwrite($fp, $content);
+											fwrite($fp, $converter->convert($baseFileName, $content)->php());
+										}else{
+											fwrite($fp, $content);
+											copy($themeFile, preg_replace("/\\.php$/i", ".html", $themeFile));
+										}
+										break;
+									case "css":
+										if(preg_match_all("/url\\(*([^\\)]+)\\)/", $content, $params) > 0){
+											foreach($params[0] as $index => $source){
+												$target = "url(".preg_replace("/\\/[^\\/]+\\/\\.\\.\\//", "/", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".dirname($baseFileName)."/".$params[1][$index]).")";
+												str_replace($source, $target, $content);
+											}
+										}
+										fwrite($fp, $content);
+										break;
+									case "js":
+										$content = preg_replace("/eval\\('bindobj\\.level = ' \\+ val\\);/", "eval('bindobj.level = 0');", $content);
+										$content = preg_replace("/bindobj\\.siteroot = ''/", "bindobj.siteroot = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
+										$content = preg_replace("/bindobj\\.dir = ''/", "bindobj.dir = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
+										fwrite($fp, $content);
+										break;
 								}
-							}elseif(preg_match("/\\.css$/i", $filename) > 0){
-								if(preg_match_all("/url\\(*([^\\)]+)\\)/", $content, $params) > 0){
-									foreach($params[0] as $index => $source){
-										$target = "url(".preg_replace("/\\/[^\\/]+\\/\\.\\.\\//", "/", get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".dirname($baseFileName)."/".$params[1][$index]).")";
-										str_replace($source, $target, $content);
-									}
-								}
-								fwrite($fp, $content);
-							}elseif(preg_match("/script\\.js$/i", $filename) > 0){
-								$content = preg_replace("/eval\\('bindobj\\.level = ' \\+ val\\);/", "eval('bindobj.level = 0');", $content);
-								$content = preg_replace("/bindobj\\.siteroot = ''/", "bindobj.siteroot = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
-								$content = preg_replace("/bindobj\\.dir = ''/", "bindobj.dir = '".get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/'", $content);
-								fwrite($fp, $content);
-							}else{
-								fwrite($fp, $content);
+								fclose($fp);
 							}
-							fclose($fp);
+						}else{
+							copy($filename, $themeFile);
 						}
 					}
 				}
