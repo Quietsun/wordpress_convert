@@ -27,10 +27,10 @@
 /*
 Plugin Name: WordPress Converter for HTML Plugin
 Description: This plugin is convert helper for HTML to WordPress Template.
-Version: 0.0.1
-Author: Naohisa Minagawa
+Version: 1.0
+Author: Netlife, Inc.
 Author URI: http://www.netlife-web.com/
-License: Apache License 2.0
+License: GPLv2
 Text Domain: wordpress_convert
 */
 
@@ -98,6 +98,9 @@ define("WORDPRESS_CONVERT_SERVER", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_f
 
 // 変換後テーマ名
 define("WORDPRESS_CONVERT_THEME_NAME", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_theme_code", WORDPRESS_CONVERT_DEFAULT_NAME));
+
+// 表画面表示時の処理
+add_action('template_redirect', array( WORDPRESS_CONVERT_MAIN_CLASS, "display" ));
 
 // 初期化処理用のアクションを登録する。
 add_action( 'admin_init', array( WORDPRESS_CONVERT_MAIN_CLASS, "execute" ) );

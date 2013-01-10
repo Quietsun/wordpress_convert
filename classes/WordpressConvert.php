@@ -332,6 +332,14 @@ class WordpressConvert {
 		}
 		echo "<link href=\"".WORDPRESS_CONVERT_BASE_URL."/css/global.css\" rel=\"stylesheet\" type=\"text/css\">";
 	}
+	
+	public function display(){
+		if(get_option("wordpress_convert_site_closed") == "1"){
+			header("HTTP/1.0 404 Not Found");
+			echo __("404 Not Found");
+			exit;
+		}
+	}
 
 	function install(){
 		// インストール時の処理

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
-"POT-Creation-Date: 2012-12-12 10:46:46+00:00\n"
-"PO-Revision-Date: 2012-12-13 19:45+0900\n"
+"POT-Creation-Date: 2013-01-10 03:36:06+00:00\n"
+"PO-Revision-Date: 2013-01-10 12:40+0900\n"
 "Last-Translator: \n"
 "Language-Team: Netlife Inc. <minagawa@netlife-web.com>\n"
 "Language: Japanese\n"
@@ -15,228 +15,240 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: classes/WordpressConvert.php:54
+#: classes/WordpressConvert.php:62
 msgid "PHP 5.3 or later is required for this plugin."
 msgstr "このプラグインはPHP5.3以上が必要です。"
 
-#: classes/WordpressConvert.php:88
+#: classes/WordpressConvert.php:98
 msgid "Converted Theme by Wordpress Converter"
 msgstr "WordPress変換により変換されたテーマです。"
 
-#: classes/WordpressConvert.php:89
+#: classes/WordpressConvert.php:99
 msgid "NetLife Inc."
 msgstr "株式会社ネットライフ"
 
-#: classes/WordpressConvert.php:302
+#: classes/WordpressConvert.php:314
 msgid "Target HTML was not found."
 msgstr "変換するサイトデータが見つかりません。パスの設定を確認してください。"
 
-#: classes/WordpressConvert.php:305
+#: classes/WordpressConvert.php:317
 msgid "Account Authentication Failed."
 msgstr ""
 "アカウントの認証に失敗しました。FTPログインIDとパスワードを確認してください。"
 
-#: classes/WordpressConvertSetting.php:105
+#: classes/WordpressConvert.php:339
+msgid "404 Not Found"
+msgstr "ページが見つかりません。"
+
+#: classes/WordpressConvertSetting.php:107
+#: classes/WordpressConvertSetting.php:141
 msgid "Select Themes"
 msgstr "テーマ選択"
 
-#: classes/WordpressConvertSetting.php:110
+#: classes/WordpressConvertSetting.php:112
+#: classes/WordpressConvertSetting.php:145
 msgid "Widget Setting"
 msgstr "ウィジェット設定"
 
-#: classes/WordpressConvertSetting.php:115
+#: classes/WordpressConvertSetting.php:117
+#: classes/WordpressConvertSetting.php:149
 msgid "Menu Setting"
 msgstr "メニュー設定"
 
-#: classes/WordpressConvertSetting.php:122
+#: classes/WordpressConvertSetting.php:124
 msgid "System Update"
 msgstr "システムアップデート"
 
-#: classes/WordpressConvertSettingConvert.php:43
-#: classes/WordpressConvertSettingConvert.php:156
+#: classes/WordpressConvertSettingConvert.php:51
+#: classes/WordpressConvertSettingConvert.php:164
 msgid "Convert Setting"
 msgstr "変換設定"
 
-#: classes/WordpressConvertSettingConvert.php:56
+#: classes/WordpressConvertSettingConvert.php:64
 msgid "Professional Mode"
 msgstr "プロフェショナルモード"
 
-#: classes/WordpressConvertSettingConvert.php:57
+#: classes/WordpressConvertSettingConvert.php:65
 msgid "Authenticate BaseURL"
 msgstr "認証ベースURL"
 
-#: classes/WordpressConvertSettingConvert.php:58
+#: classes/WordpressConvertSettingConvert.php:66
 msgid "FTP Host"
 msgstr "FTPサーバー"
 
-#: classes/WordpressConvertSettingConvert.php:59
+#: classes/WordpressConvertSettingConvert.php:67
 msgid "Template Basedir"
 msgstr "テンプレートベースディレクトリ"
 
-#: classes/WordpressConvertSettingConvert.php:60
+#: classes/WordpressConvertSettingConvert.php:68
 msgid "Theme Code"
 msgstr "テーマコード"
 
-#: classes/WordpressConvertSettingConvert.php:61
+#: classes/WordpressConvertSettingConvert.php:69
 msgid "FTP Login ID"
 msgstr "FTPログインID"
 
-#: classes/WordpressConvertSettingConvert.php:62
+#: classes/WordpressConvertSettingConvert.php:70
 msgid "FTP Password"
 msgstr "FTPパスワード"
 
-#: classes/WordpressConvertSettingConvert.php:63
+#: classes/WordpressConvertSettingConvert.php:71
 msgid "Base Directory"
 msgstr "ローカルベースディレクトリ"
 
-#: classes/WordpressConvertSettingConvert.php:86
+#: classes/WordpressConvertSettingConvert.php:94
 msgid "Please select Wordpress menus to be professional or not."
 msgstr "WordPressのメニューを詳細に表示するかどうか選択して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:87
+#: classes/WordpressConvertSettingConvert.php:95
 msgid "Please input Authenticate BaseURL"
 msgstr "認証APIに使用するベースのURLを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:88
+#: classes/WordpressConvertSettingConvert.php:96
 msgid "Please input your FTP Hostname or IP Address"
 msgstr "FTPサーバーのホスト名かIPアドレスを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:89
+#: classes/WordpressConvertSettingConvert.php:97
 msgid "Please input template basedir"
 msgstr "テンプレートのベースディレクトリを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:90
+#: classes/WordpressConvertSettingConvert.php:98
 msgid "Theme code which this plugin convert to"
 msgstr "変換後のテーマの出力先のテーマコードを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:91
+#: classes/WordpressConvertSettingConvert.php:99
 msgid "Please input your FTP login ID"
 msgstr "FTPログインIDを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:92
+#: classes/WordpressConvertSettingConvert.php:100
 msgid "Please input your FTP password"
 msgstr "FTPパスワードを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:93
+#: classes/WordpressConvertSettingConvert.php:101
 msgid "Please input template base directory by ftp root directory"
 msgstr "テンプレートの配置されているベースディレクトリを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:112
-#: classes/WordpressConvertSettingConvert.php:113
+#: classes/WordpressConvertSettingConvert.php:120
+#: classes/WordpressConvertSettingConvert.php:121
 msgid "Empty FTP Host and Template Basedir"
 msgstr "FTPホストかベースディレクトリのいずれかを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:116
+#: classes/WordpressConvertSettingConvert.php:124
 msgid "Empty Theme Code"
 msgstr "テーマコードを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:119
+#: classes/WordpressConvertSettingConvert.php:127
 msgid "Empty FTP login ID"
 msgstr "FTPログインIDを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:122
+#: classes/WordpressConvertSettingConvert.php:130
 msgid "Empty FTP password"
 msgstr "FTPパスワードを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:143
+#: classes/WordpressConvertSettingConvert.php:151
 msgid "Saved Changes"
 msgstr "設定を変更しました。"
 
-#: classes/WordpressConvertSettingConvert.php:172
+#: classes/WordpressConvertSettingConvert.php:180
 msgid "YES"
 msgstr "はい"
 
-#: classes/WordpressConvertSettingConvert.php:173
+#: classes/WordpressConvertSettingConvert.php:181
 msgid "NO"
 msgstr "いいえ"
 
-#: classes/WordpressConvertSettingConvert.php:196
+#: classes/WordpressConvertSettingConvert.php:204
 msgid "Save Changes"
 msgstr "設定を変更する"
 
-#: classes/WordpressConvertSettingMenu.php:38
+#: classes/WordpressConvertSettingMenu.php:46
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: classes/WordpressConvertSettingMenu.php:92
+#: classes/WordpressConvertSettingMenu.php:105
 msgid "was updated."
 msgstr "が更新されました。"
 
-#: classes/WordpressConvertSettingMenu.php:92
-#: classes/WordpressConvertSettingMenu.php:96
+#: classes/WordpressConvertSettingMenu.php:105
+#: classes/WordpressConvertSettingMenu.php:109
 msgid "Please apply from here."
 msgstr "こちらから適用をしてください。"
 
-#: classes/WordpressConvertSettingMenu.php:92
-#: classes/WordpressConvertSettingMenu.php:96
+#: classes/WordpressConvertSettingMenu.php:105
+#: classes/WordpressConvertSettingMenu.php:109
 msgid "Apply"
 msgstr "適用"
 
-#: classes/WordpressConvertSettingMenu.php:96
+#: classes/WordpressConvertSettingMenu.php:109
 msgid "New theme was uploaded."
 msgstr "新しいテーマがアップロードされました。"
 
-#: classes/WordpressConvertSettingMenu.php:106
+#: classes/WordpressConvertSettingMenu.php:119
 msgid "Contribute articles"
 msgstr "記事を投稿する"
 
-#: classes/WordpressConvertSettingMenu.php:107
-#: classes/WordpressConvertSettingMenu.php:108
+#: classes/WordpressConvertSettingMenu.php:120
+#: classes/WordpressConvertSettingMenu.php:121
 msgid "Contribute new article"
 msgstr "新しい記事を書く"
 
-#: classes/WordpressConvertSettingMenu.php:128
+#: classes/WordpressConvertSettingMenu.php:141
 msgid "Comment"
 msgstr "コメント"
 
-#: classes/WordpressConvertSettingMenu.php:129
+#: classes/WordpressConvertSettingMenu.php:142
 msgid "Accept comment"
 msgstr "コメントの承認"
 
-#: classes/WordpressConvertSettingMenu.php:130
+#: classes/WordpressConvertSettingMenu.php:143
 msgid "Check comments"
 msgstr "コメントを見る"
 
-#: classes/WordpressConvertSettingMenu.php:137
+#: classes/WordpressConvertSettingMenu.php:150
 msgid "Design"
 msgstr "デザイン"
 
-#: classes/WordpressConvertSettingMenu.php:138
+#: classes/WordpressConvertSettingMenu.php:151
 msgid "Select theme"
 msgstr "テーマを選択"
 
-#: classes/WordpressConvertSettingMenu.php:139
+#: classes/WordpressConvertSettingMenu.php:152
 msgid "Widgets"
 msgstr "ウィジェット設定"
 
-#: classes/WordpressConvertSettingMenu.php:140
+#: classes/WordpressConvertSettingMenu.php:153
 msgid "Side menu"
 msgstr "サイドメニュー設定"
 
-#: classes/WordpressConvertSettingMenu.php:143
+#: classes/WordpressConvertSettingMenu.php:156
 msgid "Setting"
 msgstr "設定"
 
-#: classes/WordpressConvertSettingMenu.php:144
+#: classes/WordpressConvertSettingMenu.php:157
 msgid "Category"
 msgstr "カテゴリ設定"
 
-#: classes/WordpressConvertSettingMenu.php:145
+#: classes/WordpressConvertSettingMenu.php:158
 msgid "Tag"
 msgstr "タグ設定"
 
-#: classes/WordpressConvertSettingMenu.php:149
+#: classes/WordpressConvertSettingMenu.php:162
 msgid "WebLife Server control panel"
 msgstr "WebLiFE*サーバーコントロールパネル"
 
-#: classes/WordpressConvertSettingMenu.php:150
+#: classes/WordpressConvertSettingMenu.php:163
 msgid "Help"
 msgstr "ヘルプページ"
 
-#: classes/WordpressConvertSettingMenu.php:152
-#: classes/WordpressConvertSettingMenu.php:154
+#: classes/WordpressConvertSettingMenu.php:165
+#: classes/WordpressConvertSettingMenu.php:167
 msgid "Change custom mode"
 msgstr "カスタムモードの切替"
+
+#: classes/WordpressConvertSettingMenu.php:170
+#: classes/WordpressConvertSettingMenu.php:172
+msgid "Close this site"
+msgstr "サイトを非公開にする"
 
 #: tools/trunk/pomo/sample/app.php:56
 msgid "Welcome %s!"
@@ -250,30 +262,23 @@ msgstr "優先でないテキストです。"
 msgid "Bye\n"
 msgstr "お疲れ様でした。\n"
 
-#: wordpress_convert.php:57
+#: wordpress_convert.php:69
 msgid "WP Convert Plugin"
 msgstr "BiND for WP"
 
-#: wordpress_convert.php:60
+#: wordpress_convert.php:72
 msgid "Wordpress Convert Plugin"
 msgstr "BiND for WordPress"
 
 #. Plugin Name of the plugin/theme
-msgid "Wordpress Converter for HTML Plugin"
+msgid "WordPress Converter for HTML Plugin"
 msgstr "BiND for WordPress変換プラグイン"
 
 #. Description of the plugin/theme
-msgid "This plugin is convert helper for HTML to Wordpress Template."
+msgid "This plugin is convert helper for HTML to WordPress Template."
 msgstr ""
-"このプラグインはHTMLをWordPressのテンプレートに変換するプラグインです。"
-
-#. Author of the plugin/theme
-msgid "Naohisa Minagawa"
-msgstr "Naohisa Minagawa"
-
-#. Author URI of the plugin/theme
-msgid "http://www.netlife-web.com/"
-msgstr "http://www.netlife-web.com/"
+"このプラグインはBiNDのサイトデータをWordPressのテンプレートに変換するプラグイ"
+"ンです。"
 
 #~ msgid "Activate BiND Theme"
 #~ msgstr "BiNDのテーマを有効化する"
@@ -286,6 +291,12 @@ msgstr "http://www.netlife-web.com/"
 
 #~ msgid "There is not BiND Theme"
 #~ msgstr "BiNDのテーマがありません。"
+
+#~ msgid "Naohisa Minagawa"
+#~ msgstr "Naohisa Minagawa"
+
+#~ msgid "http://www.netlife-web.com/"
+#~ msgstr "http://www.netlife-web.com/"
 
 #~ msgid "FTP Account Setting"
 #~ msgstr "FTPアカウント設定"
