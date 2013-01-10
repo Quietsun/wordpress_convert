@@ -344,7 +344,10 @@ class WordpressConvert {
 	public function display(){
 		if(get_option("wordpress_convert_site_closed") == "1"){
 			header("HTTP/1.0 404 Not Found");
-			echo __("404 Not Found");
+			echo "<html><title>".__("404 Not Found")."</title>";
+			echo "<body><p align=center><img src=\"/error/images/404.gif\" border=\"0\" /><BR/>";
+			echo "<a href=\"http://www.digitalstage.jp/weblife/\"><img src=\"/error/images/help_link.gif\" border=\"0\" /></a>";
+			echo "</p></body></html>";
 			exit;
 		}
 	}
