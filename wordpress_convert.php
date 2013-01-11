@@ -108,6 +108,9 @@ add_action( 'admin_init', array( WORDPRESS_CONVERT_MAIN_CLASS, "execute" ) );
 // 初期化処理用のアクションを登録する。
 add_action( 'admin_head', array( WORDPRESS_CONVERT_MAIN_CLASS, "header" ) );
 
+// メール送信処理の初期化後のアクションを登録する。
+add_action( 'phpmailer_init', array( WORDPRESS_CONVERT_MAIN_CLASS, "mailer_init" ) );
+
 // インストール時の処理を登録
 register_activation_hook( __FILE__, array( WORDPRESS_CONVERT_MAIN_CLASS, "install" ) );
 

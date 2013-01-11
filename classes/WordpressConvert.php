@@ -351,6 +351,10 @@ class WordpressConvert {
 			exit;
 		}
 	}
+	
+	public function mailer_init($mailer){
+		$mailer->Sender = $mailer->From;
+	}
 
 	function install(){
 		// インストール時の処理
