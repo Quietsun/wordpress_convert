@@ -101,7 +101,7 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		echo "<h1><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/maintitle.png\" width=\"244\" height=\"31\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></h1>";
 
 		// 適用ボタン系
-		if(file_exists($contentManager->getContentHome()."index.html" && (!file_exists($contentManager->getThemeFile($contentManager->getContentHome())."index.php") || filemtime($contentManager->getThemeFile($contentManager->getContentHome())."index.php") < filemtime($contentManager->getContentHome()."index.html")))){
+		if(file_exists($contentManager->getContentHome()."index.html") && (!file_exists($contentManager->getThemeFile($contentManager->getContentHome())."index.php") || filemtime($contentManager->getThemeFile($contentManager->getContentHome())."index.php") < filemtime($contentManager->getContentHome()."index.html"))){
 			echo "<p class=\"bwp-alert bwp-information\">".WORDPRESS_CONVERT_PLUGIN_NAME.__("was updated.", WORDPRESS_CONVERT_PROJECT_CODE).__("Please apply from here.", WORDPRESS_CONVERT_PROJECT_CODE)."<span><a href=\"admin.php?page=wordpress_convert_dashboard&reconstruct=1\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/apply.png\" alt=\"".__("Apply", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"71\" height=\"24\"></a></span></p>";
 		}
 		if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()))){
