@@ -162,14 +162,14 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		echo "<li id=\"bwp-weblife\"><a href=\"https://mypage.weblife.me/\">".__("WebLife Server control panel", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		echo "<li id=\"bwp-help\"><a href=\"#\">".__("Help", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		if($professional == "1"){
-			echo "<li class=\"bwp-custom\"><a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\" style=\"text-decoration: none;\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\" style=\"text-decoration: none;\"><li class=\"bwp-custom\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}else{
-			echo "<li class=\"bwp-custom-off\"><a href=\"admin.php?page=wordpress_convert_dashboard&professional=1\" style=\"text-decoration: none;\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&professional=1\" style=\"text-decoration: none;\"><li class=\"bwp-custom-off\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}
 		if($site_closed == "1"){
-			echo "<li class=\"bwp-custom\"><a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=0\" style=\"text-decoration: none;\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=0\" style=\"text-decoration: none;\"><li class=\"bwp-custom\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}else{
-			echo "<li class=\"bwp-custom-off\"><a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=1\" style=\"text-decoration: none;\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=1\" style=\"text-decoration: none;\"><li class=\"bwp-custom-off\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}
 		echo "</ul></div>";
 	}
