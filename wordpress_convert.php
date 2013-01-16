@@ -27,7 +27,7 @@
 /*
 Plugin Name: WordPress Converter for HTML Plugin
 Description: This plugin is convert helper for HTML to WordPress Template.
-Version: 1.0
+Version: 0.9
 Author: Netlife, Inc.
 Author URI: http://www.netlife-web.com/
 License: GPLv2

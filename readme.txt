@@ -1,5 +1,5 @@
 === BiND for WordPress ===
-Contributors: NAONAOx1126
+Contributors: NetLife, Inc.
 Donate link: http://www.netlife-web.com/
 Tags: BiND,Converter,Utility
 Requires at least: 3.3
