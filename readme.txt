@@ -1,4 +1,4 @@
-=== BiND for WP ===
+=== BiND for WordPress ===
 Contributors: NAONAOx1126
 Donate link: http://www.netlife-web.com/
 Tags: BiND,Converter,Utility
