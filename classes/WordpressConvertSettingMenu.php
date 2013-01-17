@@ -101,13 +101,8 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		echo "<h1><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/maintitle.png\" width=\"244\" height=\"31\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></h1>";
 
 		// 適用ボタン系
-		if(file_exists($contentManager->getContentHome()."index.html") && (!file_exists($contentManager->getThemeFile($contentManager->getContentHome())."index.php") || filemtime($contentManager->getThemeFile($contentManager->getContentHome())."index.php") < filemtime($contentManager->getContentHome()."index.html"))){
+		if($contentManager->isGlobalUpdate()){
 			echo "<p class=\"bwp-alert bwp-information\">".WORDPRESS_CONVERT_PLUGIN_NAME.__("was updated.", WORDPRESS_CONVERT_PROJECT_CODE).__("Please apply from here.", WORDPRESS_CONVERT_PROJECT_CODE)."<span><a href=\"admin.php?page=wordpress_convert_dashboard&reconstruct=1\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/apply.png\" alt=\"".__("Apply", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"71\" height=\"24\"></a></span></p>";
-		}
-		if(file_exists($contentManager->getThemeFile($contentManager->getContentHome()))){
-			if($themeCode != $template){
-				echo "<p class=\"bwp-alert bwp-update\">".__("New theme was uploaded.", WORDPRESS_CONVERT_PROJECT_CODE).__("Please apply from here.", WORDPRESS_CONVERT_PROJECT_CODE)."<span><a href=\"admin.php?page=wordpress_convert_dashboard&activate=1\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/apply.png\" alt=\"".__("Apply", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"71\" height=\"24\"></a></span></p>";
-			}
 		}
 		
 		$errorMessage = call_user_func(array(WORDPRESS_CONVERT_MAIN_CLASS, "convertError"));
@@ -139,14 +134,14 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		// コメント管理系
 		$comments = wp_count_comments();
 		echo "<h2><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/commenttitle.png\" alt=\"".__("Comment", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"117\" height=\"22\"></h2>";
+		echo "<p class=\"bwp-button\"><a href=\"edit-comments.php\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/comment.png\" alt=\"".__("Check comments", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"252\" height=\"52\"></a>";
+		echo "</p>";
 		echo "<p class=\"bwp-button\"><a href=\"edit-comments.php?comment_status=moderated\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/commentapply.png\" alt=\"".__("Accept comment", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"252\" height=\"52\"></a>";
 		if($comments->moderated > 0){
 			echo "<span>".$comments->moderated."</span>";
 		}
 		echo "</p>";
-		echo "<p class=\"bwp-button\"><a href=\"edit-comments.php\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/comment.png\" alt=\"".__("Check comments", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"252\" height=\"52\"></a>";
-		echo "</p>";
-
+		
 		// デザイン編集系
 		echo "<h2><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/designtitle.png\" alt=\"".__("Design", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"117\" height=\"26\"></h2>";
 		echo "<p class=\"bwp-button\"><a href=\"themes.php\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/selecttheme.png\" alt=\"".__("Select theme", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"252\" height=\"52\"></a></p>";

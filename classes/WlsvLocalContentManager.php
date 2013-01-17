@@ -93,9 +93,6 @@ class WlsvLocalContentManager extends ContentManager {
 	}
 	
 	public function isUpdated($filename){
-		if(isset($_POST["reconstruct"])){
-			return true;
-		}
 		// 日付を比較する。
 		$theme = $this->getThemeFile($filename);
 		if(file_exists($filename) && (!file_exists($theme) || filemtime($theme) < filemtime($filename))){
