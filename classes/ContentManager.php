@@ -52,6 +52,8 @@ abstract class ContentManager {
 	
 	abstract public function getList();
 	
+	abstract public function isGlobalUpdate();
+	
 	abstract public function isUpdated($filename);
 	
 	abstract public function getContent($filename);
