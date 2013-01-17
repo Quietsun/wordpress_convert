@@ -139,11 +139,12 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		// コメント管理系
 		$comments = wp_count_comments();
 		echo "<h2><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/commenttitle.png\" alt=\"".__("Comment", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"117\" height=\"22\"></h2>";
-		echo "<p class=\"bwp-button\"><a href=\"edit-comments.php\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/commentapply.png\" alt=\"".__("Accept comment", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"252\" height=\"52\"></a></p>";
-		echo "<p class=\"bwp-button\"><a href=\"edit-comments.php\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/comment.png\" alt=\"".__("Check comments", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"252\" height=\"52\"></a>";
+		echo "<p class=\"bwp-button\"><a href=\"edit-comments.php?comment_status=moderated\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/commentapply.png\" alt=\"".__("Accept comment", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"252\" height=\"52\"></a>";
 		if($comments->moderated > 0){
 			echo "<span>".$comments->moderated."</span>";
 		}
+		echo "</p>";
+		echo "<p class=\"bwp-button\"><a href=\"edit-comments.php\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/comment.png\" alt=\"".__("Check comments", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"252\" height=\"52\"></a>";
 		echo "</p>";
 
 		// デザイン編集系

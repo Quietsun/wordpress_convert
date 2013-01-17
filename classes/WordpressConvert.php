@@ -324,7 +324,9 @@ class WordpressConvert {
 				self::$convertError = __("Target HTML was not found.", WORDPRESS_CONVERT_PROJECT_CODE);
 			}
 		}else{
-			self::$convertError = __("Account Authentication Failed.", WORDPRESS_CONVERT_PROJECT_CODE);
+			if(!$contentManager->isAccessible()){
+				self::$convertError = __("Account Authentication Failed.", WORDPRESS_CONVERT_PROJECT_CODE);
+			}
 		}
 	}
 	
