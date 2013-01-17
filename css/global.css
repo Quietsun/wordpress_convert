@@ -25,7 +25,7 @@ h2 { border-bottom: 7px solid #eff2f7; padding-bottom: 10px; margin-top: 30px; m
 .bwp-button{ display: inline; position: relative; }
 .bwp-button span{ background-image: url(../images/badge.png); background-repeat: no-repeat; display: block; height: 39px; width: 39px; font-family: "繝偵Λ繧ｮ繝手ｧ偵ざ Pro W3", "Hiragino Kaku Gothic Pro", "繝｡繧､繝ｪ繧ｪ", Meiryo, Osaka, "�ｭ�ｳ �ｰ繧ｴ繧ｷ繝�け", "MS PGothic", sans-serif; font-size: 16px; color: #FFF; line-height: 37px; text-align: center; font-weight: bold; position: absolute; top: -10px; right:-10px; }
 
-.bwp-button img {padding-bottom: 5px;}
+.bwp-button img {padding-bottom: 5px; margin-right: 6px; }
 .bwp-button a:hover{ opacity: 0.7; filter: alpha(opacity=70); -moz-opacity: 0.7; }
 .bwp-button a:active{ top: 1px; position: relative;opacity: 0.6; filter: alpha(opacity=60); -moz-opacity: 0.6;  }
 
