@@ -133,6 +133,24 @@ abstract class WordpressConvertSetting {
 	 * メニューを制御するメソッド
 	 * @return void
 	 */
+	public static function adminBarMenu(){
+		add_action( 'admin_bar_menu', array( "WordpressConvertSetting", 'adminMenu' ), 210 );
+	}
+	
+	public static function adminMenu(){
+		global $wp_admin_bar;
+		if(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_professional") != "1"){
+			$wp_admin_bar->remove_node("new-media");
+			$wp_admin_bar->remove_node("new-link");
+			$wp_admin_bar->remove_node("new-page");
+			$wp_admin_bar->remove_node("new-user");
+		}
+	}
+	
+	/**
+	 * メニューを制御するメソッド
+	 * @return void
+	 */
 	public static function recoverMenus(){
 		// 無効化したメニューのうち、利用するサブメニューをこちらのメニューの配下に移動する。
 		global $submenu;

@@ -108,6 +108,9 @@ add_action( 'admin_init', array( WORDPRESS_CONVERT_MAIN_CLASS, "execute" ) );
 // 初期化処理用のアクションを登録する。
 add_action( 'admin_head', array( WORDPRESS_CONVERT_MAIN_CLASS, "header" ) );
 
+// 管理バーメニィーのアクションを登録する。
+add_action( 'add_admin_bar_menus', array( "WordpressConvertSetting", 'adminBarMenu' ) );
+
 // メール送信処理の初期化後のアクションを登録する。
 add_action( 'phpmailer_init', array( WORDPRESS_CONVERT_MAIN_CLASS, "mailer_init" ) );
 
