@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
 "POT-Creation-Date: 2013-01-10 03:36:06+00:00\n"
-"PO-Revision-Date: 2013-01-10 12:40+0900\n"
+"PO-Revision-Date: 2013-01-18 15:39+0900\n"
 "Last-Translator: \n"
 "Language-Team: Netlife Inc. <minagawa@netlife-web.com>\n"
 "Language: Japanese\n"
@@ -29,7 +29,9 @@ msgstr "株式会社ネットライフ"
 
 #: classes/WordpressConvert.php:314
 msgid "Target HTML was not found."
-msgstr "変換するサイトデータが見つかりません。パスの設定を確認してください。"
+msgstr ""
+"BiND for WordPressのテーマで使用するサイトデータがアップロードされていませ"
+"ん。"
 
 #: classes/WordpressConvert.php:317
 msgid "Account Authentication Failed."
