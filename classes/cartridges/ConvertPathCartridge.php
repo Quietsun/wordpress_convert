@@ -64,7 +64,7 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 			}
 		}
 		foreach(pq("a") as $anchor){
-			if(preg_match("/^https?:\\/\\//", pq($anchor)->attr("href")) == 0){
+			if(preg_match("/^((mailto:)|(https?:\\/\\/))/", pq($anchor)->attr("href")) == 0){
 				$basedir = preg_replace("/^\\./", "", dirname($baseFileName));
 				if(!empty($basedir)){
 					$basedir .= "/";
