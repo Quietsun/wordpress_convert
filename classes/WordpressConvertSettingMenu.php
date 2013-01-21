@@ -105,6 +105,10 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 			echo "<p class=\"bwp-alert bwp-information\">".__("Target HTML was not found.", WORDPRESS_CONVERT_PROJECT_CODE)."</p>";
 		}elseif($contentManager->isGlobalUpdate()){
 			echo "<p class=\"bwp-alert bwp-information\">".WORDPRESS_CONVERT_PLUGIN_NAME.__("was updated.", WORDPRESS_CONVERT_PROJECT_CODE).__("Please apply from here.", WORDPRESS_CONVERT_PROJECT_CODE)."<span><a href=\"admin.php?page=wordpress_convert_dashboard&reconstruct=1\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/apply.png\" alt=\"".__("Apply", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"71\" height=\"24\"></a></span></p>";
+		}else{
+			if($themeCode != $template){
+				echo "<p class=\"bwp-alert bwp-update\">".__("New theme was uploaded.", WORDPRESS_CONVERT_PROJECT_CODE).__("Please apply from here.", WORDPRESS_CONVERT_PROJECT_CODE)."<span><a href=\"admin.php?page=wordpress_convert_dashboard&activate=1\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/apply.png\" alt=\"".__("Apply", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"71\" height=\"24\"></a></span></p>";
+			}
 		}
 		
 		$errorMessage = call_user_func(array(WORDPRESS_CONVERT_MAIN_CLASS, "convertError"));
