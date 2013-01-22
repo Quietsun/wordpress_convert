@@ -57,10 +57,7 @@ class WordpressConvert {
 	 * @return void
 	 */
 	public static function init(){
-		// 環境のバージョンチェック
-		if( version_compare( PHP_VERSION, '5.3.0', '<' ) )
-			trigger_error( __("PHP 5.3 or later is required for this plugin.", WORDPRESS_CONVERT_PROJECT_CODE), E_USER_ERROR );
-		
+		// エラーメッセージの初期化
 		self::$convertError = "";
 		
 		// 初期化処理
@@ -79,6 +76,10 @@ class WordpressConvert {
 	 * 変換処理を必要に応じて実行する。
 	 */
 	public static function execute(){
+		if( version_compare( PHP_VERSION, '5.3.0', '<' ) ){
+			self::$convertError = __("PHP 5.3 or greater is needed by this plugin.", WORDPRESS_CONVERT_PROJECT_CODE);;
+			return;
+		}
 		$contentManagerClass = WORDPRESS_CONVERT_CONTENT_MANAGER;
 		$contentManager = new $contentManagerClass(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_login_id"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_password"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_base_dir"));
 		

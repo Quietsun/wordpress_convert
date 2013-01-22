@@ -45,7 +45,7 @@ class LocalContentManager extends ContentManager {
 	public function getContentHome(){
 		if(substr($this->basedir, 0, 1) != "/"){
 			// １文字目がスラッシュで無い場合は相対パスとして認識
-			$dir = str_replace("//", "/", realpath(dirname(__FILE__))."/".$this->basedir."/");
+			$dir = str_replace("//", "/", ABSPATH."/".$this->basedir."/");
 			if(file_exists($dir) && is_dir($dir)){
 				return $dir;
 			}
