@@ -95,7 +95,7 @@ abstract class WordpressConvertSetting {
 					// case "plugins.php":
 					case "users.php":
 					// case "tools.php":
-					case "options-general.php":
+					// case "options-general.php":
 						unset($menu[$index]);
 						break;
 				}
