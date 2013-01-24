@@ -165,12 +165,12 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		echo "<li id=\"bwp-weblife\"><a href=\"https://mypage.weblife.me/\">".__("WebLife Server control panel", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		echo "<li id=\"bwp-help\"><a href=\"#\">".__("Help", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		if($professional == "1"){
-			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\" style=\"text-decoration: none;\"><li class=\"bwp-custom\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\" style=\"text-decoration: none;\"><li class=\"bwp-custom\">".__("Change easy mode", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}else{
 			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&professional=1\" style=\"text-decoration: none;\"><li class=\"bwp-custom-off\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}
 		if($site_closed == "1"){
-			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=0\" style=\"text-decoration: none;\"><li class=\"bwp-private\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=0\" style=\"text-decoration: none;\"><li class=\"bwp-private\">".__("Open this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}else{
 			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=1\" style=\"text-decoration: none;\"><li class=\"bwp-public\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}

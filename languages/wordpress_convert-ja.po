@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
-"POT-Creation-Date: 2013-01-10 03:36:06+00:00\n"
-"PO-Revision-Date: 2013-01-18 15:39+0900\n"
+"POT-Creation-Date: 2013-01-24 07:39:53+00:00\n"
+"PO-Revision-Date: 2013-01-24 16:41+0900\n"
 "Last-Translator: \n"
 "Language-Team: Netlife Inc. <minagawa@netlife-web.com>\n"
 "Language: Japanese\n"
@@ -15,45 +15,46 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: classes/WordpressConvert.php:62
+#: classes/WordpressConvert.php:80
 msgid "PHP 5.3 or later is required for this plugin."
 msgstr "このプラグインはPHP5.3以上が必要です。"
 
-#: classes/WordpressConvert.php:98
+#: classes/WordpressConvert.php:99
 msgid "Converted Theme by Wordpress Converter"
 msgstr "WordPress変換により変換されたテーマです。"
 
-#: classes/WordpressConvert.php:99
+#: classes/WordpressConvert.php:100
 msgid "NetLife Inc."
 msgstr "株式会社ネットライフ"
 
-#: classes/WordpressConvert.php:314
+#: classes/WordpressConvert.php:325
+#: classes/WordpressConvertSettingMenu.php:106
 msgid "Target HTML was not found."
 msgstr ""
 "BiND for WordPressのテーマで使用するサイトデータがアップロードされていませ"
 "ん。"
 
-#: classes/WordpressConvert.php:317
+#: classes/WordpressConvert.php:329
 msgid "Account Authentication Failed."
 msgstr ""
 "アカウントの認証に失敗しました。FTPログインIDとパスワードを確認してください。"
 
-#: classes/WordpressConvert.php:339
+#: classes/WordpressConvert.php:352
 msgid "404 Not Found"
 msgstr "ページが見つかりません。"
 
 #: classes/WordpressConvertSetting.php:107
-#: classes/WordpressConvertSetting.php:141
+#: classes/WordpressConvertSetting.php:159
 msgid "Select Themes"
 msgstr "テーマ選択"
 
 #: classes/WordpressConvertSetting.php:112
-#: classes/WordpressConvertSetting.php:145
+#: classes/WordpressConvertSetting.php:163
 msgid "Widget Setting"
 msgstr "ウィジェット設定"
 
 #: classes/WordpressConvertSetting.php:117
-#: classes/WordpressConvertSetting.php:149
+#: classes/WordpressConvertSetting.php:167
 msgid "Menu Setting"
 msgstr "メニュー設定"
 
@@ -167,88 +168,94 @@ msgstr "設定を変更する"
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: classes/WordpressConvertSettingMenu.php:105
+#: classes/WordpressConvertSettingMenu.php:108
 msgid "was updated."
 msgstr "が更新されました。"
 
-#: classes/WordpressConvertSettingMenu.php:105
-#: classes/WordpressConvertSettingMenu.php:109
+#: classes/WordpressConvertSettingMenu.php:108
+#: classes/WordpressConvertSettingMenu.php:111
 msgid "Please apply from here."
 msgstr "こちらから適用をしてください。"
 
-#: classes/WordpressConvertSettingMenu.php:105
-#: classes/WordpressConvertSettingMenu.php:109
+#: classes/WordpressConvertSettingMenu.php:108
+#: classes/WordpressConvertSettingMenu.php:111
 msgid "Apply"
 msgstr "適用"
 
-#: classes/WordpressConvertSettingMenu.php:109
+#: classes/WordpressConvertSettingMenu.php:111
 msgid "New theme was uploaded."
 msgstr "新しいテーマがアップロードされました。"
 
-#: classes/WordpressConvertSettingMenu.php:119
+#: classes/WordpressConvertSettingMenu.php:121
 msgid "Contribute articles"
 msgstr "記事を投稿する"
 
-#: classes/WordpressConvertSettingMenu.php:120
-#: classes/WordpressConvertSettingMenu.php:121
+#: classes/WordpressConvertSettingMenu.php:122
+#: classes/WordpressConvertSettingMenu.php:123
 msgid "Contribute new article"
 msgstr "新しい記事を書く"
 
-#: classes/WordpressConvertSettingMenu.php:141
+#: classes/WordpressConvertSettingMenu.php:143
 msgid "Comment"
 msgstr "コメント"
 
-#: classes/WordpressConvertSettingMenu.php:142
-msgid "Accept comment"
-msgstr "コメントの承認"
-
-#: classes/WordpressConvertSettingMenu.php:143
+#: classes/WordpressConvertSettingMenu.php:144
 msgid "Check comments"
 msgstr "コメントを見る"
 
-#: classes/WordpressConvertSettingMenu.php:150
+#: classes/WordpressConvertSettingMenu.php:146
+msgid "Accept comment"
+msgstr "コメントの承認"
+
+#: classes/WordpressConvertSettingMenu.php:153
 msgid "Design"
 msgstr "デザイン"
 
-#: classes/WordpressConvertSettingMenu.php:151
+#: classes/WordpressConvertSettingMenu.php:154
 msgid "Select theme"
 msgstr "テーマを選択"
 
-#: classes/WordpressConvertSettingMenu.php:152
+#: classes/WordpressConvertSettingMenu.php:155
 msgid "Widgets"
 msgstr "ウィジェット設定"
 
-#: classes/WordpressConvertSettingMenu.php:153
+#: classes/WordpressConvertSettingMenu.php:156
 msgid "Side menu"
 msgstr "サイドメニュー設定"
 
-#: classes/WordpressConvertSettingMenu.php:156
+#: classes/WordpressConvertSettingMenu.php:159
 msgid "Setting"
 msgstr "設定"
 
-#: classes/WordpressConvertSettingMenu.php:157
+#: classes/WordpressConvertSettingMenu.php:160
 msgid "Category"
 msgstr "カテゴリ設定"
 
-#: classes/WordpressConvertSettingMenu.php:158
+#: classes/WordpressConvertSettingMenu.php:161
 msgid "Tag"
 msgstr "タグ設定"
 
-#: classes/WordpressConvertSettingMenu.php:162
+#: classes/WordpressConvertSettingMenu.php:165
 msgid "WebLife Server control panel"
 msgstr "WebLiFE*サーバーコントロールパネル"
 
-#: classes/WordpressConvertSettingMenu.php:163
+#: classes/WordpressConvertSettingMenu.php:166
 msgid "Help"
 msgstr "ヘルプページ"
 
-#: classes/WordpressConvertSettingMenu.php:165
-#: classes/WordpressConvertSettingMenu.php:167
-msgid "Change custom mode"
-msgstr "カスタムモードの切替"
+#: classes/WordpressConvertSettingMenu.php:168
+msgid "Change easy mode"
+msgstr "かんたんモードに戻る"
 
 #: classes/WordpressConvertSettingMenu.php:170
-#: classes/WordpressConvertSettingMenu.php:172
+msgid "Change custom mode"
+msgstr "カスタムモードへ切替える"
+
+#: classes/WordpressConvertSettingMenu.php:173
+msgid "Open this site"
+msgstr "サイトを公開する"
+
+#: classes/WordpressConvertSettingMenu.php:175
 msgid "Close this site"
 msgstr "サイトを非公開にする"
 
