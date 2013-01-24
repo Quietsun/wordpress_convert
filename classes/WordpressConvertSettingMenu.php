@@ -98,7 +98,7 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		
 		// 設定変更ページを登録する
 		echo "<div id=\"bwp-wrap\">";
-		echo "<h1><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/maintitle.png\" width=\"244\" height=\"31\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></h1>";
+		echo "<h1><table width=\"100%\"><tr><td><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/maintitle.png\" width=\"244\" height=\"31\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></td><td align=\"right\"><a href=\"http://mypage.weblife.me/\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/backtowls.png\" /></a></td></tr></table></h1>";
 		echo "<div style=\"color: #ee0000\">BiNDのテンプレートでは、WordPressのビジュアルエディタの機能が一部利用できない可能性があります。</div>";
 
 		// 適用ボタン系
