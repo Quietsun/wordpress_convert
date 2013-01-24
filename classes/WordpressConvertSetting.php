@@ -92,7 +92,7 @@ abstract class WordpressConvertSetting {
 					case "edit.php?post_type=page":
 					case "edit-comments.php":
 					case "themes.php":
-					case "plugins.php":
+					// case "plugins.php":
 					case "users.php":
 					// case "tools.php":
 					case "options-general.php":

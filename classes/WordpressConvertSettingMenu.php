@@ -172,7 +172,7 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		if($site_closed == "1"){
 			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=0\" style=\"text-decoration: none;\"><li class=\"bwp-custom\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}else{
-			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=1\" style=\"text-decoration: none;\"><li class=\"bwp-custom-off\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=1\" style=\"text-decoration: none;\"><li class=\"bwp-private\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}
 		echo "</ul></div>";
 	}
