@@ -47,6 +47,8 @@ h2 { border-bottom: 7px solid #eff2f7; padding-bottom: 10px; margin-top: 30px; m
 #bwp-help { background-image: url(../images/helpicon.png);padding-left: 23px; }
 .bwp-custom { background-image: url(../images/switch-ON.png); padding-left: 55px !important; }
 .bwp-custom-off { background-image: url(../images/switch-OFF.png); padding-left: 55px !important; }
+
 .bwp-private { background-image: url(../images/switch-private.png); padding-left: 55px; }
+.bwp-public { background-image: url(../images/switch-public.png); padding-left: 55px; }
 
 .bwp-error { background-color: #ffe1e1; border: 2px solid #e5606b; font-size: 12px; padding: 10px; color: #e5606b; line-height: 24px; margin-top: 15px; background-repeat: no-repeat; background-position: 13px center; font-weight:bold; text-align:center;}
