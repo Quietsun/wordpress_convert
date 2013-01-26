@@ -47,6 +47,8 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 		pq("span.wp_page_title")->replaceWith("<span id=\"wp_page_title\"><?php wp_title(''); ?></span>");
 		// 一覧画面のページャーを変換
 		pq("div.wp_list_pager")->replaceWith("<div class=\"wp_list_pager\"><?php wp_list_paginate(); ?></div>");
+		// 一覧画面のページャーを変換
+		pq("span.wp_list_count")->replaceWith("<span class=\"wp_list_count\"><?php echo \$wp_query->found_posts; ?></span>");
 		// 記事のページャーを変換
 		foreach(pq("div.wp_post_pager") as $pager){
 			$title = explode(",", pq($pager)->attr("title"));
@@ -177,7 +179,12 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 			}else{
 				pq($article)->before("<?php if (have_posts()) : while (have_posts()) : the_post(); ?>");
 			}
-			pq($article)->after("<?php endwhile; endif; ?>");
+			$title = pq($article)->attr("title");
+			if(!empty($title)){
+				pq($article)->after("<?php endwhile; else: echo \"".$title."\"; endif; ?>");
+			}else{
+				pq($article)->after("<?php endwhile; endif; ?>");
+			}
 		}
 		return $content;
 	}
