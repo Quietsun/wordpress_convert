@@ -64,24 +64,28 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 			}
 		}
 		foreach(pq("a") as $anchor){
-			if(preg_match("/^((mailto:)|(https?:\\/\\/))/", pq($anchor)->attr("href")) == 0){
+			// メールリンクでも絶対URLでもページ内リンクでも無い場合に変換処理を実行する。
+			if(preg_match("/^((mailto:)|(https?:\\/\\/))/", pq($anchor)->attr("href")) == 0 && substr(pq($anchor)->attr("href"), 0, 1) != "#"){
+				// 現在のファイルの存在するディレクトリを元にパス使用しているパスを補正
 				$basedir = preg_replace("/^\\./", "", dirname($baseFileName));
 				if(!empty($basedir)){
 					$basedir .= "/";
 				}
-				if(substr(pq($anchor)->attr("href"), 0, 1) != "#"){
-					$path = substr(preg_replace("/\\/[^\\/]+\\/\\.\\.\\//", "/", "/".$basedir.pq($anchor)->attr("href")), 1);
-				}else{
-					$path = pq($anchor)->attr("href");
-				}
+				
+				// サブディレクトリの上位ディレクトリの指定は相殺させる。
+				$path = substr(preg_replace("/\\/[^\\/]+\\/\\.\\.\\//", "/", "/".$basedir.pq($anchor)->attr("href")), 1);
 				if($path == "single.html"){
 					pq($anchor)->attrPHP("href", "the_permalink();");
 				}elseif($path == "category.html"){
 					pq($anchor)->attrPHP("href", "echo get_category_link(\$wp_category['term_id']);");
 				}elseif($path == "index.html"){
 					pq($anchor)->attrPHP("href", "echo get_option('siteurl')");
-				}elseif(preg_match("/^https?:\\/\\//", pq($anchor)->attr("href")) == 0){
+				}elseif(preg_match("/\\.html?$/", $path) > 0){
 					pq($anchor)->attrPHP("href", "echo get_page_link(".$this->converter->getPageId(str_replace(".html", "", $path)).")");
+				}else{
+					$path = get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".$path;
+					echo $path."<br>";
+					pq($anchor)->attr("href", $path);
 				}
 			}
 		}
