@@ -305,7 +305,7 @@ class WordpressConvert {
 					fwrite($fp, "\$paginate_format = (substr(\$paginate_base, -1 ,1) == '/' ? '' : '/') .user_trailingslashit('page/%#%/', 'paged');\r\n");
 					fwrite($fp, "\$paginate_base .= '%_%';\r\n");
 					fwrite($fp, "}\r\n");
-					fwrite($fp, "\$pagination = array('base' => \$paginate_base, 'format' => \$paginate_format, 'total' => \$wp_query->max_num_pages, 'mid_size' => 5, 'current' => (\$paged ? \$paged : 1), 'prev_text' => '&laquo; '.__('Previous'), 'next_text' => __('Next').' &raquo;');\r\n");
+					fwrite($fp, "\$pagination = array('base' => \$paginate_base, 'format' => \$paginate_format, 'total' => \$wp_query->max_num_pages, 'mid_size' => 5, 'current' => (\$paged ? \$paged : 1), 'prev_text' => __('&laquo; Previous'), 'next_text' => __('Next &raquo;'));\r\n");
 					fwrite($fp, "echo paginate_links(\$pagination);\r\n");
 					fwrite($fp, "}\r\n");
 					fclose($fp);
