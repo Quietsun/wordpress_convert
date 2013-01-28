@@ -84,7 +84,6 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 					pq($anchor)->attrPHP("href", "echo get_page_link(".$this->converter->getPageId(str_replace(".html", "", $path)).")");
 				}else{
 					$path = get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".$path;
-					echo $path."<br>";
 					pq($anchor)->attr("href", $path);
 				}
 			}
