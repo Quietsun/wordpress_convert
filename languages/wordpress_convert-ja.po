@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
-"POT-Creation-Date: 2013-01-24 07:39:53+00:00\n"
-"PO-Revision-Date: 2013-01-24 16:41+0900\n"
+"POT-Creation-Date: 2013-01-28 07:29:12+00:00\n"
+"PO-Revision-Date: 2013-01-28 16:31+0900\n"
 "Last-Translator: \n"
 "Language-Team: Netlife Inc. <minagawa@netlife-web.com>\n"
 "Language: Japanese\n"
@@ -19,27 +19,35 @@ msgstr ""
 msgid "PHP 5.3 or later is required for this plugin."
 msgstr "このプラグインはPHP5.3以上が必要です。"
 
-#: classes/WordpressConvert.php:99
-msgid "Converted Theme by Wordpress Converter"
-msgstr "WordPress変換により変換されたテーマです。"
-
 #: classes/WordpressConvert.php:100
-msgid "NetLife Inc."
-msgstr "株式会社ネットライフ"
+msgid ""
+"The theme created by \"BiND for WebLiFE 6\"　This theme can easily change "
+"design in\" BiND for WebLiFE 6\". JQuery slideshow and JQuery light box, Tab "
+"layout function, and so on... You can use all the functions of \" BiND for "
+"WebLiFE 6\" and can easily convert the template into WordPress theme."
+msgstr ""
+"ウェブオーサリングソフト「BiND for WebLiFE 6」で作成したWordPressテーマです。"
+"BiND for WebLiFE 6上で簡単にデザインする事ができます。jQueryを使ったスライド"
+"ショーやライトボックス、タブなど、BiND for WebLiFE 6で利用できる機能をすべて"
+"利用でき、そのテンプレートを簡単にWordPressテーマに変換する事ができます。"
 
-#: classes/WordpressConvert.php:325
+#: classes/WordpressConvert.php:101
+msgid "digitalstage inc."
+msgstr "digitalstage inc."
+
+#: classes/WordpressConvert.php:326
 #: classes/WordpressConvertSettingMenu.php:106
 msgid "Target HTML was not found."
 msgstr ""
 "BiND for WordPressのテーマで使用するサイトデータがアップロードされていませ"
 "ん。"
 
-#: classes/WordpressConvert.php:329
+#: classes/WordpressConvert.php:330
 msgid "Account Authentication Failed."
 msgstr ""
 "アカウントの認証に失敗しました。FTPログインIDとパスワードを確認してください。"
 
-#: classes/WordpressConvert.php:352
+#: classes/WordpressConvert.php:353
 msgid "404 Not Found"
 msgstr "ページが見つかりません。"
 
@@ -271,23 +279,40 @@ msgstr "優先でないテキストです。"
 msgid "Bye\n"
 msgstr "お疲れ様でした。\n"
 
-#: wordpress_convert.php:69
+#: wordpress_convert.php:71
 msgid "WP Convert Plugin"
 msgstr "BiND for WP"
 
-#: wordpress_convert.php:72
+#: wordpress_convert.php:74
 msgid "Wordpress Convert Plugin"
 msgstr "BiND for WordPress"
 
 #. Plugin Name of the plugin/theme
-msgid "WordPress Converter for HTML Plugin"
-msgstr "BiND for WordPress変換プラグイン"
+msgid "BiND for WordPress theme converter"
+msgstr "BiND for WordPress theme converter"
 
 #. Description of the plugin/theme
-msgid "This plugin is convert helper for HTML to WordPress Template."
+msgid ""
+"\"BiND for WordPress theme converter\" plug-in is template converter. It "
+"converts the WordPress template created by \"BiND for WebLiFE 6\" into "
+"WordPress Theme files."
 msgstr ""
-"このプラグインはBiNDのサイトデータをWordPressのテンプレートに変換するプラグイ"
-"ンです。"
+"ウェブオーサリングソフト「BiND for WebLiFE 6」で作成したWordPressテンプレート"
+"ファイルをWordPressのテーマに変換するプラグインです。"
+
+#~ msgid "Converted Theme by Wordpress Converter"
+#~ msgstr "WordPress変換により変換されたテーマです。"
+
+#~ msgid "NetLife Inc."
+#~ msgstr "株式会社ネットライフ"
+
+#~ msgid "WordPress Converter for HTML Plugin"
+#~ msgstr "BiND for WordPress変換プラグイン"
+
+#~ msgid "This plugin is convert helper for HTML to WordPress Template."
+#~ msgstr ""
+#~ "このプラグインはBiNDのサイトデータをWordPressのテンプレートに変換するプラ"
+#~ "グインです。"
 
 #~ msgid "Activate BiND Theme"
 #~ msgstr "BiNDのテーマを有効化する"
