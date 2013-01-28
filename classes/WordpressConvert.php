@@ -97,10 +97,10 @@ class WordpressConvert {
 				if(($fp = @fopen($themeFile, "w+")) !== FALSE){
 					fwrite($fp, "/* \r\n");
 					fwrite($fp, "Theme Name: ".WORDPRESS_CONVERT_THEME_NAME."\r\n");
-					fwrite($fp, "Description: ".__("Converted Theme by Wordpress Converter")."\r\n");
-					fwrite($fp, "Author: ".__("NetLife Inc.")."\r\n");
-					fwrite($fp, "Author URI: http://www.netlife-web.com/\r\n");
-					fwrite($fp, "Version: 1.0\r\n");
+					fwrite($fp, "Description: ".__("The theme created by \"BiND for WebLiFE 6\"　This theme can easily change design in\" BiND for WebLiFE 6\". JQuery slideshow and JQuery light box, Tab layout function, and so on... You can use all the functions of \" BiND for WebLiFE 6\" and can easily convert the template into WordPress theme.")."\r\n");
+					fwrite($fp, "Author: ".__("digitalstage inc.")."\r\n");
+					fwrite($fp, "Author URI: http://www.digitalstage.jp\r\n");
+					fwrite($fp, "Version: ".WORDPRESS_CONVERT_VERSION."\r\n");
 					fwrite($fp, "License: GNU General Public License v2.0\r\n");
 					fwrite($fp, "License URI: http://www.gnu.org/licenses/gpl-2.0.html\r\n");
 					fwrite($fp, "\r\n");

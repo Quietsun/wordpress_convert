@@ -1,6 +1,6 @@
 <?php
 /**
- * WordPress Converter for HTML Plugin
+ * BiND for WordPress theme converter
  * 
  * Copyright (c) 2012 NetLife Inc. All Rights Reserved.
  * http://www.netlife-web.com/
@@ -25,14 +25,16 @@
  */
 
 /*
-Plugin Name: WordPress Converter for HTML Plugin
-Description: This plugin is convert helper for HTML to WordPress Template.
-Version: 0.9
-Author: Netlife, Inc.
-Author URI: http://www.netlife-web.com/
+Plugin Name: BiND for WordPress theme converter
+Description: "BiND for WordPress theme converter" plug-in is template converter. It converts the WordPress template created by "BiND for WebLiFE 6" into WordPress Theme files.
+Version: 1.0.0
+Author: digitalstage inc.
+Author URI: http://www.digitalstage.jp/
 License: GPLv2
 Text Domain: wordpress_convert
 */
+
+define("WORDPRESS_CONVERT_VERSION", "1.0.0");
 
 // メモリ使用制限を調整
 ini_set('memory_limit', '128M');
@@ -97,7 +99,7 @@ define("WORDPRESS_CONVERT_TEMPLATE_BASEDIR", get_option(WORDPRESS_CONVERT_PROJEC
 define("WORDPRESS_CONVERT_SERVER", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_host"));
 
 // 変換後テーマ名
-define("WORDPRESS_CONVERT_THEME_NAME", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_theme_code", WORDPRESS_CONVERT_DEFAULT_NAME));
+define("WORDPRESS_CONVERT_THEME_NAME", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_theme_code", "BiND for WordPress"));
 
 // 表画面表示時の処理
 add_action('template_redirect', array( WORDPRESS_CONVERT_MAIN_CLASS, "display" ));
