@@ -66,6 +66,9 @@ class WordpressConvert {
 			add_action( 'admin_menu', array( "WordpressConvertSetting".$setting, 'init' ) );
 		}
 		
+		// メールの送信元アドレスを登録アドレスに変更する。
+		add_filter( 'wp_mail_from', array( $this, 'wp_mail_from' ), 1 );
+		
 		// 初期表示のメニューを変更
 		//if(empty($_GET["page"]) && preg_match("/\\/wp-admin\\//", $_SERVER["REQUEST_URI"]) > 0){
 		//	wp_redirect(get_option('siteurl') . '/wp-admin/admin.php?page=wordpress_convert_menu');
@@ -360,6 +363,20 @@ class WordpressConvert {
 			echo "</p></body></html>";
 			exit;
 		}
+	}
+	
+	/**
+	 * メールのフィルタを登録する。
+	 *
+	 * @param string デフォルトのメールアドレス
+	 * @return string $name メールの送信元に設定するメールアドレス
+	 */
+	function wp_mail_from( $email ) {
+		$option_email = get_option( 'admin_email', 'info@digitalstage.jp' );
+		if ( ! empty( $option_email ) ) {
+			return $option_email;
+		}
+		return $email;
 	}
 	
 	public function mailer_init($mailer){
