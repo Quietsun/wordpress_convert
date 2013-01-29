@@ -162,8 +162,8 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 
 		// フッタ
 		echo "<ul id=\"bwp-footlink\">";
-		echo "<li id=\"bwp-weblife\"><a href=\"https://mypage.weblife.me/\">".__("WebLife Server control panel", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
-		echo "<li id=\"bwp-help\"><a href=\"#\">".__("Help", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+		// echo "<li id=\"bwp-weblife\"><a href=\"https://mypage.weblife.me/\">".__("WebLife Server control panel", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+		// echo "<li id=\"bwp-help\"><a href=\"#\">".__("Help", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
 		if($professional == "1"){
 			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\" style=\"text-decoration: none;\"><li class=\"bwp-custom\">".__("Change easy mode", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
 		}else{
