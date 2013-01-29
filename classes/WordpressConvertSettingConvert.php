@@ -205,4 +205,3 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		echo "</form></div>";
 	}
 }
-?>

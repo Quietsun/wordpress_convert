@@ -61,4 +61,3 @@ class ConvertCommentCartridge extends ContentConvertCartridge {
 		return $content;
 	}
 }
-?>

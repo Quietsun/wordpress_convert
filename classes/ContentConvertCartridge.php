@@ -44,4 +44,3 @@ abstract class ContentConvertCartridge {
 	
 	abstract public function convert($baseFileName, $content);
 }
-?>

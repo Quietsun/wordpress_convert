@@ -45,4 +45,3 @@ class ConvertIgnoreCartridge extends ContentConvertCartridge {
 		return $content;
 	}
 }
-?>

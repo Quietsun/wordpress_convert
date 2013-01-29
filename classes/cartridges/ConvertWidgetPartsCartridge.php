@@ -60,4 +60,3 @@ class ConvertWidgetPartsCartridge extends ContentConvertCartridge {
 		return $content;
 	}
 }
-?>

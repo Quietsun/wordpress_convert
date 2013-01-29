@@ -105,4 +105,3 @@ class WlsvLocalContentManager extends ContentManager {
 		return file_get_contents($filename);
 	}
 }
-?>

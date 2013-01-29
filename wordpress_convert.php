@@ -121,4 +121,3 @@ register_activation_hook( __FILE__, array( WORDPRESS_CONVERT_MAIN_CLASS, "instal
 
 // アンインストール時の処理を登録
 register_deactivation_hook( __FILE__, array( WORDPRESS_CONVERT_MAIN_CLASS, "uninstall" ) );
-?>

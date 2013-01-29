@@ -66,4 +66,3 @@ class ConvertWidgetCartridge extends ContentConvertCartridge {
 		return $content;
 	}
 }
-?>

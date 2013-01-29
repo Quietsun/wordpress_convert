@@ -91,4 +91,3 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 		return $content;
 	}
 }
-?>

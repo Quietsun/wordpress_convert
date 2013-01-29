@@ -58,4 +58,3 @@ abstract class ContentManager {
 	
 	abstract public function getContent($filename);
 }
-?>

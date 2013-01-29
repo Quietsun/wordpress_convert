@@ -177,4 +177,3 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		echo "</ul></div>";
 	}
 }
-?>

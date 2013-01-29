@@ -189,4 +189,3 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 		return $content;
 	}
 }
-?>

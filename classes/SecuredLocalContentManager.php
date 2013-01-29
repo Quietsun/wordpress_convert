@@ -47,4 +47,3 @@ class SecuredLocalContentManager extends LocalContentManager {
 		return false;
 	}
 }
-?>

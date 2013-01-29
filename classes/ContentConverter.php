@@ -150,4 +150,3 @@ class ContentConverter {
 		return $this->content->php();	
 	}
 }
-?>
