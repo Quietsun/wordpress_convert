@@ -80,6 +80,9 @@ class WordpressConvert {
 			self::$convertError = __("PHP 5.3 or later is required for this plugin.", WORDPRESS_CONVERT_PROJECT_CODE);;
 			return;
 		}
+		
+		ob_start();
+		
 		$contentManagerClass = WORDPRESS_CONVERT_CONTENT_MANAGER;
 		$contentManager = new $contentManagerClass(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_login_id"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_password"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_base_dir"));
 		
@@ -330,6 +333,7 @@ class WordpressConvert {
 				self::$convertError = __("Account Authentication Failed.", WORDPRESS_CONVERT_PROJECT_CODE);
 			}
 		}
+		ob_end_clean();
 	}
 	
 	public static function header(){
