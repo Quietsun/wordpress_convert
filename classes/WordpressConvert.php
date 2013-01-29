@@ -1,13 +1,13 @@
 <?php
 /**
- * WordPress Converter for HTML Plugin
+ * BiND for WordPress theme converter
  * 
- * @copyright (c) 2012 NetLife Inc. All Rights Reserved.
- * http://www.netlife-web.com/
+ * Copyright (c) 2012 digitalstage inc. All Rights Reserved.
+ * http://www.digitalstage.jp/
  * 
  * This work complements FLARToolkit, developed by Saqoosha as part of the Libspark project.
  *     http://www.libspark.org/wiki/saqoosha/FLARToolKit
- * FLARToolKit is @copyright (C)2008 Saqoosha,
+ * FLARToolKit is Copyright (C)2008 Saqoosha,
  * and is ported from NyARToolKit, which is ported from ARToolKit.
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * 
- * You should have received a @copy of the GNU General Public License
+ * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 

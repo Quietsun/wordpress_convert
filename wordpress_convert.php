@@ -2,8 +2,8 @@
 /**
  * BiND for WordPress theme converter
  * 
- * Copyright (c) 2012 NetLife Inc. All Rights Reserved.
- * http://www.netlife-web.com/
+ * Copyright (c) 2012 digitalstage inc. All Rights Reserved.
+ * http://www.digitalstage.jp/
  * 
  * This work complements FLARToolkit, developed by Saqoosha as part of the Libspark project.
  *     http://www.libspark.org/wiki/saqoosha/FLARToolKit
