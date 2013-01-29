@@ -74,8 +74,8 @@ define("WORDPRESS_CONVERT_PLUGIN_SHORTNAME", __("WP Convert Plugin", WORDPRESS_C
 define("WORDPRESS_CONVERT_PLUGIN_NAME", __("Wordpress Convert Plugin", WORDPRESS_CONVERT_PROJECT_CODE));
 
 // メインクラス名
-// define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu,Convert");
-define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu");
+define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu,Convert");
+// define("WORDPRESS_CONVERT_SETTING_CLASSES", "Menu");
 
 // テンプレート取得クラス
 // define("WORDPRESS_CONVERT_CONTENT_MANAGER", "SecuredLocalContentManager");
