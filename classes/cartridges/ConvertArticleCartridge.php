@@ -49,6 +49,39 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 		pq("div.wp_list_pager")->replaceWith("<div class=\"wp_list_pager\"><?php wp_list_paginate(); ?></div>");
 		// 一覧画面のページャーを変換
 		pq("span.wp_list_count")->replaceWith("<span class=\"wp_list_count\"><?php \$wp_query_data = (array) \$wp_query; echo \$wp_query_data[\"found_posts\"]; ?></span>");
+		// アーカイブのタイトルを変換
+		foreach(pq("div.wp_archive_title") as $archive){
+			$dailys = pq($archive)->find(".wp_archive_title_daily");
+			if(count($dailys) > 0){
+				$daily = $dailys[0];
+				$title = pq($daily)->attr("title");
+				if(empty($title)){
+					$title = "%";
+				}
+				pq($daily)->replaceWith("<?php if ( is_day() ) : printf( \"".$title."\", get_the_date() ); else: ?>");
+				pq($archive)->append("<?php endif; ?>");
+			}
+			$monthlys = pq($archive)->find(".wp_archive_title_monthly");
+			if(count($monthlys) > 0){
+				$monthly = $monthlys[0];
+				$title = pq($monthly)->attr("title");
+				if(empty($title)){
+					$title = "%";
+				}
+				pq($monthly)->replaceWith("<?php if ( is_month() ) : printf( \"".$title."\", get_the_date('Y年F') ); else: ?>");
+				pq($archive)->append("<?php endif; ?>");
+			}
+			$yearlys = pq($archive)->find(".wp_archive_title_yearly");
+			if(count($yearlys) > 0){
+				$yearly = $yearlys[0];
+				$title = pq($yearlys)->attr("title");
+				if(empty($title)){
+					$title = "%";
+				}
+				pq($yearly)->replaceWith("<?php if ( is_year() ) : printf( \"".$title."\", get_the_date('Y年') ); else: ?>");
+				pq($archive)->append("<?php endif; ?>");
+			}
+		}
 		// 記事のページャーを変換
 		foreach(pq("div.wp_post_pager") as $pager){
 			$title = explode(",", pq($pager)->attr("title"));
