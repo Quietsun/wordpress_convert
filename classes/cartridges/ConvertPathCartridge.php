@@ -79,7 +79,7 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 				}elseif($path == "category.html"){
 					pq($anchor)->attrPHP("href", "echo get_category_link(\$wp_category['term_id']);");
 				}elseif($path == "index.html"){
-					pq($anchor)->attrPHP("href", "echo get_option('siteurl')");
+					pq($anchor)->attrPHP("href", "echo home_url()");
 				}elseif(preg_match("/\\.html?$/", $path) > 0){
 					pq($anchor)->attrPHP("href", "echo get_page_link(".$this->converter->getPageId(str_replace(".html", "", $path)).")");
 				}else{
