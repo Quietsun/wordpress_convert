@@ -67,7 +67,7 @@ class WordpressConvert {
 		}
 		
 		// メールの送信元アドレスを登録アドレスに変更する。
-		add_filter( 'wp_mail_from', array( $this, 'wp_mail_from' ), 1 );
+		add_filter( 'wp_mail_from', array( "WordpressConvert", 'wp_mail_from' ), 1 );
 		
 		// 初期表示のメニューを変更
 		//if(empty($_GET["page"]) && preg_match("/\\/wp-admin\\//", $_SERVER["REQUEST_URI"]) > 0){
