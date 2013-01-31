@@ -67,7 +67,7 @@ class WordpressConvert {
 		}
 		
 		// メールの送信元アドレスを登録アドレスに変更する。
-		add_filter( 'wp_mail_from', array( "WordpressConvert", 'wp_mail_from' ), 1 );
+		add_filter( 'wp_mail_from', array( WORDPRESS_CONVERT_MAIN_CLASS, 'wp_mail_from' ), 1 );
 		
 		// 初期表示のメニューを変更
 		//if(empty($_GET["page"]) && preg_match("/\\/wp-admin\\//", $_SERVER["REQUEST_URI"]) > 0){
@@ -101,6 +101,7 @@ class WordpressConvert {
 					@mkdir($info["dirname"], 0755, true);
 				}
 				if(($fp = @fopen($themeFile, "w+")) !== FALSE){
+					flock($fp,LOCK_SH);
 					fwrite($fp, "/* \r\n");
 					fwrite($fp, "Theme Name: ".WORDPRESS_CONVERT_THEME_NAME."\r\n");
 					fwrite($fp, "Description: ".__("The theme created by \"BiND for WebLiFE 6\"　This theme can easily change design in\" BiND for WebLiFE 6\". JQuery slideshow and JQuery light box, Tab layout function, and so on... You can use all the functions of \" BiND for WebLiFE 6\" and can easily convert the template into WordPress theme.")."\r\n");
@@ -115,6 +116,7 @@ class WordpressConvert {
 					fwrite($fp, "In case, theme uses others, you may spent extra fee.\r\n");
 					fwrite($fp, "\r\n");
 					fwrite($fp, "*/\r\n");
+					flock($fp, LOCK_UN);
 					fclose($fp);
 				}
 				
@@ -187,6 +189,7 @@ class WordpressConvert {
 						}
 						if(preg_match("/\\.(html?|css|js)$/i", $filename, $p) > 0){
 							if(($fp = @fopen($themeFile, "w+")) !== FALSE){
+								flock($fp,LOCK_SH);
 								$content = $contentManager->getContent($filename);
 								switch($p[1]){
 									case "htm":
@@ -253,6 +256,7 @@ class WordpressConvert {
 										fwrite($fp, $content);
 										break;
 								}
+								flock($fp,LOCK_UN);
 								fclose($fp);
 							}
 						}else{
@@ -269,6 +273,7 @@ class WordpressConvert {
 					@mkdir($info["dirname"], 0755, true);
 				}
 				if(($fp = @fopen($themeFile, "w+")) !== FALSE){
+					flock($fp,LOCK_SH);
 					fwrite($fp, "<?php\r\n");
 					$menus = $converter->getNavMenus();
 					if(is_array($menus) && !empty($menus)){
@@ -314,6 +319,7 @@ class WordpressConvert {
 					fwrite($fp, "\$pagination = array('base' => \$paginate_base, 'format' => \$paginate_format, 'total' => \$wp_query->max_num_pages, 'mid_size' => 5, 'current' => (\$paged ? \$paged : 1), 'prev_text' => __('&laquo; Previous'), 'next_text' => __('Next &raquo;'));\r\n");
 					fwrite($fp, "echo paginate_links(\$pagination);\r\n");
 					fwrite($fp, "}\r\n");
+					flock($fp,LOCK_UN);
 					fclose($fp);
 				}
 				
@@ -377,6 +383,48 @@ class WordpressConvert {
 			return $option_email;
 		}
 		return $email;
+	}
+	
+	/**
+	 * ページのタイトルを登録する。
+	 *
+	 * @param string デフォルトのメールアドレス
+	 * @return string $name メールの送信元に設定するメールアドレス
+	 */
+	function wp_title($title, $sep) {
+		global $wpdb, $wp_locale, $wp_query;
+		
+		$cat = get_query_var('cat');
+		$p = get_query_var('p');
+		$name = get_query_var('name');
+		$category_name = get_query_var('category_name');
+		$author = get_query_var('author');
+		$author_name = get_query_var('author_name');
+		$m = get_query_var('m');
+		$sep = (!empty($sep)?"&nbsp;".$sep."&nbsp;":"");
+		
+		// If there's a month
+		if ( !empty($m) ) {
+			$my_year = substr($m, 0, 4);
+			$my_month = $wp_locale->get_month(substr($m, 4, 2));
+			$my_day = intval(substr($m, 6, 2));
+			if ( !empty($my_day) ){
+				$my_day .="日";
+			}
+			$title = $my_year."年".$sep.$my_month.$sep.($my_day?$my_day:"");
+		}
+		
+		$year = get_query_var('year');
+		$monthnum = get_query_var('monthnum');
+		$day = get_query_var('day');
+		if ( !empty($year) ) {
+			$title = $year."年";
+			if ( !empty($monthnum) )
+				$title .= $sep . $wp_locale->get_month($monthnum);
+			if ( !empty($day) )
+				$title .= $sep . zeroise($day, 2)."日";
+		}
+		return $sep.$title;
 	}
 	
 	public function mailer_init($mailer){

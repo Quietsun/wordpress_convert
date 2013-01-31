@@ -101,6 +101,9 @@ define("WORDPRESS_CONVERT_SERVER", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_f
 // 変換後テーマ名
 define("WORDPRESS_CONVERT_THEME_NAME", get_option(WORDPRESS_CONVERT_PROJECT_CODE."_theme_code", "BiND for WordPress"));
 
+// アーカイブタイトルのフィルタ用メソッド
+add_filter( 'wp_title', array( WORDPRESS_CONVERT_MAIN_CLASS, 'wp_title' ), 1, 2);
+
 // 表画面表示時の処理
 add_action('template_redirect', array( WORDPRESS_CONVERT_MAIN_CLASS, "display" ));
 
