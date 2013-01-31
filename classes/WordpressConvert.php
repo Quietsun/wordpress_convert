@@ -411,7 +411,7 @@ class WordpressConvert {
 			if ( !empty($my_day) ){
 				$my_day .="日";
 			}
-			$title = $my_year."年".$sep.$my_month.$sep.($my_day?$my_day:"");
+			$title = $my_year."年".($my_month?$sep.$my_month:"").($my_day?$sep.$my_day:"");
 		}
 		
 		$year = get_query_var('year');
