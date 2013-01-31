@@ -412,6 +412,7 @@ class WordpressConvert {
 				$my_day .="日";
 			}
 			$title = $my_year."年".($my_month?$sep.$my_month:"").($my_day?$sep.$my_day:"");
+			$title = $sep.$title;
 		}
 		
 		$year = get_query_var('year');
@@ -423,8 +424,9 @@ class WordpressConvert {
 				$title .= $sep . $wp_locale->get_month($monthnum);
 			if ( !empty($day) )
 				$title .= $sep . zeroise($day, 2)."日";
+			$title = $sep.$title;
 		}
-		return $sep.$title;
+		return $title;
 	}
 	
 	public function mailer_init($mailer){
