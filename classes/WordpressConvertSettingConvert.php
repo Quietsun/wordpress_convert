@@ -43,6 +43,16 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			update_option("wordpress_convert_professional", $_POST['professional']);
 		}
 
+		$labels = array(
+			"professional" => __("Professional Mode", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"auth_baseurl" => __("Authenticate BaseURL", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"ftp_host" => __("FTP Host", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"template_basedir" => __("Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"theme_code" => __("Theme Code", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"ftp_login_id" => __("FTP Login ID", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"ftp_password" => __("FTP Password", WORDPRESS_CONVERT_PROJECT_CODE), 
+			"base_dir" => __("Base Directory", WORDPRESS_CONVERT_PROJECT_CODE)
+		);
 		self::saveSetting($labels);
 		
 		// ダッシュボード表示切り替え
