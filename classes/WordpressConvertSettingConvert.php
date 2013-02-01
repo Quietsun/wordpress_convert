@@ -42,6 +42,8 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		if( isset( $_POST['wp_convert_submit'] ) && isset( $_POST['professional'] ) ){
 			update_option("wordpress_convert_professional", $_POST['professional']);
 		}
+
+		self::saveSetting($labels);
 		
 		// ダッシュボード表示切り替え
 		parent::controlDashboard();
@@ -100,8 +102,6 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			"ftp_password" => __("Please input your FTP password", WORDPRESS_CONVERT_PROJECT_CODE), 
 			"base_dir" => __("Please input template base directory by ftp root directory", WORDPRESS_CONVERT_PROJECT_CODE)
 		);
-		
-		self::saveSetting($labels);
 		
 		$options = array();
 		foreach($labels as $key => $label){
