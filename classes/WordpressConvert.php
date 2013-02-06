@@ -80,7 +80,7 @@ class WordpressConvert {
 	 */
 	public static function execute(){
 		if( version_compare( PHP_VERSION, '5.3.0', '<' ) ){
-			self::$convertError = __("PHP 5.3 or later is required for this plugin.", WORDPRESS_CONVERT_PROJECT_CODE);;
+			self::$convertError = __("PHP 5.3 or later is required for this plugin.", WORDPRESS_CONVERT_PROJECT_CODE);
 			return;
 		}
 		

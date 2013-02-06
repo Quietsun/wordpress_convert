@@ -141,9 +141,8 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			$errors["ftp_password"] = __("Empty FTP password", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
 		*/
-		if(empty($values["ftp_host"]) && empty($values["template_basedir"])){
-			$errors["ftp_host"] = __("Empty FTP Host and Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE);
-			$errors["template_basedir"] = __("Empty FTP Host and Template Basedir", WORDPRESS_CONVERT_PROJECT_CODE);
+		if(empty($values["base_dir"])){
+			$errors["base_dir"] = __("Empty Base Directory", WORDPRESS_CONVERT_PROJECT_CODE);
 		}
 		if(!empty($errors)){
 			return $errors;
@@ -163,9 +162,14 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 			}
 			update_option("wordpress_convert_template_files", json_encode(array()));
 			
-			$_SESSION["WORDPRESS_CONVERT_MESSAGE"] = __("Saved Changes", WORDPRESS_CONVERT_PROJECT_CODE);
+			WordpressConvert::$convertError = __("Saved Changes", WORDPRESS_CONVERT_PROJECT_CODE);
 		
 			wp_safe_redirect($_SERVER["REQUEST_URI"]);
+		}elseif(isset( $_POST['wp_convert_submit'] )){
+			foreach($errors as $error){
+				WordpressConvert::$convertError = $error;
+				break;
+			}
 		}
 	}
 
@@ -174,18 +178,38 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 	 * @return void
 	 */
 	public static function displaySetting($labels, $types, $hints, $options){
-		// 設定変更ページを登録する。
+		// コンテンツマネージャを生成
+		$contentManagerClass = WORDPRESS_CONVERT_CONTENT_MANAGER;
+		$contentManager = new $contentManagerClass(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_login_id"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_password"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_base_dir"));
+		
+		// 設定変更ページを登録する
 		echo "<div id=\"bwp-wrap\">";
-		echo "<h2>".WORDPRESS_CONVERT_PLUGIN_NAME." ".__("Convert Setting", WORDPRESS_CONVERT_PROJECT_CODE)."</h2>";
-		echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
-			$errorMessage = call_user_func(array(WORDPRESS_CONVERT_MAIN_CLASS, "convertError"));
+		echo "<h1><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/conversion.png\" width=\"244\" height=\"31\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></h1>";
+		echo "<div style=\"color: #ee0000\">BiNDのテンプレートでは、WordPressのビジュアルエディタの機能が一部利用できない可能性があります。</div>";
+
+		// 適用ボタン系
+		if(!file_exists($contentManager->getContentHome()."bdflashinfo/info.xml") && !file_exists($contentManager->getContentHome()."index.html")){
+			echo "<p class=\"bwp-alert bwp-information\">".__("Target HTML was not found.", WORDPRESS_CONVERT_PROJECT_CODE)."</p>";
+		}elseif($contentManager->isGlobalUpdate()){
+			echo "<p class=\"bwp-alert bwp-information\">".WORDPRESS_CONVERT_PLUGIN_NAME.__("was updated.", WORDPRESS_CONVERT_PROJECT_CODE).__("Please apply from here.", WORDPRESS_CONVERT_PROJECT_CODE)."<span><a href=\"admin.php?page=wordpress_convert_dashboard&reconstruct=1\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/apply.png\" alt=\"".__("Apply", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"71\" height=\"24\"></a></span></p>";
+		}else{
+			if($themeCode != $template){
+				echo "<p class=\"bwp-alert bwp-update\">".__("New theme was uploaded.", WORDPRESS_CONVERT_PROJECT_CODE).__("Please apply from here.", WORDPRESS_CONVERT_PROJECT_CODE)."<span><a href=\"admin.php?page=wordpress_convert_dashboard&activate=1\"><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/apply.png\" alt=\"".__("Apply", WORDPRESS_CONVERT_PROJECT_CODE)."\" width=\"71\" height=\"24\"></a></span></p>";
+			}
+		}
+		
+		$errorMessage = call_user_func(array(WORDPRESS_CONVERT_MAIN_CLASS, "convertError"));
 		if(!empty($errorMessage)){
 			echo "<p class=\"bwp-error\">".$errorMessage."</p>";
 		}
+		
+		echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
 		echo "<table class=\"form-table\"><tbody>";
+		echo "<tr><th>項目名</th><th>現在設定中の値</th><th>設定する</th><tr>";
 		foreach($labels as $key => $label){
 			if($types[$key] != "hidden"){
 				echo "<tr><th>".$labels[$key]."</th><td>";
+				echo get_option("wordpress_convert_".$key, "設定なし")."</td><td>";
 				if(!empty($errors[$key])){
 					$class = $key." error";
 				}else{
@@ -218,5 +242,21 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		}
 		echo "<p class=\"submit\"><input type=\"submit\" name=\"wp_convert_submit\" value=\"".__("Save Changes", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
 		echo "</form></div>";
+		
+		// フッタ
+		echo "<ul id=\"bwp-footlink\">";
+		// echo "<li id=\"bwp-weblife\"><a href=\"https://mypage.weblife.me/\">".__("WebLife Server control panel", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+		// echo "<li id=\"bwp-help\"><a href=\"#\">".__("Help", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
+		if($professional == "1"){
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\" style=\"text-decoration: none;\"><li class=\"bwp-custom\">".__("Change easy mode", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
+		}else{
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&professional=1\" style=\"text-decoration: none;\"><li class=\"bwp-custom-off\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
+		}
+		if($site_closed == "1"){
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=0\" style=\"text-decoration: none;\"><li class=\"bwp-private\">".__("Open this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
+		}else{
+			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=1\" style=\"text-decoration: none;\"><li class=\"bwp-public\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
+		}
+		echo "</ul></div>";
 	}
 }
