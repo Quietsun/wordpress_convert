@@ -41,6 +41,11 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 	public function convert($baseFileName, $content){
 		// ページのタイトルを変換
 		pq("title")->replaceWith("<title><?php bloginfo( 'name' ); wp_title(); ?></title>");
+		pq("meta[property=og:site_name]")->attr("content", "<?php bloginfo( 'name' ) ?>");
+		pq("meta[property=og:title]")->attr("content", "<?php bloginfo( 'name' ); wp_title() ?>");
+		pq("meta[property=og:image]")->attr("content", "<?php echo get_theme_root_uri().\"/".WORDPRESS_CONVERT_THEME_NAME."/bdflashinfo/thumbnail.png\" ?>");
+		pq("meta[property=og:url]")->attr("content", "<?php echo home_url() ?>");
+		
 		// ページのタイトルを変換
 		pq("span.wp_blog_title")->replaceWith("<span id=\"wp_blog_title\"><?php bloginfo( 'name' ); ?></span>");
 		// ページのタイトルを変換
