@@ -4,22 +4,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
-"POT-Creation-Date: 2013-01-28 07:29:12+00:00\n"
-"PO-Revision-Date: 2013-01-28 16:31+0900\n"
+"POT-Creation-Date: 2013-02-06 12:03:36+00:00\n"
+"PO-Revision-Date: 2013-02-06 21:08+0900\n"
 "Last-Translator: \n"
 "Language-Team: Netlife Inc. <minagawa@netlife-web.com>\n"
 "Language: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: classes/WordpressConvert.php:80
+#: classes/WordpressConvert.php:83
 msgid "PHP 5.3 or later is required for this plugin."
 msgstr "このプラグインはPHP5.3以上が必要です。"
 
-#: classes/WordpressConvert.php:100
+#: classes/WordpressConvert.php:107
 msgid ""
 "The theme created by \"BiND for WebLiFE 6\"　This theme can easily change "
 "design in\" BiND for WebLiFE 6\". JQuery slideshow and JQuery light box, Tab "
@@ -31,23 +31,32 @@ msgstr ""
 "ショーやライトボックス、タブなど、BiND for WebLiFE 6で利用できる機能をすべて"
 "利用でき、そのテンプレートを簡単にWordPressテーマに変換する事ができます。"
 
-#: classes/WordpressConvert.php:101
+#: classes/WordpressConvert.php:108
 msgid "digitalstage inc."
 msgstr "digitalstage inc."
 
-#: classes/WordpressConvert.php:326
+#: classes/WordpressConvert.php:278
+msgid "Converted Theme by Wordpress Converter"
+msgstr "WordPress変換により変換されたテーマです。"
+
+#: classes/WordpressConvert.php:279
+msgid "NetLife Inc."
+msgstr "株式会社ネットライフ"
+
+#: classes/WordpressConvert.php:346
+#: classes/WordpressConvertSettingConvert.php:192
 #: classes/WordpressConvertSettingMenu.php:106
 msgid "Target HTML was not found."
 msgstr ""
 "BiND for WordPressのテーマで使用するサイトデータがアップロードされていませ"
 "ん。"
 
-#: classes/WordpressConvert.php:330
+#: classes/WordpressConvert.php:350
 msgid "Account Authentication Failed."
 msgstr ""
 "アカウントの認証に失敗しました。FTPログインIDとパスワードを確認してください。"
 
-#: classes/WordpressConvert.php:353
+#: classes/WordpressConvert.php:374
 msgid "404 Not Found"
 msgstr "ページが見つかりません。"
 
@@ -70,129 +79,129 @@ msgstr "メニュー設定"
 msgid "System Update"
 msgstr "システムアップデート"
 
-#: classes/WordpressConvertSettingConvert.php:51
-#: classes/WordpressConvertSettingConvert.php:164
-msgid "Convert Setting"
-msgstr "変換設定"
-
-#: classes/WordpressConvertSettingConvert.php:64
+#: classes/WordpressConvertSettingConvert.php:47
+#: classes/WordpressConvertSettingConvert.php:76
 msgid "Professional Mode"
 msgstr "プロフェショナルモード"
 
-#: classes/WordpressConvertSettingConvert.php:65
+#: classes/WordpressConvertSettingConvert.php:48
+#: classes/WordpressConvertSettingConvert.php:77
 msgid "Authenticate BaseURL"
 msgstr "認証ベースURL"
 
-#: classes/WordpressConvertSettingConvert.php:66
+#: classes/WordpressConvertSettingConvert.php:49
+#: classes/WordpressConvertSettingConvert.php:78
 msgid "FTP Host"
 msgstr "FTPサーバー"
 
-#: classes/WordpressConvertSettingConvert.php:67
+#: classes/WordpressConvertSettingConvert.php:50
+#: classes/WordpressConvertSettingConvert.php:79
 msgid "Template Basedir"
 msgstr "テンプレートベースディレクトリ"
 
-#: classes/WordpressConvertSettingConvert.php:68
+#: classes/WordpressConvertSettingConvert.php:51
+#: classes/WordpressConvertSettingConvert.php:80
 msgid "Theme Code"
 msgstr "テーマコード"
 
-#: classes/WordpressConvertSettingConvert.php:69
+#: classes/WordpressConvertSettingConvert.php:52
+#: classes/WordpressConvertSettingConvert.php:81
 msgid "FTP Login ID"
 msgstr "FTPログインID"
 
-#: classes/WordpressConvertSettingConvert.php:70
+#: classes/WordpressConvertSettingConvert.php:53
+#: classes/WordpressConvertSettingConvert.php:82
 msgid "FTP Password"
 msgstr "FTPパスワード"
 
-#: classes/WordpressConvertSettingConvert.php:71
+#: classes/WordpressConvertSettingConvert.php:54
+#: classes/WordpressConvertSettingConvert.php:83
 msgid "Base Directory"
-msgstr "ローカルベースディレクトリ"
+msgstr "テンプレートのディレクトリ"
 
-#: classes/WordpressConvertSettingConvert.php:94
+#: classes/WordpressConvertSettingConvert.php:63
+msgid "Convert Setting"
+msgstr "変換設定"
+
+#: classes/WordpressConvertSettingConvert.php:106
 msgid "Please select Wordpress menus to be professional or not."
 msgstr "WordPressのメニューを詳細に表示するかどうか選択して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:95
+#: classes/WordpressConvertSettingConvert.php:107
 msgid "Please input Authenticate BaseURL"
 msgstr "認証APIに使用するベースのURLを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:96
+#: classes/WordpressConvertSettingConvert.php:108
 msgid "Please input your FTP Hostname or IP Address"
 msgstr "FTPサーバーのホスト名かIPアドレスを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:97
+#: classes/WordpressConvertSettingConvert.php:109
 msgid "Please input template basedir"
 msgstr "テンプレートのベースディレクトリを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:98
+#: classes/WordpressConvertSettingConvert.php:110
 msgid "Theme code which this plugin convert to"
 msgstr "変換後のテーマの出力先のテーマコードを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:99
+#: classes/WordpressConvertSettingConvert.php:111
 msgid "Please input your FTP login ID"
 msgstr "FTPログインIDを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:100
+#: classes/WordpressConvertSettingConvert.php:112
 msgid "Please input your FTP password"
 msgstr "FTPパスワードを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:101
+#: classes/WordpressConvertSettingConvert.php:113
 msgid "Please input template base directory by ftp root directory"
 msgstr "テンプレートの配置されているベースディレクトリを入力して下さい。"
 
-#: classes/WordpressConvertSettingConvert.php:120
-#: classes/WordpressConvertSettingConvert.php:121
-msgid "Empty FTP Host and Template Basedir"
-msgstr "FTPホストかベースディレクトリのいずれかを入力して下さい。"
+#: classes/WordpressConvertSettingConvert.php:145
+msgid "Empty Base Directory"
+msgstr "テンプレートのディレクトリを入力してください。"
 
-#: classes/WordpressConvertSettingConvert.php:124
-msgid "Empty Theme Code"
-msgstr "テーマコードを入力して下さい。"
-
-#: classes/WordpressConvertSettingConvert.php:127
-msgid "Empty FTP login ID"
-msgstr "FTPログインIDを入力して下さい。"
-
-#: classes/WordpressConvertSettingConvert.php:130
-msgid "Empty FTP password"
-msgstr "FTPパスワードを入力して下さい。"
-
-#: classes/WordpressConvertSettingConvert.php:151
+#: classes/WordpressConvertSettingConvert.php:165
 msgid "Saved Changes"
 msgstr "設定を変更しました。"
 
-#: classes/WordpressConvertSettingConvert.php:180
+#: classes/WordpressConvertSettingConvert.php:194
+#: classes/WordpressConvertSettingMenu.php:108
+msgid "was updated."
+msgstr "が更新されました。"
+
+#: classes/WordpressConvertSettingConvert.php:194
+#: classes/WordpressConvertSettingConvert.php:197
+#: classes/WordpressConvertSettingMenu.php:108
+#: classes/WordpressConvertSettingMenu.php:111
+msgid "Please apply from here."
+msgstr "こちらから適用をしてください。"
+
+#: classes/WordpressConvertSettingConvert.php:194
+#: classes/WordpressConvertSettingConvert.php:197
+#: classes/WordpressConvertSettingMenu.php:108
+#: classes/WordpressConvertSettingMenu.php:111
+msgid "Apply"
+msgstr "適用"
+
+#: classes/WordpressConvertSettingConvert.php:197
+#: classes/WordpressConvertSettingMenu.php:111
+msgid "New theme was uploaded."
+msgstr "新しいテーマがアップロードされました。"
+
+#: classes/WordpressConvertSettingConvert.php:219
 msgid "YES"
 msgstr "はい"
 
-#: classes/WordpressConvertSettingConvert.php:181
+#: classes/WordpressConvertSettingConvert.php:220
 msgid "NO"
 msgstr "いいえ"
 
-#: classes/WordpressConvertSettingConvert.php:204
+#: classes/WordpressConvertSettingConvert.php:243
 msgid "Save Changes"
 msgstr "設定を変更する"
 
 #: classes/WordpressConvertSettingMenu.php:46
 msgid "Dashboard"
 msgstr "ダッシュボード"
-
-#: classes/WordpressConvertSettingMenu.php:108
-msgid "was updated."
-msgstr "が更新されました。"
-
-#: classes/WordpressConvertSettingMenu.php:108
-#: classes/WordpressConvertSettingMenu.php:111
-msgid "Please apply from here."
-msgstr "こちらから適用をしてください。"
-
-#: classes/WordpressConvertSettingMenu.php:108
-#: classes/WordpressConvertSettingMenu.php:111
-msgid "Apply"
-msgstr "適用"
-
-#: classes/WordpressConvertSettingMenu.php:111
-msgid "New theme was uploaded."
-msgstr "新しいテーマがアップロードされました。"
 
 #: classes/WordpressConvertSettingMenu.php:121
 msgid "Contribute articles"
@@ -243,14 +252,6 @@ msgstr "カテゴリ設定"
 msgid "Tag"
 msgstr "タグ設定"
 
-#: classes/WordpressConvertSettingMenu.php:165
-msgid "WebLife Server control panel"
-msgstr "WebLiFE*サーバーコントロールパネル"
-
-#: classes/WordpressConvertSettingMenu.php:166
-msgid "Help"
-msgstr "ヘルプページ"
-
 #: classes/WordpressConvertSettingMenu.php:168
 msgid "Change easy mode"
 msgstr "かんたんモードに戻る"
@@ -300,11 +301,23 @@ msgstr ""
 "ウェブオーサリングソフト「BiND for WebLiFE 6」で作成したWordPressテンプレート"
 "ファイルをWordPressのテーマに変換するプラグインです。"
 
-#~ msgid "Converted Theme by Wordpress Converter"
-#~ msgstr "WordPress変換により変換されたテーマです。"
+#~ msgid "Empty FTP Host and Template Basedir"
+#~ msgstr "FTPホストかベースディレクトリのいずれかを入力して下さい。"
 
-#~ msgid "NetLife Inc."
-#~ msgstr "株式会社ネットライフ"
+#~ msgid "Empty Theme Code"
+#~ msgstr "テーマコードを入力して下さい。"
+
+#~ msgid "Empty FTP login ID"
+#~ msgstr "FTPログインIDを入力して下さい。"
+
+#~ msgid "Empty FTP password"
+#~ msgstr "FTPパスワードを入力して下さい。"
+
+#~ msgid "WebLife Server control panel"
+#~ msgstr "WebLiFE*サーバーコントロールパネル"
+
+#~ msgid "Help"
+#~ msgstr "ヘルプページ"
 
 #~ msgid "WordPress Converter for HTML Plugin"
 #~ msgstr "BiND for WordPress変換プラグイン"
