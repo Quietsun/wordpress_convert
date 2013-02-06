@@ -44,7 +44,7 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 		pq("meta[property=og:site_name]")->attr("content", "<?php bloginfo( 'name' ) ?>");
 		pq("meta[property=og:title]")->attr("content", "<?php bloginfo( 'name' ); wp_title() ?>");
 		pq("meta[property=og:image]")->attr("content", "<?php echo get_theme_root_uri().\"/".WORDPRESS_CONVERT_THEME_NAME."/bdflashinfo/thumbnail.png\" ?>");
-		pq("meta[property=og:url]")->attr("content", "<?php the_permalink() ?>");
+		pq("meta[property=og:url]")->attr("content", "<?php if(is_front_page()){ echo home_url(); }else{ the_permalink(); } ?>");
 		
 		// ページのタイトルを変換
 		pq("span.wp_blog_title")->replaceWith("<span id=\"wp_blog_title\"><?php bloginfo( 'name' ); ?></span>");
