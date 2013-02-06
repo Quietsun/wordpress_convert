@@ -184,7 +184,7 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		
 		// 設定変更ページを登録する
 		echo "<div id=\"bwp-wrap\">";
-		echo "<h1><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/conversion.png\" width=\"244\" height=\"31\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></h1>";
+		echo "<h1><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/conversion.png\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></h1>";
 		echo "<div style=\"color: #ee0000\">BiNDのテンプレートでは、WordPressのビジュアルエディタの機能が一部利用できない可能性があります。</div>";
 
 		// 適用ボタン系
@@ -242,21 +242,5 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		}
 		echo "<p class=\"submit\"><input type=\"submit\" name=\"wp_convert_submit\" value=\"".__("Save Changes", WORDPRESS_CONVERT_PROJECT_CODE)."\" /></p>";
 		echo "</form></div>";
-		
-		// フッタ
-		echo "<ul id=\"bwp-footlink\">";
-		// echo "<li id=\"bwp-weblife\"><a href=\"https://mypage.weblife.me/\">".__("WebLife Server control panel", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
-		// echo "<li id=\"bwp-help\"><a href=\"#\">".__("Help", WORDPRESS_CONVERT_PROJECT_CODE)."</a></li>";
-		if($professional == "1"){
-			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&professional=0\" style=\"text-decoration: none;\"><li class=\"bwp-custom\">".__("Change easy mode", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
-		}else{
-			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&professional=1\" style=\"text-decoration: none;\"><li class=\"bwp-custom-off\">".__("Change custom mode", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
-		}
-		if($site_closed == "1"){
-			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=0\" style=\"text-decoration: none;\"><li class=\"bwp-private\">".__("Open this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
-		}else{
-			echo "<a href=\"admin.php?page=wordpress_convert_dashboard&site_closed=1\" style=\"text-decoration: none;\"><li class=\"bwp-public\">".__("Close this site", WORDPRESS_CONVERT_PROJECT_CODE)."</li></a>";
-		}
-		echo "</ul></div>";
 	}
 }
