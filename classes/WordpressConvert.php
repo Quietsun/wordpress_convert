@@ -221,7 +221,7 @@ class WordpressConvert {
 													fwrite($fp, "*/\r\n");
 													fwrite($fp, "?>\r\n");
 													$pageid = $converter->getPageId($baseFileCode);
-													if(empty($pageid)){
+													if(empty($pageid) && $baseFileCode != "template"){
 														// ページIDが未登録の場合には、ページを新規登録
 														$pageid = wp_insert_post(array(
 															"post_title" => $baseFileCode,
@@ -231,6 +231,9 @@ class WordpressConvert {
 														));
 														add_post_meta($pageid, "_wp_page_template", $baseFileCode.".php", true);
 														add_post_meta($pageid, "_wp_page_code", $baseFileCode, true);
+													}
+													if($baseFileCode == "template"){
+														wp_delete_post($pageid, true);
 													}
 													break;
 											}
