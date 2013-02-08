@@ -208,7 +208,7 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		echo "<tr><th>項目名</th><th>現在設定中の値</th><th>設定する</th><tr>";
 		foreach($labels as $key => $label){
 			if($types[$key] != "hidden"){
-				echo "<tr><th>".$labels[$key]."</th><td>";
+				echo "<tr><td>".$labels[$key]."</td><td>";
 				echo get_option("wordpress_convert_".$key, "設定なし")."</td><td>";
 				if(!empty($errors[$key])){
 					$class = $key." error";
