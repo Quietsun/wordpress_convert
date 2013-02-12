@@ -183,6 +183,14 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		$contentManager = new $contentManagerClass(get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_login_id"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_ftp_password"), get_option(WORDPRESS_CONVERT_PROJECT_CODE."_base_dir"));
 		
 		// 設定変更ページを登録する
+		echo "<style type=\"text/css\">\r\n";
+		echo ".form-table { font-size: 12px; width: 100%;border-top: 1px solid #cccccc; }\r\n";
+		echo ".form-table td { padding: 10px; background-color: #ffffff; border-bottom: 1px solid #cccccc; }\r\n";
+		echo ".form-table th { padding: 10px; background-color: #f8f8f8; border-bottom: 1px solid #cccccc; }\r\n";
+		echo ".form-table .bwp-title01 { font-weight: bolder; text-align: center; width: 300px; }\r\n";
+		echo ".bwp-txt { font-size: 12px; line-height: 20px; }\r\n";
+		echo "</style>\r\n";
+		
 		echo "<div id=\"bwp-wrap\">";
 		echo "<h1><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/conversion.png\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></h1>";
 		echo "<div style=\"color: #ee0000\">".__("There is possibility of inactivation functions of WordPress Visual Editor in BiND template.", WORDPRESS_CONVERT_PROJECT_CODE) ."</div>";
