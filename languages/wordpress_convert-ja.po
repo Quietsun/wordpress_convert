@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
 "POT-Creation-Date: 2013-02-12 02:22:10+00:00\n"
-"PO-Revision-Date: 2013-02-12 12:18+0900\n"
+"PO-Revision-Date: 2013-02-12 20:30+0900\n"
 "Last-Translator: \n"
 "Language-Team: Netlife Inc. <minagawa@netlife-web.com>\n"
 "Language: Japanese\n"
@@ -224,11 +224,11 @@ msgstr "項目名"
 
 #: classes/WordpressConvertSettingConvert.php:213
 msgid "current setting"
-msgstr "現在設定中の値"
+msgstr "現在設定中のディレクトリ名"
 
 #: classes/WordpressConvertSettingConvert.php:213
 msgid "setting value"
-msgstr "設定する"
+msgstr "新しく設定するディレクトリ名"
 
 #: classes/WordpressConvertSettingConvert.php:217
 msgid "no setting"
