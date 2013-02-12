@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wordpress Converter for HTML Plugin 0.0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wordpress_convert\n"
-"POT-Creation-Date: 2013-02-12 02:11:50+00:00\n"
-"PO-Revision-Date: 2013-02-12 11:14+0900\n"
+"POT-Creation-Date: 2013-02-12 02:22:10+00:00\n"
+"PO-Revision-Date: 2013-02-12 11:23+0900\n"
 "Last-Translator: \n"
 "Language-Team: Netlife Inc. <minagawa@netlife-web.com>\n"
 "Language: Japanese\n"
@@ -15,11 +15,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: classes/WordpressConvert.php:83
-msgid "PHP 5.3 or later is required for this plugin."
-msgstr "このプラグインはPHP5.3以上が必要です。"
-
-#: classes/WordpressConvert.php:107
+#: classes/WordpressConvert.php:109
 msgid ""
 "The theme created by \"BiND for WebLiFE 6\"　This theme can easily change "
 "design in\" BiND for WebLiFE 6\". JQuery slideshow and JQuery light box, Tab "
@@ -31,19 +27,19 @@ msgstr ""
 "ショーやライトボックス、タブなど、BiND for WebLiFE 6で利用できる機能をすべて"
 "利用でき、そのテンプレートを簡単にWordPressテーマに変換する事ができます。"
 
-#: classes/WordpressConvert.php:108
+#: classes/WordpressConvert.php:110
 msgid "digitalstage inc."
 msgstr "digitalstage inc."
 
-#: classes/WordpressConvert.php:281
+#: classes/WordpressConvert.php:283
 msgid "Converted Theme by Wordpress Converter"
 msgstr "WordPress変換により変換されたテーマです。"
 
-#: classes/WordpressConvert.php:282
+#: classes/WordpressConvert.php:284
 msgid "NetLife Inc."
 msgstr "株式会社ネットライフ"
 
-#: classes/WordpressConvert.php:349
+#: classes/WordpressConvert.php:351
 #: classes/WordpressConvertSettingConvert.php:192
 #: classes/WordpressConvertSettingMenu.php:106
 msgid "Target HTML was not found."
@@ -51,12 +47,12 @@ msgstr ""
 "BiND for WordPressのテーマで使用するサイトデータがアップロードされていませ"
 "ん。"
 
-#: classes/WordpressConvert.php:353
+#: classes/WordpressConvert.php:355
 msgid "Account Authentication Failed."
 msgstr ""
 "アカウントの認証に失敗しました。FTPログインIDとパスワードを確認してください。"
 
-#: classes/WordpressConvert.php:377
+#: classes/WordpressConvert.php:379
 msgid "404 Not Found"
 msgstr "ページが見つかりません。"
 
@@ -163,6 +159,14 @@ msgstr "テンプレートのディレクトリを入力してください。"
 msgid "Saved Changes"
 msgstr "設定を変更しました。"
 
+#: classes/WordpressConvertSettingConvert.php:188
+msgid ""
+"There is possibility of inactivation functions of WordPress Visual Editor in "
+"BiND template."
+msgstr ""
+"BiNDのテンプレートでは、WordPressのビジュアルエディタの機能が一部利用できない"
+"可能性があります。"
+
 #: classes/WordpressConvertSettingConvert.php:194
 #: classes/WordpressConvertSettingMenu.php:108
 msgid "was updated."
@@ -213,6 +217,22 @@ msgstr ""
 msgid ""
 "You can set path of directory for template remove first of `slashes` in it."
 msgstr "また、ディレクトリの指定は先頭に「／」の文字は不要です。"
+
+#: classes/WordpressConvertSettingConvert.php:213
+msgid "setting name"
+msgstr "項目名"
+
+#: classes/WordpressConvertSettingConvert.php:213
+msgid "current setting"
+msgstr "現在設定中の値"
+
+#: classes/WordpressConvertSettingConvert.php:213
+msgid "setting value"
+msgstr "設定する"
+
+#: classes/WordpressConvertSettingConvert.php:217
+msgid "no setting"
+msgstr "設定なし"
 
 #: classes/WordpressConvertSettingConvert.php:224
 msgid "YES"
@@ -327,6 +347,9 @@ msgid ""
 msgstr ""
 "ウェブオーサリングソフト「BiND for WebLiFE 6」で作成したWordPressテンプレート"
 "ファイルをWordPressのテーマに変換するプラグインです。"
+
+#~ msgid "PHP 5.3 or later is required for this plugin."
+#~ msgstr "このプラグインはPHP5.3以上が必要です。"
 
 #~ msgid "Empty FTP Host and Template Basedir"
 #~ msgstr "FTPホストかベースディレクトリのいずれかを入力して下さい。"

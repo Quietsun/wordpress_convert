@@ -185,7 +185,7 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		// 設定変更ページを登録する
 		echo "<div id=\"bwp-wrap\">";
 		echo "<h1><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/conversion.png\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></h1>";
-		echo "<div style=\"color: #ee0000\">BiNDのテンプレートでは、WordPressのビジュアルエディタの機能が一部利用できない可能性があります。</div>";
+		echo "<div style=\"color: #ee0000\">".__("There is possibility of inactivation functions of WordPress Visual Editor in BiND template.", WORDPRESS_CONVERT_PROJECT_CODE) ."</div>";
 
 		// 適用ボタン系
 		if(!file_exists($contentManager->getContentHome()."bdflashinfo/info.xml") && !file_exists($contentManager->getContentHome()."index.html")){
@@ -210,11 +210,11 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		
 		echo "<form method=\"post\" action=\"".$_SERVER["REQUEST_URI"]."\">";
 		echo "<table class=\"form-table\"><tbody>";
-		echo "<tr><th>項目名</th><th>現在設定中の値</th><th>設定する</th><tr>";
+		echo "<tr><th>".__("setting name", WORDPRESS_CONVERT_PROJECT_CODE) ."</th><th>".__("current setting", WORDPRESS_CONVERT_PROJECT_CODE) ."</th><th>".__("setting value", WORDPRESS_CONVERT_PROJECT_CODE) ."</th><tr>";
 		foreach($labels as $key => $label){
 			if($types[$key] != "hidden"){
 				echo "<tr><td>".$labels[$key]."</td><td>";
-				echo get_option("wordpress_convert_".$key, "設定なし")."</td><td>";
+				echo get_option("wordpress_convert_".$key, __("no setting", WORDPRESS_CONVERT_PROJECT_CODE))."</td><td>";
 				if(!empty($errors[$key])){
 					$class = $key." error";
 				}else{
