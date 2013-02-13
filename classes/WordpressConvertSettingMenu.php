@@ -99,7 +99,7 @@ class WordpressConvertSettingMenu extends WordpressConvertSetting {
 		// 設定変更ページを登録する
 		echo "<div id=\"bwp-wrap\">";
 		echo "<h1><img src=\"".WORDPRESS_CONVERT_BASE_URL."/images/maintitle.png\" width=\"244\" height=\"31\" alt=\"".WORDPRESS_CONVERT_PLUGIN_NAME."\"></h1>";
-		echo "<div style=\"color: #ee0000\">BiNDのテンプレートでは、WordPressのビジュアルエディタの機能が一部利用できない可能性があります。</div>";
+		echo "<div class=\"bwp-alert bwp-information\">".__("There is possibility of inactivation functions of WordPress Visual Editor in BiND template.", WORDPRESS_CONVERT_PROJECT_CODE) ."</div>";
 
 		// 適用ボタン系
 		if(!file_exists($contentManager->getContentHome()."bdflashinfo/info.xml") && !file_exists($contentManager->getContentHome()."index.html")){
