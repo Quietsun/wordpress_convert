@@ -188,7 +188,7 @@ class WordpressConvertSettingConvert extends WordpressConvertSetting {
 		echo ".form-table td { padding: 10px; background-color: #ffffff; border-bottom: 1px solid #cccccc; }\r\n";
 		echo ".form-table th { padding: 10px; background-color: #f8f8f8; border-bottom: 1px solid #cccccc; }\r\n";
 		echo ".form-table .bwp-title01 { font-weight: bolder; text-align: center; width: 300px; }\r\n";
-		echo ".bwp-txt { font-size: 12px; line-height: 20px; }\r\n";
+		echo ".bwp-txt { font-size: 12px; line-height: 20px; padding: 18px 0px; }\r\n";
 		echo "</style>\r\n";
 		
 		echo "<div id=\"bwp-wrap\">";
