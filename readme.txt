@@ -8,8 +8,7 @@ Stable tag:
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-"BiND for WordPress theme converter" plug-in is template converter.
-It converts the WordPress template created by "BiND for WebLiFE 6" into WordPress Theme files.
+This plug-in converts the WordPress template created by "BiND for WebLiFE 6" into WordPress Theme files.
 
 == Description ==
 
