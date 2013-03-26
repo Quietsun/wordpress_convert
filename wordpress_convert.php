@@ -27,14 +27,14 @@
 /*
 Plugin Name: BiND for WordPress theme converter
 Description: "BiND for WordPress theme converter" plug-in is template converter. It converts the WordPress template created by "BiND for WebLiFE 6" into WordPress Theme files.
-Version: 1.0.0
+Version: 1.0.2
 Author: digitalstage inc.
 Author URI: http://www.digitalstage.jp/
 License: GPLv2
 Text Domain: wordpress_convert
 */
 
-define("WORDPRESS_CONVERT_VERSION", "1.0.0");
+define("WORDPRESS_CONVERT_VERSION", "1.0.2");
 
 // メモリ使用制限を調整
 ini_set('memory_limit', '128M');
