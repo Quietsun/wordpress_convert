@@ -219,7 +219,7 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 			}
 			$title = pq($article)->attr("title");
 			if(!empty($title)){
-				pq($article)->after("<?php endwhile; else: echo \"<p>".$title."</p>\"; endif; ?>");
+				pq($article)->after("<?php endwhile; else: ?><p>".$title."</p><?php endif; ?>");
 			}else{
 				pq($article)->after("<?php endwhile; endif; ?>");
 			}
