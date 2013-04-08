@@ -133,6 +133,8 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 		foreach(pq(".wp_articles") as $article){
 			// タイトルを変換
 			pq($article)->find("span.wp_title")->replaceWith("<?php the_title(); ?>");
+			// 検索クエリを変換
+			pq($article)->find("span.wp_search_query")->replaceWith("<?php the_search_query(); ?>");
 			// 投稿日時を変換
 			pq($article)->find("span.wp_date")->replaceWith("<?php the_time(get_option('date_format')); ?>");
 			// 画像を変換
