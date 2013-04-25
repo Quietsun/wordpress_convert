@@ -225,6 +225,7 @@ class ConvertArticleCartridge extends ContentConvertCartridge {
 			}else{
 				pq($article)->after("<?php endwhile; endif; ?>");
 			}
+			pq($article)->removeAttr("title");
 		}
 		return $content;
 	}
