@@ -24,7 +24,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require(dirname(__FILE__)."/../phpQuery/phpQuery.php");
+if(!class_exists("phpQuery")){
+	require(dirname(__FILE__)."/../phpQuery/phpQuery.php");
+}
 
 /**
  * HTMLを変換するためのクラス
