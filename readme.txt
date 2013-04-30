@@ -37,6 +37,11 @@ how to upload
 
 == Changelog ==
 
+= 1.0.2 =
+・Error message is put the HTML in p tag, if the posted data can not be retrieved.
+・Above Error Message is not displayed to title property of the HTML div tag.
+
+
 
 
 
