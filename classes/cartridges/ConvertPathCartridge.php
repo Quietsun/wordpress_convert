@@ -80,7 +80,12 @@ class ConvertPathCartridge extends ContentConvertCartridge {
 					pq($anchor)->attrPHP("href", "echo get_category_link(\$wp_category['term_id']);");
 				}elseif($path == "index.html"){
 					pq($anchor)->attrPHP("href", "echo home_url()");
-				}elseif(preg_match("/\\.html?$/", $path) > 0){
+/* global以外のBiND リンクに対応 2014.03.12 yuge edit */
+				}elseif(preg_match("/\\.html?(#.+)?$/", $path) > 0){
+					if(strpos($path, "#") > 0){
+						list($path, $dummy) = explode("#", $path);
+					}
+/* 2014.03.12 yuge edit end */
 					pq($anchor)->attrPHP("href", "echo get_page_link(".$this->converter->getPageId(str_replace(".html", "", $path)).")");
 				}else{
 					$path = get_theme_root_uri()."/".WORDPRESS_CONVERT_THEME_NAME."/".$path;
